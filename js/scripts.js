@@ -3,24 +3,128 @@
     * Copyright 2013-2023 Start Bootstrap
     * Licensed under MIT (https://github.com/StartBootstrap/startbootstrap-sb-admin/blob/master/LICENSE)
     */
-    // 
-// Scripts
-// 
+const sidebarToggle = document.querySelector('#sidebarToggle');
+const sidebar = document.querySelector('#layoutSidenav_nav');
+const pageContent = document.querySelector('#layoutSidenav_content');
+const scrim = document.querySelector('.nav-scrim');
+const desktop = window.matchMedia('(min-width: 992px)');
+const navigation = Array.from(sidebar.querySelectorAll('.nav-link'), link => ({
+    link,
+    section: document.getElementById(link.hash.slice(1))
+}));
 
-window.addEventListener('DOMContentLoaded', event => {
+function drawerIsOpen() {
+    return sidebarToggle.getAttribute('aria-expanded') === 'true';
+}
 
-    // Toggle the side navigation
-    const sidebarToggle = document.body.querySelector('#sidebarToggle');
-    if (sidebarToggle) {
-        // Uncomment Below to persist sidebar toggle between refreshes
-        // if (localStorage.getItem('sb|sidebar-toggle') === 'true') {
-        //     document.body.classList.toggle('sb-sidenav-toggled');
-        // }
-        sidebarToggle.addEventListener('click', event => {
-            event.preventDefault();
-            document.body.classList.toggle('sb-sidenav-toggled');
-            localStorage.setItem('sb|sidebar-toggle', document.body.classList.contains('sb-sidenav-toggled'));
-        });
+function setDrawer(open) {
+    const expanded = open && !desktop.matches;
+    document.body.classList.toggle('sb-sidenav-toggled', expanded);
+    sidebarToggle.setAttribute('aria-expanded', String(expanded));
+    sidebar.inert = !desktop.matches && !expanded;
+    pageContent.inert = expanded;
+    scrim.hidden = !expanded;
+
+    if (expanded) {
+        sidebar.querySelector('.nav-link.active').focus({ preventScroll: true });
+    }
+}
+
+function dismissDrawer() {
+    setDrawer(false);
+    sidebarToggle.focus();
+}
+
+sidebarToggle.addEventListener('click', () => setDrawer(!drawerIsOpen()));
+scrim.addEventListener('click', dismissDrawer);
+desktop.addEventListener('change', () => {
+    const focusWasInSidebar = sidebar.contains(document.activeElement);
+    setDrawer(false);
+    if (!desktop.matches && focusWasInSidebar) {
+        sidebarToggle.focus();
+    }
+});
+
+document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && drawerIsOpen()) {
+        dismissDrawer();
+    }
+});
+
+document.addEventListener('click', event => {
+    const link = event.target.closest('a[href^="#"]');
+    if (link && drawerIsOpen()) {
+        setDrawer(false);
+        document.getElementById(link.hash.slice(1))?.focus({ preventScroll: true });
+    }
+});
+
+document.body.classList.add('sidebar-ready');
+sidebarToggle.hidden = false;
+setDrawer(false);
+
+let currentLink = navigation[0].link;
+let scrollFrame = 0;
+
+function syncNavigation() {
+    scrollFrame = 0;
+    const readingLine = Math.min(200, window.innerHeight * 0.35);
+    let active = navigation[0].link;
+
+    for (const { link, section } of navigation) {
+        if (section.getBoundingClientRect().top > readingLine) {
+            break;
+        }
+        active = link;
     }
 
+    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+        active = navigation.at(-1).link;
+    }
+
+    if (active !== currentLink) {
+        currentLink.classList.remove('active');
+        currentLink.removeAttribute('aria-current');
+        active.classList.add('active');
+        active.setAttribute('aria-current', 'location');
+        currentLink = active;
+    }
+}
+
+function scheduleNavigationSync() {
+    if (!scrollFrame) {
+        scrollFrame = window.requestAnimationFrame(syncNavigation);
+    }
+}
+
+window.addEventListener('scroll', scheduleNavigationSync, { passive: true });
+window.addEventListener('resize', scheduleNavigationSync);
+window.addEventListener('hashchange', scheduleNavigationSync);
+syncNavigation();
+
+const filters = document.querySelector('[data-repo-filters]');
+const filterButtons = filters.querySelectorAll('[data-filter]');
+const repositories = document.querySelectorAll('[data-repo-category]');
+const repositoryStatus = document.querySelector('#repo-status');
+
+filters.hidden = false;
+filters.addEventListener('click', event => {
+    const button = event.target.closest('[data-filter]');
+    if (!button) {
+        return;
+    }
+
+    for (const option of filterButtons) {
+        option.setAttribute('aria-pressed', String(option === button));
+    }
+
+    const category = button.dataset.filter;
+    let visibleCount = 0;
+    for (const repository of repositories) {
+        const visible = category === 'all' || repository.dataset.repoCategory === category;
+        repository.hidden = !visible;
+        visibleCount += Number(visible);
+    }
+    repositoryStatus.textContent = '顯示 ' + visibleCount + ' 個儲存庫';
+    scheduleNavigationSync();
 });
