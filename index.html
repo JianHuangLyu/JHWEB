@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="theme-color" content="#f3f7f6">
+    <meta name="theme-color" content="#fff">
     <meta name="description" content="呂建篁的個人作品集與履歷。探索電腦視覺、多模態 AI、醫學影像和 Jetson 邊緣部署專案。">
     <meta property="og:type" content="website">
     <meta property="og:title" content="呂建篁 Jian-Huang Lyu｜個人作品集">
@@ -37,7 +37,6 @@
                     <div class="nav">
                         <a class="nav-link active" aria-current="location" href="#home">首頁</a>
                         <a class="nav-link" href="#projects">精選專案</a>
-                        <a class="nav-link" href="#repositories">GitHub 作品</a>
                         <a class="nav-link" href="#resume">線上履歷</a>
                         <a class="nav-link" href="#contact">聯絡方式</a>
                     </div>
@@ -50,33 +49,45 @@
         <div id="layoutSidenav_content">
             <main id="main-content" class="portfolio-shell" tabindex="-1">
                 <section id="home" class="hero" aria-labelledby="hero-title" tabindex="-1">
-                    <img class="hero-image" src="assets/img/microscopy-hero.webp" width="1672" height="941" alt="" fetchpriority="high">
                     <div class="hero-copy">
                         <p class="hero-name" lang="en">Jian-Huang Lyu</p>
                         <h1 id="hero-title">呂建篁</h1>
                         <p class="hero-focus">電腦視覺 · 多模態 AI · 邊緣部署</p>
                         <p class="hero-intro">就讀國立成功大學電機所資訊工程組，關注醫學影像分割，並將模型部署到高效能運算環境與邊緣裝置。</p>
                         <div class="hero-actions">
-                            <a class="btn btn-mint" href="#projects">瀏覽精選專案</a>
-                            <a class="btn btn-on-dark" href="#resume">查看履歷</a>
+                            <a class="btn btn-accent" href="#projects">瀏覽精選專案</a>
+                            <a class="btn btn-outline-dark" href="#resume">查看履歷</a>
                         </div>
                     </div>
+                    <img class="hero-image" src="assets/img/microscopy-hero.webp" width="1672" height="941" alt="" fetchpriority="high">
                 </section>
 
                 <section id="projects" class="portfolio-section" aria-labelledby="projects-title" tabindex="-1">
                     <h2 class="section-title" id="projects-title">精選專案</h2>
-                    <div class="row g-3 g-xl-4">
-                        <div class="col-md-6 col-xl-4">
-                            <article class="card project-card h-100 project-pathology" aria-labelledby="pathology-title">
-                                <div class="card-body">
-                                    <p class="project-context">國網中心實習</p>
-                                    <h3 id="pathology-title">病理影像定位與結構化分析</h3>
-                                    <p class="project-summary">自主提案並開發輔助系統，結合影像異常區域定位與視覺語言模型，產出結構化分析報告。</p>
+                    <div class="project-list">
+                        <article class="card project-card project-pathology" id="project-pathology" aria-labelledby="pathology-title" tabindex="-1">
+                            <header class="project-header">
+                                <p class="project-context">國網中心實習</p>
+                                <h3 id="pathology-title">病理影像定位與結構化分析</h3>
+                                <p class="project-summary">串接病理影像定位與視覺語言模型，產出研究用的逐區域 JSON 形態分析報告。</p>
+                                <div class="project-meta">
                                     <ul class="tag-list" aria-label="使用技術">
-                                        <li>YOLO11m</li><li>MedGemma</li><li>vLLM</li><li>Slurm</li>
+                                        <li>YOLO11</li><li>MedGemma 1.5</li><li>SkillOpt</li><li>FastAPI</li><li>vLLM</li><li>Slurm</li>
                                     </ul>
-                                    <figure class="project-visual">
-                                        <figcaption>Mistral Small 3.1 的 JSON 結構符合率</figcaption>
+                                    <a class="project-source text-link" href="https://github.com/JianHuangLyu/Structured-Pathology-Image-Analysis-via-YOLO-Based-Abnormality-Detection-and-skill-optimization/blob/main/README.md" aria-describedby="pathology-title">GitHub README</a>
+                                </div>
+                            </header>
+                            <div class="project-body">
+                                <div class="project-figures">
+                                    <figure class="project-visual project-flow">
+                                        <figcaption>病理影像分析流程</figcaption>
+                                        <ol class="flow-steps">
+                                            <li>YOLO 定位</li><li>人工選取 ROI</li><li>VLM 報告</li>
+                                        </ol>
+                                    </figure>
+                                    <figure class="project-visual project-metrics">
+                                        <figcaption>Prompt 最佳化前後的 Schema 合法率</figcaption>
+                                        <p class="metric-context">Mistral Small 3.1 · RefPath 衍生測試集</p>
                                         <div class="comparison-row">
                                             <span>調整前</span>
                                             <span class="bar-track" aria-hidden="true"><span style="--bar-fill: 10.83%"></span></span>
@@ -89,167 +100,184 @@
                                         </div>
                                     </figure>
                                 </div>
-                                <details class="project-details">
-                                    <summary>專案細節</summary>
-                                    <div class="detail-copy">
-                                        <p>以 MedGemma 1.5 為教師模型，借鏡 SkillOpt 最佳化 Skill 與 Prompt，維持學生模型權重固定。JSON 結構符合率從 10.83% 提升至 99.29%。</p>
-                                        <p>以 RefPath 訓練並比較 9 種 YOLO 模型。定位模型 YOLO11m 在實驗中達到 81.7% Recall 與 86.6% mAP50。</p>
-                                        <p>以 Slurm 在 NANO4 配置運算資源，並整合 vLLM、FastAPI 與 Gradio，完成從影像輸入到報告產出的流程。</p>
-                                    </div>
-                                </details>
-                            </article>
-                        </div>
-                        <div class="col-md-6 col-xl-4">
-                            <article class="card project-card h-100 project-edge" aria-labelledby="edge-title">
-                                <div class="card-body">
-                                    <p class="project-context">成大課程專案</p>
-                                    <h3 id="edge-title">Jetson 即時風格轉換</h3>
-                                    <p class="project-summary">帶領 7 人團隊，在 Jetson Xavier NX 部署 AdaIN，讓邊緣裝置處理單張影像與即時攝影機畫面。</p>
-                                    <ul class="tag-list" aria-label="使用技術">
-                                        <li>AdaIN</li><li>ONNX</li><li>TensorRT</li><li>Docker</li>
+                                <div class="project-notes">
+                                    <h4>STAR 專案重點</h4>
+                                    <ul class="star-list" role="list">
+                                        <li class="star-situation">
+                                            <span class="star-letter" aria-hidden="true">S</span>
+                                            <div>
+                                                <h5>情境</h5>
+                                                <p>逐張標註病理影像並整理形態描述，需要大量人工處理。</p>
+                                            </div>
+                                        </li>
+                                        <li class="star-task">
+                                            <span class="star-letter" aria-hidden="true">T</span>
+                                            <div>
+                                                <h5>任務</h5>
+                                                <p>實習期間自主提案，獨立開發異常區域定位與結構化分析輔助系統。</p>
+                                            </div>
+                                        </li>
+                                        <li class="star-action">
+                                            <span class="star-letter" aria-hidden="true">A</span>
+                                            <div>
+                                                <h5>行動</h5>
+                                                <p>比較 9 種 YOLO 模型，採用 MedGemma 1.5 作為教師參考，固定學生模型權重，透過 SkillOpt 分別最佳化 Prompt 與 Skills。</p>
+                                                <p>以 Gradio 建置 Windows 操作介面，在國網中心 NANO4 整合 FastAPI、vLLM 與 Slurm。</p>
+                                            </div>
+                                        </li>
+                                        <li class="star-result">
+                                            <span class="star-letter" aria-hidden="true">R</span>
+                                            <div>
+                                                <h5>成果</h5>
+                                                <p>YOLO11m 的 Recall 為 81.7%，mAP50 為 86.6%。Mistral Small 3.1 的 Prompt 實驗中，JSON Schema 違規由 12,006 件降至 95 件。</p>
+                                            </div>
+                                        </li>
                                     </ul>
-                                    <figure class="project-visual">
-                                        <figcaption>量化前後的模型體積</figcaption>
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="card project-card project-edge" id="project-edge" aria-labelledby="edge-title" tabindex="-1">
+                            <header class="project-header">
+                                <p class="project-context">成大課程專案</p>
+                                <h3 id="edge-title">Jetson 即時風格轉換</h3>
+                                <p class="project-summary">在 Jetson Xavier NX 的 GPU 上執行 AdaIN，支援單張影像與即時攝影機畫面。</p>
+                                <div class="project-meta">
+                                    <ul class="tag-list" aria-label="使用技術">
+                                        <li>AdaIN</li><li>ONNX</li><li>TensorRT</li><li>INT8 PTQ</li><li>Docker</li>
+                                    </ul>
+                                    <a class="project-source text-link" href="https://github.com/JianHuangLyu/Master/blob/main/114-2/ARTIFICAL%20INTELLIGENCE%20IN%20DIGITAL%20SIGNAL%20ANALYSIS%20AND%20ITS%20APPLICATIONS/Image-Style-Transfer/readme.md" aria-describedby="edge-title">GitHub README</a>
+                                </div>
+                            </header>
+                            <div class="project-body">
+                                <div class="project-figures">
+                                    <figure class="project-visual project-flow">
+                                        <figcaption>邊緣部署流程</figcaption>
+                                        <ol class="flow-steps">
+                                            <li>AdaIN 轉 ONNX</li><li>TensorRT INT8</li><li>Jetson 即時推論</li>
+                                        </ol>
+                                    </figure>
+                                    <figure class="project-visual project-metrics">
+                                        <figcaption>TensorRT Engine 的模型體積</figcaption>
+                                        <p class="metric-context">Jetson Xavier NX · 量化前後比較</p>
                                         <div class="comparison-row">
                                             <span>FP32</span>
-                                            <span class="bar-track" aria-hidden="true"><span style="--bar-fill: 95.6%"></span></span>
-                                            <strong>47.8 MB</strong>
+                                            <span class="bar-track" aria-hidden="true"><span style="--bar-fill: 95.66%"></span></span>
+                                            <strong>47.83 MB</strong>
                                         </div>
                                         <div class="comparison-row">
                                             <span>INT8</span>
-                                            <span class="bar-track" aria-hidden="true"><span style="--bar-fill: 19.4%"></span></span>
-                                            <strong>9.7 MB</strong>
+                                            <span class="bar-track" aria-hidden="true"><span style="--bar-fill: 19.44%"></span></span>
+                                            <strong>9.72 MB</strong>
                                         </div>
                                     </figure>
                                 </div>
-                                <details class="project-details">
-                                    <summary>專案細節</summary>
-                                    <div class="detail-copy">
-                                        <p>負責模型量化、推論測試及 Docker 部署文件。在 Jetson Xavier NX 上，TensorRT INT8 的推論速度為 FP32 的 2.55 倍。</p>
-                                        <p>比較 CPU、ONNX Runtime GPU 與 TensorRT 的推論表現，整合後以 7.7 FPS 處理 512 × 512 像素的攝影機影像。</p>
-                                        <a href="https://github.com/JianHuangLyu/Master/tree/main/114-2/ARTIFICAL%20INTELLIGENCE%20IN%20DIGITAL%20SIGNAL%20ANALYSIS%20AND%20ITS%20APPLICATIONS/Image-Style-Transfer">GitHub 專案資料</a>
-                                    </div>
-                                </details>
-                            </article>
-                        </div>
-                        <div class="col-md-6 col-xl-4">
-                            <article class="card project-card h-100 project-expression" aria-labelledby="expression-title">
-                                <div class="card-body">
-                                    <p class="project-context">南大畢業專題 · 組別第三名</p>
-                                    <h3 id="expression-title">多模態微表情辨識</h3>
-                                    <p class="project-summary">以 PyTorch 結合原始影像、光流與自注意力，從臉部影像序列辨識短暫的微表情。</p>
-                                    <ul class="tag-list" aria-label="使用技術">
-                                        <li>PyTorch</li><li>MediaPipe</li><li>TV-L1</li><li>Self-Attention</li>
+                                <div class="project-notes">
+                                    <h4>STAR 專案重點</h4>
+                                    <ul class="star-list" role="list">
+                                        <li class="star-situation">
+                                            <span class="star-letter" aria-hidden="true">S</span>
+                                            <div>
+                                                <h5>情境</h5>
+                                                <p>Jetson Xavier NX 的運算資源有限，FP32 推論速度限制了攝影機畫面的即時處理。</p>
+                                            </div>
+                                        </li>
+                                        <li class="star-task">
+                                            <span class="star-letter" aria-hidden="true">T</span>
+                                            <div>
+                                                <h5>任務</h5>
+                                                <p>帶領 7 人團隊規劃架構與部署流程，負責 AdaIN 模型量化、推論測試與部署文件。</p>
+                                            </div>
+                                        </li>
+                                        <li class="star-action">
+                                            <span class="star-letter" aria-hidden="true">A</span>
+                                            <div>
+                                                <h5>行動</h5>
+                                                <p>將 AdaIN 轉為 ONNX，在 Jetson 上使用 TensorRT 進行 INT8 訓練後量化，並比較 CPU、ONNX Runtime GPU 與 TensorRT 的推論表現。</p>
+                                            </div>
+                                        </li>
+                                        <li class="star-result">
+                                            <span class="star-letter" aria-hidden="true">R</span>
+                                            <div>
+                                                <h5>成果</h5>
+                                                <p>在 Xavier GPU 上處理 512 × 512 影像，推論時間由 0.3307 秒降至 0.1295 秒，速度達 2.55 倍，攝影機展示達 7.72 FPS。</p>
+                                            </div>
+                                        </li>
                                     </ul>
-                                    <figure class="project-visual">
+                                </div>
+                            </div>
+                        </article>
+
+                        <article class="card project-card project-expression" id="project-expression" aria-labelledby="expression-title" tabindex="-1">
+                            <header class="project-header">
+                                <p class="project-context">南大畢業專題</p>
+                                <h3 id="expression-title">多模態微表情辨識</h3>
+                                <p class="project-summary">從臉部影像序列辨識正向、負向、驚訝與其他四類微表情，並整合攝影機展示。</p>
+                                <div class="project-meta">
+                                    <ul class="tag-list" aria-label="使用技術">
+                                        <li>PyTorch</li><li>MediaPipe</li><li>CNN</li><li>TV-L1 光流</li><li>Self-Attention</li>
+                                    </ul>
+                                    <a class="project-source text-link" href="https://github.com/JianHuangLyu/Bachelor/blob/main/Senior%20Project/README.md" aria-describedby="expression-title">GitHub README</a>
+                                </div>
+                            </header>
+                            <div class="project-body">
+                                <div class="project-figures">
+                                    <figure class="project-visual project-flow">
                                         <figcaption>微表情辨識流程</figcaption>
                                         <ol class="flow-steps">
-                                            <li>影像＋光流</li>
-                                            <li>特徵融合</li>
-                                            <li>表情分類</li>
+                                            <li>影像＋光流</li><li>自注意力融合</li><li>四類表情分類</li>
                                         </ol>
                                     </figure>
+                                    <figure class="project-visual project-metrics">
+                                        <figcaption>微表情分類準確率</figcaption>
+                                        <p class="metric-context">留一受試者交叉驗證（LOSO）</p>
+                                        <div class="comparison-row">
+                                            <span>CASME</span>
+                                            <span class="bar-track" aria-hidden="true"><span style="--bar-fill: 80.05%"></span></span>
+                                            <strong>80.05%</strong>
+                                        </div>
+                                        <div class="comparison-row">
+                                            <span>綜合資料集</span>
+                                            <span class="bar-track" aria-hidden="true"><span style="--bar-fill: 72.33%"></span></span>
+                                            <strong>72.33%</strong>
+                                        </div>
+                                    </figure>
                                 </div>
-                                <details class="project-details">
-                                    <summary>專案細節</summary>
-                                    <div class="detail-copy">
-                                        <p>負責資料前處理、模型實驗與系統整合。以 MediaPipe 對齊人臉，從影像擷取 Apex Frame，以 CNN 與 TV-L1 光流結合靜態和動態特徵。</p>
-                                        <p>採 Leave-One-Subject-Out 交叉驗證與消融實驗。模型在 CASME 資料集達到 80.05% Accuracy。</p>
-                                        <a href="https://github.com/JianHuangLyu/Bachelor/tree/main/Senior%20Project">GitHub 程式碼、報告與展示</a>
-                                    </div>
-                                </details>
-                            </article>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="repositories" class="portfolio-section" aria-labelledby="repositories-title" tabindex="-1">
-                    <div class="section-heading">
-                        <h2 class="section-title" id="repositories-title">GitHub 作品</h2>
-                        <a class="text-link" href="https://github.com/JianHuangLyu?tab=repositories">瀏覽所有儲存庫</a>
-                    </div>
-                    <div class="repo-filters" role="group" aria-label="篩選 GitHub 作品" data-repo-filters hidden>
-                        <button class="btn filter-button" type="button" aria-pressed="true" data-filter="all">全部</button>
-                        <button class="btn filter-button" type="button" aria-pressed="false" data-filter="tools">桌面工具</button>
-                        <button class="btn filter-button" type="button" aria-pressed="false" data-filter="research">研究與課程</button>
-                    </div>
-                    <p id="repo-status" class="visually-hidden" role="status"></p>
-                    <div class="row g-3 g-xl-4" id="repo-list">
-                        <div class="col-md-6 col-xl-4" data-repo-category="tools">
-                            <article class="card repo-card h-100">
-                                <div class="card-body">
-                                    <h3><a href="https://github.com/JianHuangLyu/JH-PDF2MD">JH PDF2MD</a></h3>
-                                    <p>將中英文 PDF 轉成結構化 Markdown，整理跨頁段落，並保留表格、連結與圖片。</p>
-                                    <ol class="flow-steps" aria-label="轉換流程">
-                                        <li>PDF</li><li>版面解析</li><li>Markdown</li>
-                                    </ol>
-                                    <ul class="tag-list" aria-label="技術">
-                                        <li>Python</li><li>Windows</li>
+                                <div class="project-notes">
+                                    <h4>STAR 專案重點</h4>
+                                    <ul class="star-list" role="list">
+                                        <li class="star-situation">
+                                            <span class="star-letter" aria-hidden="true">S</span>
+                                            <div>
+                                                <h5>情境</h5>
+                                                <p>微表情出現短暫、變化細微。原始 FeatRef 架構主要使用光流擷取動態線索。</p>
+                                            </div>
+                                        </li>
+                                        <li class="star-task">
+                                            <span class="star-letter" aria-hidden="true">T</span>
+                                            <div>
+                                                <h5>任務</h5>
+                                                <p>在畢業專題中負責資料前處理、模型實驗與系統整合，建立四類微表情辨識流程。</p>
+                                            </div>
+                                        </li>
+                                        <li class="star-action">
+                                            <span class="star-letter" aria-hidden="true">A</span>
+                                            <div>
+                                                <h5>行動</h5>
+                                                <p>以 MediaPipe 對齊臉部，從 Onset 和 Apex 影格擷取 CNN 靜態特徵，以 TV-L1 光流與 Inception 擷取動態特徵，再用 Self-Attention 融合。</p>
+                                            </div>
+                                        </li>
+                                        <li class="star-result">
+                                            <span class="star-letter" aria-hidden="true">R</span>
+                                            <div>
+                                                <h5>成果</h5>
+                                                <p>完成四個獨立資料集與綜合資料集的驗證，以及攝影機 GUI 展示。專題獲系上多媒體與雲端網路應用組第三名。</p>
+                                            </div>
+                                        </li>
                                     </ul>
                                 </div>
-                            </article>
-                        </div>
-                        <div class="col-md-6 col-xl-4" data-repo-category="tools">
-                            <article class="card repo-card h-100">
-                                <div class="card-body">
-                                    <h3><a href="https://github.com/JianHuangLyu/JH-Screen-Recorder">JH Screen Recorder</a></h3>
-                                    <p>錄製全螢幕或選取區域，可同時收錄系統聲音與麥克風，並支援區域截圖。</p>
-                                    <ol class="flow-steps" aria-label="錄製流程">
-                                        <li>畫面與聲音</li><li>編碼</li><li>MP4</li>
-                                    </ol>
-                                    <ul class="tag-list" aria-label="技術">
-                                        <li>PowerShell</li><li>FFmpeg</li>
-                                    </ul>
-                                </div>
-                            </article>
-                        </div>
-                        <div class="col-md-6 col-xl-4" data-repo-category="research">
-                            <article class="card repo-card h-100">
-                                <div class="card-body">
-                                    <h3><a href="https://github.com/JianHuangLyu/WLW_GPintegrate">WLW_GPintegrate</a></h3>
-                                    <p>使用版本化 JSON Schema、共用 CLI 介面與獨立容器串接批次研究流程。</p>
-                                    <ol class="flow-steps" aria-label="資料流">
-                                        <li>輸入案例</li><li>批次 DAG</li><li>結構化輸出</li>
-                                    </ol>
-                                    <ul class="tag-list" aria-label="技術">
-                                        <li>JSON Schema</li><li>Docker</li>
-                                    </ul>
-                                </div>
-                            </article>
-                        </div>
-                        <div class="col-md-6 col-xl-4" data-repo-category="research">
-                            <article class="card repo-card h-100">
-                                <div class="card-body">
-                                    <h3><a href="https://github.com/JianHuangLyu/Master">Master</a></h3>
-                                    <p>碩士課程與實作紀錄，收錄影像風格轉換、跌倒偵測與音樂情緒辨識等課程專案。</p>
-                                    <ul class="tag-list" aria-label="技術">
-                                        <li>ONNX</li><li>TensorRT</li><li>數位訊號分析</li>
-                                    </ul>
-                                </div>
-                            </article>
-                        </div>
-                        <div class="col-md-6 col-xl-4" data-repo-category="research">
-                            <article class="card repo-card h-100">
-                                <div class="card-body">
-                                    <h3><a href="https://github.com/JianHuangLyu/Bachelor">Bachelor</a></h3>
-                                    <p>大學資訊工程課程與專題集，包含演算法、資料庫、數位系統與微表情辨識。</p>
-                                    <ul class="tag-list" aria-label="技術">
-                                        <li>PyTorch</li><li>C</li><li>VHDL</li>
-                                    </ul>
-                                </div>
-                            </article>
-                        </div>
-                        <div class="col-md-6 col-xl-4" data-repo-category="research">
-                            <article class="card repo-card h-100">
-                                <div class="card-body">
-                                    <h3><a href="https://github.com/JianHuangLyu/ComputerGraph">ComputerGraph</a></h3>
-                                    <p>以 OpenGL 實作 3D 幾何細分、鍵鼠互動、物件形變與著色等電腦圖學練習。</p>
-                                    <ul class="tag-list" aria-label="技術">
-                                        <li>OpenGL</li><li>電腦圖學</li>
-                                    </ul>
-                                </div>
-                            </article>
-                        </div>
+                            </div>
+                        </article>
                     </div>
                 </section>
 
@@ -257,28 +285,23 @@
                     <h2 class="section-title" id="resume-title">線上履歷</h2>
                     <div class="row g-3 g-xl-4">
                         <div class="col-lg-6">
-                            <div class="card resume-card h-100">
+                            <section class="card resume-card h-100" id="resume-education" aria-labelledby="education-title">
                                 <div class="card-body">
-                                    <h3>經歷與學歷</h3>
+                                    <h3 id="education-title">學歷</h3>
                                     <ol class="timeline">
                                         <li>
-                                            <p class="timeline-date"><time datetime="2026-07">2026.07</time> – <time datetime="2026-08">2026.08</time></p>
-                                            <h4>國家高速網路與計算中心</h4>
-                                            <p>暑期實習生，獨立完成病理影像分析輔助系統。</p>
-                                        </li>
-                                        <li>
-                                            <p class="timeline-date"><time datetime="2025-09">2025.09</time> – 至今</p>
+                                            <p class="timeline-date"><time datetime="2025-09">2025/09</time> – 至今</p>
                                             <h4>國立成功大學</h4>
-                                            <p>電機工程學系資訊工程組・碩士班</p>
+                                            <p>電機工程學系（資訊工程組）碩士</p>
                                         </li>
                                         <li>
-                                            <p class="timeline-date"><time datetime="2020-09">2020.09</time> – <time datetime="2024-01">2024.01</time></p>
+                                            <p class="timeline-date"><time datetime="2020-09">2020/09</time> – <time datetime="2024-01">2024/01</time></p>
                                             <h4>國立臺南大學</h4>
-                                            <p>資訊工程學系・學士</p>
+                                            <p>資訊工程學系學士</p>
                                         </li>
                                     </ol>
                                 </div>
-                            </div>
+                            </section>
                         </div>
                         <div class="col-lg-6">
                             <div class="card resume-card h-100">
@@ -306,6 +329,30 @@
                             </div>
                         </div>
                         <div class="col-12">
+                            <section class="card resume-card" id="resume-experience" aria-labelledby="experience-title">
+                                <div class="card-body">
+                                    <h3 id="experience-title">經歷</h3>
+                                    <ol class="timeline">
+                                        <li>
+                                            <p class="timeline-date"><time datetime="2026-07-01">2026/7/1</time> – <time datetime="2026-08-31">2026/8/31</time></p>
+                                            <h4><a href="#project-pathology">病理醫學影像異常區域定位與結構化分析輔助系統</a></h4>
+                                            <p class="experience-meta"><span class="experience-org">財團法人國家實驗研究院國家高速網路與計算中心</span><span class="experience-role">暑期實習生</span></p>
+                                        </li>
+                                        <li>
+                                            <p class="timeline-date"><time datetime="2026-04">2026/4</time> – <time datetime="2026-05">2026/5</time></p>
+                                            <h4><a href="#project-edge">NVIDIA Jetson Xavier NX 邊緣裝置之即時風格轉換系統</a></h4>
+                                            <p class="experience-meta"><span class="experience-org">國立成功大學電機工程學系・人工智慧於數位訊號分析之應用課程</span><span class="experience-role">專案負責人</span></p>
+                                        </li>
+                                        <li>
+                                            <p class="timeline-date"><time datetime="2022-01">2022/01</time> – <time datetime="2022-12">2022/12</time></p>
+                                            <h4><a href="#project-expression">多模態微表情辨識系統（大學部畢業專題第三名）</a></h4>
+                                            <p class="experience-meta"><span class="experience-org">國立臺南大學資訊工程學系</span><span class="experience-role">組員（資料處理、模型實驗與系統整合）</span></p>
+                                        </li>
+                                    </ol>
+                                </div>
+                            </section>
+                        </div>
+                        <div class="col-12">
                             <div class="card resume-card">
                                 <div class="card-body">
                                     <h3>活動紀錄</h3>
@@ -327,7 +374,7 @@
                         <p>歡迎交流 AI、電腦視覺專案與研發機會。</p>
                     </div>
                     <div class="contact-links">
-                        <a class="btn btn-mint" href="mailto:a7929771@gmail.com">寄信給我</a>
+                        <a class="btn btn-inverse" href="mailto:a7929771@gmail.com">寄信給我</a>
                         <a class="btn btn-on-dark" href="https://www.linkedin.com/in/chienhaung">LinkedIn</a>
                         <a class="btn btn-on-dark" href="https://hackmd.io/@abcd09500">HackMD</a>
                     </div>

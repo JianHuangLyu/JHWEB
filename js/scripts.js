@@ -101,30 +101,3 @@ window.addEventListener('scroll', scheduleNavigationSync, { passive: true });
 window.addEventListener('resize', scheduleNavigationSync);
 window.addEventListener('hashchange', scheduleNavigationSync);
 syncNavigation();
-
-const filters = document.querySelector('[data-repo-filters]');
-const filterButtons = filters.querySelectorAll('[data-filter]');
-const repositories = document.querySelectorAll('[data-repo-category]');
-const repositoryStatus = document.querySelector('#repo-status');
-
-filters.hidden = false;
-filters.addEventListener('click', event => {
-    const button = event.target.closest('[data-filter]');
-    if (!button) {
-        return;
-    }
-
-    for (const option of filterButtons) {
-        option.setAttribute('aria-pressed', String(option === button));
-    }
-
-    const category = button.dataset.filter;
-    let visibleCount = 0;
-    for (const repository of repositories) {
-        const visible = category === 'all' || repository.dataset.repoCategory === category;
-        repository.hidden = !visible;
-        visibleCount += Number(visible);
-    }
-    repositoryStatus.textContent = '顯示 ' + visibleCount + ' 個儲存庫';
-    scheduleNavigationSync();
-});
