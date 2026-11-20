@@ -23,7 +23,7 @@
   text-underline-offset: 0.2em;
 }
 
-.portfolio :is(a, button, summary):focus-visible {
+.portfolio :is(a, button, [tabindex="-1"]):focus-visible {
   outline: 3px solid var(--ink);
   outline-offset: 3px;
   box-shadow: none;
@@ -371,6 +371,40 @@ main.portfolio-shell {
   display: inline-flex;
   min-height: 2.75rem;
   align-items: center;
+}
+
+.project-media {
+  min-width: 0;
+  margin: 0;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: var(--surface);
+}
+
+.project-media img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 0.7rem 0.7rem 0 0;
+}
+
+.project-media figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.15rem 0.75rem;
+  padding: 0.4rem clamp(0.7rem, 1.25vw, 1.15rem);
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.project-media-source {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  font-weight: 650;
 }
 
 .project-visual {
