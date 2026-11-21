@@ -626,6 +626,10 @@ main.portfolio-shell > .portfolio-section:first-child {
   font-size: 0.875rem;
 }
 
+.project-media-caption {
+  font-weight: 700;
+}
+
 .project-media-source {
   display: inline-flex;
   min-height: 2.75rem;
