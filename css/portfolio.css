@@ -427,6 +427,35 @@ main.portfolio-shell > .portfolio-section:first-child {
   gap: 0.75rem;
 }
 
+.project-pathology .project-meta {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.project-stack-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
+  gap: 0.65rem;
+}
+
+.project-stack-group {
+  min-width: 0;
+  padding: 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 0.65rem;
+  background-color: color-mix(in srgb, var(--surface) 68%, transparent);
+}
+
+.project-stack-group h5 {
+  margin: 0 0 0.35rem;
+  font-size: 1rem;
+  font-weight: 720;
+}
+
+.project-stack-group p {
+  margin: 0 0 0.6rem;
+  font-size: 0.9rem;
+}
+
 .project-meta-panel {
   min-width: 0;
   padding: 0.8rem 0.9rem;
@@ -456,8 +485,15 @@ main.portfolio-shell > .portfolio-section:first-child {
 }
 
 .portfolio .project-links > a {
+  background-color: var(--surface);
   line-height: 1.5;
   text-decoration: none;
+}
+
+.project-expression .project-header {
+  background-color: var(--surface);
+  color: var(--ink);
+  text-align: start;
 }
 
 .project-media {
@@ -675,7 +711,8 @@ main.portfolio-shell > .portfolio-section:first-child {
 }
 
 .portfolio .resume-card {
-  background: var(--paper-gradient);
+  background-color: var(--surface);
+  background-image: var(--paper-gradient);
 }
 
 .timeline {

@@ -10,7 +10,7 @@
     <meta property="og:description" content="電腦視覺、多模態 AI、醫學影像與邊緣部署作品集。">
     <title>呂建篁 Jian-Huang Lyu｜個人作品集</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/portfolio.css?v=abab669041c1">
+    <link rel="stylesheet" href="css/portfolio.css?v=cee72f006b86">
     <script src="js/scripts.js?v=bd8598fb38fa" defer></script>
 </head>
 <body class="portfolio sb-nav-fixed">
@@ -54,16 +54,12 @@
 
         <div id="layoutSidenav_content">
             <main id="main-content" class="portfolio-shell" tabindex="-1">
-                <figure class="site-banner" id="site-banner">
-                    <img src="assets/img/workspace-banner.webp" width="2172" height="724" alt="暖棕木桌上的手寫筆記本，筆電在前方，左側放手機，右側放咖啡" fetchpriority="high">
-                </figure>
-
                 <section id="home" class="hero" aria-labelledby="hero-title" tabindex="-1">
                     <div class="hero-copy">
                         <p class="hero-name" lang="en">Jian-Huang Lyu</p>
                         <h1 id="hero-title">呂建篁</h1>
                         <p class="hero-focus">國立成功大學電機工程學系　碩士</p>
-                        <p class="hero-intro">我專注於電腦視覺、多模態 AI 應用及醫學影像分割，具備資料集建置、模型訓練、LLM/VLM 輸出最佳化，到 HPC 與邊緣裝置部署的端到端開發經驗。曾於實習期間自主提案並獨立完成病理影像異常定位與結構化報告系統，在學期間於課程專案帶領團隊完成 Jetson 邊緣 AI 量化部署，期望投入 AI/ML、電腦視覺或 LLM/VLM 應用研發工程職務</p>
+                        <p class="hero-intro">我專注於電腦視覺、多模態 AI 應用及醫學影像分割，具資料集建置、模型訓練、LLM/VLM 應用與邊緣裝置部署之開發經驗。期望投入 AI/ML、電腦視覺或 LLM/VLM 應用相關研發工程職務</p>
                         <div class="hero-actions">
                             <a class="btn btn-accent" href="#projects">瀏覽精選專案</a>
                             <a class="btn btn-accent" href="https://drive.google.com/file/d/1vBFfm8cvseu5qnkpBR-wVfnuOK81z-iy/view?usp=sharing" target="_blank" rel="noopener">查看個人履歷</a>
@@ -162,13 +158,56 @@
                             <header class="project-header">
                                 <p class="project-context">實習專案</p>
                                 <h3 id="pathology-title">醫學病理影像病灶定位與結構化分析系統</h3>
-                                <p class="project-summary">實習期間自主提案，以RefPath公開資料集訓練及實驗評估。在推論模式，輸入影像進行病灶區域定位，並根據預測的定位進行模型推論來產生最終結構化分析報告</p>
+                                <p class="project-summary">實習期間自主提案，以公開資料集訓練及實驗評估。在推論模式，影像進行病灶定位，並根據預測定位區域進行模型推論產生結構化分析報告</p>
                                 <div class="project-meta">
                                     <section class="project-meta-panel project-tech">
                                         <h4 lang="en">Tech Stack</h4>
-                                        <ul class="tag-list project-skills" aria-label="使用技術" role="list">
-                                            <li>YOLO</li><li>MedGemma 1.5</li><li>Microsoft SkillOpt</li><li>FastAPI</li><li>vLLM</li><li>Slurm (HPC)</li>
-                                        </ul>
+                                        <div class="project-stack-grid">
+                                            <section class="project-stack-group">
+                                                <h5>前端</h5>
+                                                <p>提供影像上傳、推論操作及結果展示，並統一介面的視覺樣式。</p>
+                                                <ul class="tag-list project-skills" role="list">
+                                                    <li>Gradio</li>
+                                                    <li>CSS</li>
+                                                </ul>
+                                            </section>
+                                            <section class="project-stack-group">
+                                                <h5>後端</h5>
+                                                <p>串接模型、推論服務與 Web API，處理病灶定位、區域影像分析及結構化報告。</p>
+                                                <ul class="tag-list project-skills" role="list">
+                                                    <li>Python</li>
+                                                    <li>PyTorch</li>
+                                                    <li>vLLM</li>
+                                                    <li>OpenAI-compatible APIs</li>
+                                                    <li>FastAPI</li>
+                                                    <li>Uvicorn</li>
+                                                    <li>YOLO11m</li>
+                                                    <li>YOLO11s</li>
+                                                    <li>Gemma4</li>
+                                                    <li>Mistral Small 3.1</li>
+                                                </ul>
+                                            </section>
+                                            <section class="project-stack-group">
+                                                <h5>Prompt 工程</h5>
+                                                <p>透過 Teacher–Student 評估迭代 Skill 與 Prompt，讓學生模型的結構化輸出逐步接近教師模型。</p>
+                                                <ul class="tag-list project-skills" role="list">
+                                                    <li>Microsoft SkillOpt</li>
+                                                </ul>
+                                            </section>
+                                            <section class="project-stack-group">
+                                                <h5>基礎架構與部署</h5>
+                                                <p>整合 HPC 運算與儲存、資源調度、遠端連線、Python 環境和系統部署。</p>
+                                                <ul class="tag-list project-skills" role="list">
+                                                    <li>NCHC NANO4（NVIDIA H200）</li>
+                                                    <li>HFS</li>
+                                                    <li>Slurm</li>
+                                                    <li>OpenSSH</li>
+                                                    <li>SOCKS5h</li>
+                                                    <li>Python venv</li>
+                                                    <li>Client–Server</li>
+                                                </ul>
+                                            </section>
+                                        </div>
                                     </section>
                                     <section class="project-meta-panel project-resources">
                                         <h4 lang="en">External Links</h4>
@@ -231,15 +270,14 @@
                                             <span class="star-letter" aria-hidden="true">3</span>
                                             <div>
                                                 <h5>方法</h5>
-                                                <p>基於Teacher-Student框架下，採用雲端MedGemma 1.5 醫療特化模型作為教師參考，固定地端Mistral Small 3.1學生模型權重，並透過 SkillOpt 分別最佳化學生的Prompt 與 Skills。</p>
-                                                <p>以 Gradio 建置系統操作介面，在國網中心 NANO4高速運算伺服器達成整合，並以Client-Server架構進行部署</p>
+                                                <p>基於Teacher-Student框架下，採用雲端MedGemma 1.5 醫療特化模型作為教師參考，固定地端Mistral Small 3.1學生模型權重，並以SkillOpt 分別最佳化學生Prompt 與 Skills去近似老師輸出。</p>
                                             </div>
                                         </li>
                                         <li class="star-result">
                                             <span class="star-letter" aria-hidden="true">4</span>
                                             <div>
                                                 <h5>成果</h5>
-                                                <p>YOLO11m 的 Recall 為 81.7%，mAP50 為 86.6%。Mistral Small 3.1 的 Prompt 實驗中，JSON Schema 違規由 12,006 件降至 95 件。</p>
+                                                <p>YOLO11m於定位評估指標取得Recall 81.7%、mAP50 86.6%、mAP50–95 72.6%、F1-Score 0.792。地端Mistral Small 3.1 的 Prompt 實驗，JSON Schema 違規由 12,006 件降至 95 件且Schema Validity 由 10.83% 提升至 99.29%。系統能於5分鐘內完成單張影像推論</p>
                                             </div>
                                         </li>
                                     </ul>
@@ -250,7 +288,7 @@
                         <article class="card project-card project-edge" id="project-edge" aria-labelledby="edge-title" tabindex="-1">
                             <header class="project-header">
                                 <p class="project-context">課程專案</p>
-                                <h3 id="edge-title">Jetson Xavier NX邊緣AI即時影像風格轉換系統</h3>
+                                <h3 id="edge-title">邊緣AI即時影像風格轉換系統</h3>
                                 <p class="project-summary">在 Jetson Xavier NX 上部署並執行模型量化後的模型，支援單張影像與即時攝影機畫面模式進行推論</p>
                                 <div class="project-meta">
                                     <section class="project-meta-panel project-tech">
@@ -338,7 +376,7 @@
                             <header class="project-header">
                                 <p class="project-context">大學部畢業專題</p>
                                 <h3 id="expression-title">多模態微表情辨識系統</h3>
-                                <p class="project-summary">從臉部影像序列辨識正向、負向、驚訝與其他四類微表情，並整合攝影機展示。</p>
+                                <p class="project-summary">本系統整合攝影機，會自動偵測人臉影像並辨識正向、負向、驚訝與其他四類微表情</p>
                                 <div class="project-meta">
                                     <section class="project-meta-panel project-tech">
                                         <h4 lang="en">Tech Stack</h4>
@@ -350,6 +388,7 @@
                                         <h4 lang="en">External Links</h4>
                                         <div class="project-links" role="group" aria-label="微表情辨識專案連結">
                                             <a class="btn btn-header project-source" href="https://github.com/JianHuangLyu/Bachelor/blob/main/Senior%20Project/README.md" aria-describedby="expression-title" target="_blank" rel="noopener">專案說明</a>
+                                            <a class="btn btn-header" href="https://www.youtube.com/watch?v=WqFC5YTgZJo" aria-describedby="expression-title" target="_blank" rel="noopener">專案Demo</a>
                                         </div>
                                     </section>
                                 </div>
@@ -373,7 +412,7 @@
                                         <figcaption>微表情分類準確率</figcaption>
                                         <p class="metric-context"></p>
                                         <div class="comparison-row">
-                                            <span>CASME</span>
+                                            <span>CASME表情資料集</span>
                                             <span class="bar-track" aria-hidden="true"><span style="--bar-fill: 80.05%"></span></span>
                                             <strong>80.05%</strong>
                                         </div>
@@ -391,7 +430,7 @@
                                             <span class="star-letter" aria-hidden="true">1</span>
                                             <div>
                                                 <h5>挑戰</h5>
-                                                <p>微表情出現短暫、變化細微，人眼不易辨識且原始 FeatRef 架構主要使用光流擷取動態線索卻忽略原始面部之靜態資訊</p>
+                                                <p>微表情出現短暫、變化細微，人眼不易辨識且原始 FeatRef 架構主要使用光流擷取動態線索卻忽略原始面部靜態資訊，使效能上仍有改善空間</p>
                                             </div>
                                         </li>
                                         <li class="star-task">
