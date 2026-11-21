@@ -137,6 +137,10 @@
   background-color: var(--wash);
 }
 
+.portfolio .btn-header.profile-link {
+  background-color: var(--surface);
+}
+
 .portfolio .btn-header:is(:hover, [aria-expanded="true"]) {
   border-color: var(--accent);
   background: var(--brown-gradient);
@@ -168,6 +172,10 @@
   height: calc(100dvh - var(--header-height));
   border-right: 1px solid var(--line);
   background: var(--surface);
+}
+
+.portfolio #layoutSidenav #layoutSidenav_nav:not(:has(.nav-link[href]:not([hidden]))) {
+  display: none;
 }
 
 .portfolio #layoutSidenav #layoutSidenav_nav .sb-sidenav {
@@ -251,7 +259,7 @@ main.portfolio-shell {
   height: calc(100% - 2 * var(--portrait-rim));
   border-radius: 50%;
   object-fit: cover;
-  object-position: 50% 0%;
+  object-position: 50% 4%;
   -webkit-mask-image: radial-gradient(circle closest-side, #000 96%, transparent 100%);
   mask-image: radial-gradient(circle closest-side, #000 96%, transparent 100%);
 }
@@ -288,23 +296,32 @@ main.portfolio-shell {
   margin-bottom: 1.55rem;
 }
 
-.hero-actions,
-.contact-links {
+.hero-actions {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   gap: 0.65rem;
 }
 
-.portfolio .btn-inverse {
-  border-color: #fff;
-  background: #fff;
-  color: var(--ink);
+.hero-contact {
+  display: grid;
+  gap: 0.3rem;
+  padding-top: 0.95rem;
+  margin: 1.25rem 0 0;
+  border-top: 1px solid var(--line);
+  font-size: 0.94rem;
+  line-height: 1.5;
 }
 
-.portfolio .btn-inverse:hover {
-  background: var(--wash);
-  color: var(--ink);
+.hero-contact > div {
+  display: grid;
+  grid-template-columns: 3.5rem minmax(0, 1fr);
+  gap: 0.45rem;
+}
+
+.hero-contact dd {
+  margin: 0;
+  overflow-wrap: anywhere;
 }
 
 .portfolio .btn-outline-dark {
@@ -325,11 +342,6 @@ main.portfolio-shell {
   font-weight: 800;
   letter-spacing: 0.015em;
   line-height: 1.22;
-}
-
-.section-title-en {
-  font-size: 0.58em;
-  font-weight: 650;
 }
 
 .text-link {
@@ -629,16 +641,15 @@ main.portfolio-shell {
   display: none !important;
 }
 
-.timeline,
-.activities {
+.timeline {
   padding: 0;
-  margin: 0;
+  margin: 1.15rem 0 0 0.35rem;
+  border-left: 1px solid var(--line);
   list-style: none;
 }
 
-.timeline {
-  margin: 1.15rem 0 0 0.35rem;
-  border-left: 1px solid var(--line);
+.timeline:first-child {
+  margin-top: 0;
 }
 
 .timeline li {
@@ -661,7 +672,7 @@ main.portfolio-shell {
   content: "";
 }
 
-.timeline h4 {
+.timeline :is(h3, h4) {
   margin: 0 0 0.2rem;
   font-size: 1.06rem;
   font-weight: 710;
@@ -672,30 +683,10 @@ main.portfolio-shell {
   margin: 0;
 }
 
-.timeline .timeline-date,
-.activities time {
+.timeline .timeline-date {
   font-size: 0.875rem;
   font-weight: 640;
   font-variant-numeric: tabular-nums;
-}
-
-.timeline h4 a {
-  text-decoration-color: #ad8469;
-}
-
-.timeline h4 a:hover {
-  text-decoration-color: var(--ink);
-}
-
-.experience-meta {
-  display: flex;
-  flex-wrap: wrap;
-  column-gap: 0.8rem;
-}
-
-.experience-role {
-  color: var(--ink);
-  font-weight: 620;
 }
 
 .skills {
@@ -720,43 +711,6 @@ main.portfolio-shell {
 
 .skills dd {
   margin-bottom: 0;
-}
-
-.activities {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.6rem 1.1rem;
-}
-
-.activities li {
-  display: flex;
-  gap: 0.65rem;
-  align-items: baseline;
-}
-
-.activities time {
-  flex-shrink: 0;
-}
-
-.contact-panel {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1.15rem 2rem;
-  padding: clamp(1.3rem, 3.85vw, 2.75rem);
-  border-radius: 1.1rem;
-  background: var(--brown-gradient);
-}
-
-.contact-panel h2 {
-  margin: 0 0 0.35rem;
-  font-size: clamp(1.5rem, 2.7vw, 1.95rem);
-  font-weight: 750;
-}
-
-.contact-panel p {
-  margin: 0;
 }
 
 .site-footer {
@@ -800,6 +754,10 @@ main.portfolio-shell {
   .portfolio #layoutSidenav #layoutSidenav_content {
     margin-left: var(--sidebar-width);
     transition: none;
+  }
+
+  .portfolio #layoutSidenav:not(:has(#layoutSidenav_nav .nav-link[href]:not([hidden]))) #layoutSidenav_content {
+    margin-left: 0;
   }
 }
 
@@ -957,7 +915,7 @@ main.portfolio-shell {
   }
 
   .header-actions {
-    gap: 0.35rem;
+    gap: 0.25rem;
   }
 
   .portfolio .btn-header {
@@ -966,10 +924,6 @@ main.portfolio-shell {
 
   .hero h1 {
     font-size: clamp(2.9rem, 13vw, 4.25rem);
-  }
-
-  .activities {
-    grid-template-columns: 1fr;
   }
 }
 

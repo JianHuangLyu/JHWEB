@@ -10,8 +10,8 @@
     <meta property="og:description" content="電腦視覺、多模態 AI、醫學影像與邊緣部署作品集。">
     <title>呂建篁 Jian-Huang Lyu｜個人作品集</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/portfolio.css?v=fda541999e2c">
-    <script src="js/scripts.js?v=10c6dc47ba7b" defer></script>
+    <link rel="stylesheet" href="css/portfolio.css?v=cffb93b50687">
+    <script src="js/scripts.js?v=bd8598fb38fa" defer></script>
 </head>
 <body class="portfolio sb-nav-fixed">
     <a class="skip-link visually-hidden-focusable" href="#main-content">跳到主要內容</a>
@@ -26,6 +26,8 @@
         </a>
         <div class="header-actions">
             <a class="btn btn-header" href="https://github.com/JianHuangLyu">GitHub</a>
+            <a class="btn btn-header profile-link" href="https://www.linkedin.com/in/chienhaung">LinkedIn</a>
+            <a class="btn btn-header profile-link" href="https://hackmd.io/@abcd09500">HackMD</a>
             <button class="btn btn-header menu-toggle" type="button" id="sidebarToggle" aria-expanded="false" aria-controls="layoutSidenav_nav" hidden>
                 <span class="menu-icon" aria-hidden="true"></span>
                 <span>章節選單</span>
@@ -37,12 +39,12 @@
         <div id="layoutSidenav_nav">
             <nav class="sb-sidenav sb-sidenav-light" aria-label="主要導覽">
                 <div class="sb-sidenav-menu">
-                    <div class="nav">
+                    <div class="nav" id="section-menu">
                         <a class="nav-link active" aria-current="location" href="#home" lang="en">Home</a>
                         <a class="nav-link" href="#projects" lang="en">Project</a>
                         <a class="nav-link" href="#resume" lang="en">Education</a>
+                        <a class="nav-link" href="#activities" lang="en">Activities</a>
                         <a class="nav-link" href="#skills" lang="en">Skills</a>
-                        <a class="nav-link" href="#contact" lang="en">Contact</a>
                     </div>
                 </div>
                 <div class="sb-sidenav-footer" hidden></div>
@@ -62,6 +64,11 @@
                             <a class="btn btn-accent" href="#projects">瀏覽精選專案</a>
                             <a class="btn btn-outline-dark" href="https://drive.google.com/file/d/1vBFfm8cvseu5qnkpBR-wVfnuOK81z-iy/view?usp=sharing">查看個人履歷</a>
                         </div>
+                        <dl class="hero-contact" lang="en" aria-label="Contact information">
+                            <div><dt>Phone</dt><dd><a href="tel:+886909998201">(+886) 0909998201</a></dd></div>
+                            <div><dt>Email</dt><dd><a href="mailto:a7929771@gmail.com">a7929771@gmail.com</a></dd></div>
+                            <div><dt>City</dt><dd>Tainan, Taiwan</dd></div>
+                        </dl>
                     </div>
                     <figure class="hero-portrait">
                         <img class="hero-image" src="assets/img/portrait.jpg" width="1108" height="1477" alt="呂建篁的個人照片" fetchpriority="high" style="font-size: 9px">
@@ -69,15 +76,15 @@
                 </section>
 
                 <section id="projects" class="portfolio-section" aria-labelledby="projects-title" tabindex="-1">
-                    <h2 class="section-title" id="projects-title">精選專案</h2>
+                    <h2 class="section-title" id="projects-title" lang="en">Project</h2>
                     <div class="project-list">
                         <article class="card project-card project-pathology" id="project-pathology" aria-labelledby="pathology-title" tabindex="-1">
                             <header class="project-header">
-                                <p class="project-context">國網中心實習</p>
+                                <p class="project-context">實習專案</p>
                                 <h3 id="pathology-title">醫學病理影像病灶定位與結構化分析系統</h3>
-                                <p class="project-summary">串接病理影像定位與視覺語言模型，產出研究用的逐區域 JSON 形態分析報告。</p>
+                                <p class="project-summary">實習期間自主提案，以RefPath公開資料集訓練及實驗評估。在推論模式，輸入影像進行病灶區域定位，並根據預測的定位進行模型推論來產生最終結構化分析報告</p>
                                 <div class="project-meta">
-                                    <ul class="tag-list" aria-label="使用技術">
+                                    <ul class="tag-list project-skills" aria-label="使用技術" role="list">
                                         <li>YOLO</li><li>MedGemma 1.5</li><li>Microsoft SkillOpt</li><li>FastAPI</li><li>vLLM</li><li>Slurm (HPC)</li>
                                     </ul>
                                     <a class="project-source text-link" href="https://github.com/JianHuangLyu/Structured-Pathology-Image-Analysis-via-YOLO-Based-Abnormality-Detection-and-skill-optimization/blob/main/README.md" aria-describedby="pathology-title">專案說明連結</a>
@@ -88,7 +95,7 @@
                                     <figure class="project-media">
                                         <img src="assets/img/projects/pathology-architecture.webp" width="1440" height="876" loading="lazy" decoding="async" alt="定位模型在病理影像框出候選區域，並比對教師與學生的輸出以迭代提示詞或技能。">
                                         <figcaption style="background-color: #ffffff">
-                                            <span class="project-media-caption">病理定位與教師引導的最佳化架構</span>
+                                            <span class="project-media-caption">Method Overview</span>
                                             <a class="project-media-source" href="https://github.com/JianHuangLyu/Structured-Pathology-Image-Analysis-via-YOLO-Based-Abnormality-Detection-and-skill-optimization/blob/main/server_endpoint/docs/assets/Model.png" aria-label="在 GitHub 查看病理影像架構原圖">查看原圖</a>
                                         </figcaption>
                                     </figure>
@@ -153,10 +160,10 @@
                         <article class="card project-card project-edge" id="project-edge" aria-labelledby="edge-title" tabindex="-1">
                             <header class="project-header">
                                 <p class="project-context">課程專案</p>
-                                <h3 id="edge-title">Jetson Xavier NX邊緣AI即時影像風格轉換</h3>
+                                <h3 id="edge-title">Jetson Xavier NX邊緣AI即時影像風格轉換系統</h3>
                                 <p class="project-summary">在 Jetson Xavier NX 上部署並執行模型量化後的模型，支援單張影像與即時攝影機畫面模式進行推論</p>
                                 <div class="project-meta">
-                                    <ul class="tag-list" aria-label="使用技術">
+                                    <ul class="tag-list project-skills" aria-label="使用技術" role="list">
                                         <li hidden>AdaIN</li><li>ONNX</li><li>TensorRT</li><li>INT8 PTQ(模型量化)</li><li>Docker</li>
                                     </ul>
                                     <a class="project-source text-link" aria-describedby="edge-title" hidden>GitHub README</a>
@@ -212,8 +219,8 @@
                                         <li class="star-action">
                                             <span class="star-letter" aria-hidden="true">3</span>
                                             <div>
-                                                <h5>行動</h5>
-                                                <p>將 AdaIN 轉為 ONNX，在 Jetson 上使用 TensorRT 進行 INT8 訓練後量化，並比較 CPU、ONNX Runtime GPU 與 TensorRT 的推論表現。</p>
+                                                <h5>方法</h5>
+                                                <p>將 AdaIN 轉為 ONNX，在 Xavier上使用 TensorRT 進行 INT8 訓練後量化，並比較 CPU、ONNX Runtime GPU 與 TensorRT 的推論表現。</p>
                                             </div>
                                         </li>
                                         <li class="star-result">
@@ -234,7 +241,7 @@
                                 <h3 id="expression-title">多模態微表情辨識系統</h3>
                                 <p class="project-summary">從臉部影像序列辨識正向、負向、驚訝與其他四類微表情，並整合攝影機展示。</p>
                                 <div class="project-meta">
-                                    <ul class="tag-list" aria-label="使用技術">
+                                    <ul class="tag-list project-skills" aria-label="使用技術" role="list">
                                         <li>PyQt5 (GUI)</li><li>Google MediaPipe</li><li>CNN+Inception</li><li>TV-L1 Optimal Flow</li><li>Self-Attention</li>
                                     </ul>
                                     <a class="project-source text-link" href="https://github.com/JianHuangLyu/Bachelor/blob/main/Senior%20Project/README.md" aria-describedby="expression-title">專案說明連結</a>
@@ -310,69 +317,54 @@
                 </section>
 
                 <section id="resume" class="portfolio-section" aria-labelledby="resume-title" tabindex="-1">
-                    <h2 class="section-title" id="resume-title">學經歷</h2>
-                    <div class="row g-3 g-xl-4">
-                        <div class="col-xl-5">
-                            <section class="card resume-card h-100" id="resume-education" aria-labelledby="education-title">
-                                <div class="card-body">
-                                    <h3 id="education-title">學歷</h3>
-                                    <ol class="timeline">
-                                        <li>
-                                            <p class="timeline-date"><time datetime="2025-09">2025/09</time> – 至今</p>
-                                            <h4>國立成功大學　電機工程學系</h4>
-                                            <p>組別: 資訊工程組　碩士</p>
-                                        </li>
-                                        <li>
-                                            <p class="timeline-date"><time datetime="2020-09">2020/09</time> – <time datetime="2024-01">2024/01</time></p>
-                                            <h4>國立臺南大學　資訊工程學系</h4>
-                                            <p>學士</p>
-                                        </li>
-                                    </ol>
-                                </div>
-                            </section>
+                    <h2 class="section-title" id="resume-title" lang="en">Education</h2>
+                    <section class="card resume-card" id="resume-education" aria-labelledby="education-title">
+                        <div class="card-body">
+                            <h3 id="education-title">學歷</h3>
+                            <ol class="timeline">
+                                <li>
+                                    <p class="timeline-date"><time datetime="2025-09">2025/09</time> – 至今</p>
+                                    <h4>國立成功大學　電機工程學系</h4>
+                                    <p>組別: 資訊工程組　碩士</p>
+                                </li>
+                                <li>
+                                    <p class="timeline-date"><time datetime="2020-09">2020/09</time> – <time datetime="2024-01">2024/01</time></p>
+                                    <h4>國立臺南大學　資訊工程學系</h4>
+                                    <p>學士</p>
+                                </li>
+                            </ol>
                         </div>
-                        <div class="col-xl-7">
-                            <section class="card resume-card h-100" id="resume-experience" aria-labelledby="experience-title">
-                                <div class="card-body">
-                                    <h3 id="experience-title">經歷</h3>
-                                    <ol class="timeline">
-                                        <li>
-                                            <p class="timeline-date"><time datetime="2026-07-01">2026/7/1</time> – <time datetime="2026-08-31">2026/8/31</time></p>
-                                            <h4><a href="#project-pathology">病理醫學影像異常區域定位與結構化分析輔助系統</a></h4>
-                                            <p class="experience-meta"><span class="experience-org">財團法人國家實驗研究院國家高速網路與計算中心</span><span class="experience-role">暑期實習生</span></p>
-                                        </li>
-                                        <li>
-                                            <p class="timeline-date"><time datetime="2026-04">2026/4</time> – <time datetime="2026-05">2026/5</time></p>
-                                            <h4><a href="#project-edge">NVIDIA Jetson Xavier NX 邊緣裝置之即時風格轉換系統</a></h4>
-                                            <p class="experience-meta"><span class="experience-org">國立成功大學電機工程學系・人工智慧於數位訊號分析之應用課程</span><span class="experience-role">專案負責人</span></p>
-                                        </li>
-                                        <li>
-                                            <p class="timeline-date"><time datetime="2022-01">2022/01</time> – <time datetime="2022-12">2022/12</time></p>
-                                            <h4><a href="#project-expression">多模態微表情辨識系統（大學部畢業專題第三名）</a></h4>
-                                            <p class="experience-meta"><span class="experience-org">國立臺南大學資訊工程學系</span><span class="experience-role">組員（資料處理及蒐集、模型實驗與系統測試）</span></p>
-                                        </li>
-                                    </ol>
-                                </div>
-                            </section>
-                        </div>
-                        <div class="col-12">
-                            <div class="card resume-card">
-                                <div class="card-body">
-                                    <h3>活動</h3>
-                                    <ul class="activities">
-                                        <li><time datetime="2026-08-28">2026.08</time><span>國網中心暑期實習成果發表</span></li>
-                                        <li><time datetime="2026-03-01">2026.03</time><span>古都馬拉松 10 公里組</span></li>
-                                        <li><time datetime="2025-08">2025.08</time><span>IEEE CIBCB 研討會工作人員</span></li>
-                                        <li><time datetime="2025-08">2025.08</time><span>AI 人才培育成果展工作人員</span></li>
-                                    </ul>
-                                </div>
-                            </div>
+                    </section>
+                </section>
+
+                <section id="activities" class="portfolio-section" aria-labelledby="activities-title" tabindex="-1">
+                    <h2 class="section-title" id="activities-title">活動</h2>
+                    <div class="card resume-card">
+                        <div class="card-body">
+                            <ol class="timeline" role="list">
+                                <li>
+                                    <p class="timeline-date"><time datetime="2026-08-28">2026/08</time></p>
+                                    <h3>國網中心暑期實習成果發表</h3>
+                                </li>
+                                <li>
+                                    <p class="timeline-date"><time datetime="2026-03-01">2026/03</time></p>
+                                    <h3>古都馬拉松 10 公里組</h3>
+                                </li>
+                                <li>
+                                    <p class="timeline-date"><time datetime="2025-08">2025/08</time></p>
+                                    <h3>IEEE CIBCB 研討會工作人員</h3>
+                                </li>
+                                <li>
+                                    <p class="timeline-date"><time datetime="2025-08">2025/08</time></p>
+                                    <h3>AI 人才培育成果展工作人員</h3>
+                                </li>
+                            </ol>
                         </div>
                     </div>
                 </section>
 
                 <section id="skills" class="portfolio-section" aria-labelledby="skills-title" tabindex="-1">
-                    <h2 class="section-title" id="skills-title">技能 <span class="section-title-en" lang="en">(Skills)</span></h2>
+                    <h2 class="section-title" id="skills-title" lang="en">Skills</h2>
                     <dl class="skills" lang="en">
                         <div class="card skill-card">
                             <dt>Programming &amp; Tools</dt>
@@ -399,7 +391,7 @@
                             </dd>
                         </div>
                         <div class="card skill-card">
-                            <dt>LLM / VLM &amp; Agents</dt>
+                            <dt>LLM / VLM Application</dt>
                             <dd>
                                 <ul class="tag-list" role="list">
                                     <li>VLM Inference</li>
@@ -407,7 +399,6 @@
                                     <li>Prompt Engineering</li>
                                     <li>Structured JSON Output</li>
                                     <li>Skill Optimization (Microsoft SkillOpt)</li>
-                                    <li>Agent Skill Development</li>
                                 </ul>
                             </dd>
                         </div>
@@ -446,18 +437,6 @@
                             </dd>
                         </div>
                     </dl>
-                </section>
-
-                <section id="contact" class="portfolio-section contact-panel" aria-labelledby="contact-title" tabindex="-1">
-                    <div>
-                        <h2 id="contact-title">聯絡方式</h2>
-                        <p></p>
-                    </div>
-                    <div class="contact-links">
-                        <a class="btn btn-inverse" href="https://mail.google.com/mail/?view=cm&amp;fs=1&amp;to=a7929771@gmail.com">寄信給我</a>
-                        <a class="btn btn-outline-dark" href="https://www.linkedin.com/in/chienhaung">LINKEDIN</a>
-                        <a class="btn btn-outline-dark" href="https://hackmd.io/@abcd09500">HackMD</a>
-                    </div>
                 </section>
             </main>
 

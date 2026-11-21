@@ -7,99 +7,119 @@ const sidebarToggle = document.querySelector('#sidebarToggle');
 const sidebar = document.querySelector('#layoutSidenav_nav');
 const pageContent = document.querySelector('#layoutSidenav_content');
 const scrim = document.querySelector('.nav-scrim');
-const desktop = window.matchMedia('(min-width: 992px)');
-const navigation = Array.from(sidebar.querySelectorAll('.nav-link'), link => ({
-    link,
-    section: document.getElementById(link.hash.slice(1))
-}));
+const sidebarLinks = [...(sidebar?.querySelectorAll('.nav-link[href]:not([hidden])') ?? [])];
 
-function drawerIsOpen() {
-    return sidebarToggle.getAttribute('aria-expanded') === 'true';
+if (sidebarToggle && sidebar && pageContent && scrim && sidebarLinks.length) {
+    setupNavigation();
 }
 
-function setDrawer(open) {
-    const expanded = open && !desktop.matches;
-    document.body.classList.toggle('sb-sidenav-toggled', expanded);
-    sidebarToggle.setAttribute('aria-expanded', String(expanded));
-    sidebar.inert = !desktop.matches && !expanded;
-    pageContent.inert = expanded;
-    scrim.hidden = !expanded;
+function sectionFor(link) {
+    const href = link.getAttribute('href');
+    return href.startsWith('#') ? document.getElementById(href.slice(1)) : null;
+}
 
-    if (expanded) {
-        sidebar.querySelector('.nav-link.active').focus({ preventScroll: true });
+function setupNavigation() {
+    const desktop = window.matchMedia('(min-width: 992px)');
+    const navigation = sidebarLinks
+        .map(link => ({ link, section: sectionFor(link) }))
+        .filter(({ section }) => section && !section.hidden)
+        .sort((a, b) => {
+            if (a.section === b.section) return 0;
+            return a.section.compareDocumentPosition(b.section) & Node.DOCUMENT_POSITION_FOLLOWING ? -1 : 1;
+        });
+
+    let currentLink = null;
+    let scrollFrame = 0;
+    for (const link of sidebarLinks) {
+        link.classList.remove('active');
+        link.removeAttribute('aria-current');
     }
-}
 
-function dismissDrawer() {
-    setDrawer(false);
-    sidebarToggle.focus();
-}
+    function drawerIsOpen() {
+        return sidebarToggle.getAttribute('aria-expanded') === 'true';
+    }
 
-sidebarToggle.addEventListener('click', () => setDrawer(!drawerIsOpen()));
-scrim.addEventListener('click', dismissDrawer);
-desktop.addEventListener('change', () => {
-    const focusWasInSidebar = sidebar.contains(document.activeElement);
-    setDrawer(false);
-    if (!desktop.matches && focusWasInSidebar) {
+    function setDrawer(open) {
+        const expanded = open && !desktop.matches;
+        document.body.classList.toggle('sb-sidenav-toggled', expanded);
+        sidebarToggle.setAttribute('aria-expanded', String(expanded));
+        sidebar.inert = !desktop.matches && !expanded;
+        pageContent.inert = expanded;
+        scrim.hidden = !expanded;
+
+        if (expanded) {
+            (currentLink || sidebarLinks[0]).focus();
+        }
+    }
+
+    function dismissDrawer() {
+        setDrawer(false);
         sidebarToggle.focus();
     }
-});
 
-document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && drawerIsOpen()) {
-        dismissDrawer();
-    }
-});
-
-document.addEventListener('click', event => {
-    const link = event.target.closest('a[href^="#"]');
-    if (link && drawerIsOpen()) {
+    sidebarToggle.addEventListener('click', () => setDrawer(!drawerIsOpen()));
+    scrim.addEventListener('click', dismissDrawer);
+    desktop.addEventListener('change', () => {
+        const focusWasInSidebar = sidebar.contains(document.activeElement);
         setDrawer(false);
-        document.getElementById(link.hash.slice(1))?.focus({ preventScroll: true });
-    }
-});
-
-document.body.classList.add('sidebar-ready');
-sidebarToggle.hidden = false;
-setDrawer(false);
-
-let currentLink = navigation[0].link;
-let scrollFrame = 0;
-
-function syncNavigation() {
-    scrollFrame = 0;
-    const readingLine = Math.min(200, window.innerHeight * 0.35);
-    let active = navigation[0].link;
-
-    for (const { link, section } of navigation) {
-        if (section.getBoundingClientRect().top > readingLine) {
-            break;
+        if (!desktop.matches && focusWasInSidebar) {
+            sidebarToggle.focus();
         }
-        active = link;
+    });
+
+    document.addEventListener('keydown', event => {
+        if (event.key === 'Escape' && drawerIsOpen()) {
+            dismissDrawer();
+        }
+    });
+
+    document.addEventListener('click', event => {
+        const link = event.target.closest('a[href]');
+        if (!link || !drawerIsOpen() || (!sidebar.contains(link) && !link.getAttribute('href').startsWith('#'))) return;
+        setDrawer(false);
+        const section = sectionFor(link);
+        if (section) {
+            if (!section.hasAttribute('tabindex')) section.tabIndex = -1;
+            section.focus({ preventScroll: true });
+        }
+    });
+
+    function syncNavigation() {
+        scrollFrame = 0;
+        const readingLine = Math.min(200, window.innerHeight * 0.35);
+        let active = navigation[0]?.link;
+
+        for (const { link, section } of navigation) {
+            if (section.getBoundingClientRect().top > readingLine) break;
+            active = link;
+        }
+
+        if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
+            const anchor = navigation.find(({ link }) => link.hash === window.location.hash);
+            const anchorTop = anchor?.section.getBoundingClientRect().top ?? -1;
+            active = anchorTop >= 0 && anchorTop < window.innerHeight ? anchor.link : navigation.at(-1)?.link;
+        }
+
+        if (active && active !== currentLink) {
+            currentLink?.classList.remove('active');
+            currentLink?.removeAttribute('aria-current');
+            active.classList.add('active');
+            active.setAttribute('aria-current', 'location');
+            currentLink = active;
+        }
     }
 
-    if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
-        const anchor = navigation.find(({ link }) => link.hash === window.location.hash);
-        const anchorTop = anchor?.section.getBoundingClientRect().top ?? -1;
-        active = anchorTop >= 0 && anchorTop < window.innerHeight ? anchor.link : navigation.at(-1).link;
+    function scheduleNavigationSync() {
+        if (!scrollFrame) {
+            scrollFrame = window.requestAnimationFrame(syncNavigation);
+        }
     }
 
-    if (active !== currentLink) {
-        currentLink.classList.remove('active');
-        currentLink.removeAttribute('aria-current');
-        active.classList.add('active');
-        active.setAttribute('aria-current', 'location');
-        currentLink = active;
-    }
+    document.body.classList.add('sidebar-ready');
+    sidebarToggle.hidden = false;
+    setDrawer(false);
+    window.addEventListener('scroll', scheduleNavigationSync, { passive: true });
+    window.addEventListener('resize', scheduleNavigationSync);
+    window.addEventListener('hashchange', scheduleNavigationSync);
+    syncNavigation();
 }
-
-function scheduleNavigationSync() {
-    if (!scrollFrame) {
-        scrollFrame = window.requestAnimationFrame(syncNavigation);
-    }
-}
-
-window.addEventListener('scroll', scheduleNavigationSync, { passive: true });
-window.addEventListener('resize', scheduleNavigationSync);
-window.addEventListener('hashchange', scheduleNavigationSync);
-syncNavigation();
