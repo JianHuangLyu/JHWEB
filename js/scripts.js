@@ -79,7 +79,9 @@ function syncNavigation() {
     }
 
     if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
-        active = navigation.at(-1).link;
+        const anchor = navigation.find(({ link }) => link.hash === window.location.hash);
+        const anchorTop = anchor?.section.getBoundingClientRect().top ?? -1;
+        active = anchorTop >= 0 && anchorTop < window.innerHeight ? anchor.link : navigation.at(-1).link;
     }
 
     if (active !== currentLink) {
