@@ -128,17 +128,9 @@
 .portfolio .btn-header {
   padding-inline: 0.85rem;
   border: 1px solid var(--line);
-  background: var(--surface);
+  background: var(--wash);
   color: var(--ink);
   font-size: 0.875rem;
-}
-
-.portfolio .btn-header:any-link {
-  background-color: var(--wash);
-}
-
-.portfolio .btn-header.profile-link {
-  background-color: var(--surface);
 }
 
 .portfolio .btn-header:is(:hover, [aria-expanded="true"]) {
@@ -324,16 +316,13 @@ main.portfolio-shell {
   overflow-wrap: anywhere;
 }
 
-.portfolio .btn-outline-dark {
-  --bs-btn-border-color: var(--accent);
-  --bs-btn-hover-bg: var(--wash);
-  --bs-btn-hover-border-color: var(--accent);
-  --bs-btn-active-bg: var(--wash);
-  --bs-btn-active-border-color: var(--accent);
+.portfolio-section,
+.portfolio-shell > .hero:not(:first-child) {
+  margin-top: clamp(2.6rem, 4.25vw, 3.6rem);
 }
 
-.portfolio-section {
-  margin-top: clamp(2.6rem, 4.25vw, 3.6rem);
+main.portfolio-shell > .portfolio-section:first-child {
+  margin-top: 0;
 }
 
 .section-title {
@@ -672,15 +661,19 @@ main.portfolio-shell {
   content: "";
 }
 
-.timeline :is(h3, h4) {
+.portfolio .timeline :is(h3, h4) {
   margin: 0 0 0.2rem;
-  font-size: 1.06rem;
+  font-size: 1.125rem;
   font-weight: 710;
   line-height: 1.45;
 }
 
 .timeline p {
   margin: 0;
+}
+
+.timeline p:not(.timeline-date) {
+  font-size: 0.95rem;
 }
 
 .timeline .timeline-date {
