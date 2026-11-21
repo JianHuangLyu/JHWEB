@@ -17,21 +17,26 @@ setupViewTheme();
 
 function setupViewTheme() {
     const picker = document.querySelector('#portfolio-view-theme');
-    if (!picker) return;
-
     const preferenceKey = 'jianhuanglyu-portfolio-view-theme';
-    const choices = new Set(Array.from(picker.options, option => option.value));
+    const choices = new Set(picker
+        ? Array.from(picker.options, option => option.value)
+        : ['warm', 'sage', 'mist', 'rose', 'lavender', 'jade', 'amber']);
+    const root = document.documentElement;
+    const browserColor = document.querySelector('meta[name="theme-color"]');
 
     function applyTheme(value) {
-        picker.value = choices.has(value) ? value : '';
-        if (picker.value) document.documentElement.dataset.viewTheme = picker.value;
-        else delete document.documentElement.dataset.viewTheme;
+        const theme = choices.has(value) ? value : '';
+        if (theme) root.dataset.viewTheme = theme;
+        else delete root.dataset.viewTheme;
+        if (picker) picker.value = theme;
+        if (browserColor) browserColor.content = getComputedStyle(root).getPropertyValue('--canvas').trim();
     }
 
     let saved = '';
     try { saved = localStorage.getItem(preferenceKey) || ''; }
     catch { /* Theme selection still works when storage is unavailable. */ }
     applyTheme(saved);
+    if (!picker) return;
 
     const panel = picker.closest('.sb-sidenav-footer');
     if (panel && document.body.classList.contains('sidebar-ready')) {

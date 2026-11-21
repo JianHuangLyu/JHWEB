@@ -1,27 +1,11 @@
 :root {
-  --canvas: #fff;
-  --surface: #fff;
-  --ink: #000;
-  --line: #e3d4c8;
-  --accent: #6c3d28;
-  --wash: #f8ede4;
-  --tint: #edc9ab;
   --warm-paper: color-mix(in srgb, var(--wash) 52%, var(--canvas));
-  --brown-gradient: linear-gradient(125deg, #f8e5d5 0%, #edc9ab 57%, #ce9d77 100%);
-  --bar-gradient: linear-gradient(125deg, #6c3d28 0%, #865134 100%);
-  --paper-gradient: linear-gradient(135deg, #fbf3eb 0%, #fff 74%);
-  --portrait-gradient: linear-gradient(145deg, #fff 15%, #f8efe7 55%, #ecd7c7 100%);
-  --portrait-line: #e3cdbb;
-  --portrait-ring: #f4e8dfb3;
-  --portrait-shadow: #5f3b241c;
-  --bar-surface: #eadcd0;
-  --shadow-ink: #452c1f;
-  --nav-scrim: #2c1b12bb;
   --header-height: 4.25rem;
   --sidebar-width: 13.5rem;
   scroll-padding-top: calc(var(--header-height) + 1rem);
 }
 
+:root,
 :root[data-view-theme] {
   --ink: #000;
   --brown-gradient: linear-gradient(125deg, var(--wash) 0%, var(--tint) 57%, color-mix(in srgb, var(--tint) 76%, var(--accent)) 100%);
@@ -54,6 +38,7 @@
   --tint: #bed5ba;
 }
 
+:root,
 :root[data-view-theme="mist"] {
   --canvas: #f3f7fc;
   --surface: #fbfdff;
@@ -490,7 +475,7 @@ main.portfolio-shell > .portfolio-section:first-child {
   overflow-wrap: anywhere;
 }
 
-.portfolio :is(.project-card, .resume-card) {
+.portfolio :is(.project-card, .resume-card, .projects-section) {
   --project-padding: clamp(1.05rem, 2.65vw, 2rem);
   border-top: 3px solid var(--accent);
 }
@@ -498,6 +483,12 @@ main.portfolio-shell > .portfolio-section:first-child {
 .project-list {
   display: grid;
   gap: 1.45rem;
+}
+
+.projects-section > .project-list {
+  min-width: 0;
+  padding: clamp(0.55rem, 1.75vw, 1.25rem);
+  border-top: 1px solid var(--line);
 }
 
 .project-header,
@@ -512,7 +503,7 @@ main.portfolio-shell > .portfolio-section:first-child {
   background: var(--paper-gradient);
 }
 
-.resume-card > .project-header .section-title {
+.project-header > .section-title {
   margin: 0;
 }
 
@@ -640,6 +631,99 @@ main.portfolio-shell > .portfolio-section:first-child {
   min-height: 2.75rem;
   align-items: center;
   font-weight: 650;
+}
+
+.image-viewer-page {
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  height: 100vh;
+  height: 100dvh;
+}
+
+.image-viewer-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.65rem 1.15rem;
+  padding: 0.65rem clamp(0.75rem, 3vw, 2rem);
+  border-bottom: 1px solid var(--line);
+  background: var(--paper-gradient);
+}
+
+.image-viewer-toolbar h1 {
+  flex: 1 1 14rem;
+  min-width: 0;
+  margin: 0;
+  font-size: clamp(1.16rem, 2.25vw, 1.6rem);
+  font-weight: 760;
+  overflow-wrap: anywhere;
+}
+
+.image-viewer-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.image-viewer-toolbar .btn {
+  min-width: 2.75rem;
+  padding-inline: 0.65rem;
+}
+
+.image-viewer-controls output {
+  min-width: 3.35rem;
+  text-align: center;
+  font-variant-numeric: tabular-nums;
+}
+
+.image-viewer-stage {
+  min-width: 0;
+  min-height: 0;
+  overflow: auto;
+  overscroll-behavior: contain;
+  scrollbar-width: none;
+  touch-action: none;
+}
+
+.image-viewer-stage::-webkit-scrollbar {
+  display: none;
+}
+
+.image-viewer-stage:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: -2px;
+}
+
+.image-viewer-content {
+  display: grid;
+  width: max-content;
+  height: max-content;
+  min-width: 100%;
+  min-height: 100%;
+  padding: 1rem;
+  place-items: center;
+}
+
+.image-viewer-content img {
+  max-width: none;
+  background: #fff;
+  box-shadow: 0 0.25rem 1.5rem color-mix(in srgb, var(--shadow-ink) 16%, transparent);
+  user-select: none;
+}
+
+.image-viewer-stage.can-pan {
+  cursor: grab;
+}
+
+.image-viewer-stage.is-panning {
+  cursor: grabbing;
+}
+
+.image-viewer-content p {
+  max-width: 65vw;
+  margin: 0;
+  text-align: center;
 }
 
 .project-visual {
