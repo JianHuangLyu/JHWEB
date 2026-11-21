@@ -39,7 +39,7 @@
   box-shadow: none;
 }
 
-.portfolio .btn {
+.portfolio :is(.btn, .project-links > a) {
   --bs-btn-color: var(--ink);
   --bs-btn-hover-color: var(--ink);
   --bs-btn-active-color: var(--ink);
@@ -125,7 +125,7 @@
   gap: 0.55rem;
 }
 
-.portfolio .btn-header {
+.portfolio :is(.btn-header, .project-links > a) {
   padding-inline: 0.85rem;
   border: 1px solid var(--line);
   background: var(--wash);
@@ -133,12 +133,12 @@
   font-size: 0.875rem;
 }
 
-.portfolio .btn-header:is(:hover, [aria-expanded="true"]) {
+.portfolio :is(.btn-header, .project-links > a):is(:hover, [aria-expanded="true"]) {
   border-color: var(--accent);
   background: var(--brown-gradient);
 }
 
-.portfolio .menu-toggle {
+.portfolio .btn.menu-toggle {
   display: none;
   gap: 0.5rem;
 }
@@ -393,11 +393,23 @@ main.portfolio-shell > .portfolio-section:first-child {
 }
 
 .project-meta {
-  display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-between;
-  gap: 0.55rem 1rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+  gap: 0.75rem;
+}
+
+.project-meta-panel {
+  min-width: 0;
+  padding: 0.8rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: var(--surface);
+}
+
+.project-meta-panel h4 {
+  margin: 0 0 0.6rem;
+  font-size: 0.95rem;
+  font-weight: 720;
 }
 
 .project-context {
@@ -410,6 +422,11 @@ main.portfolio-shell > .portfolio-section:first-child {
   display: flex;
   flex-wrap: wrap;
   gap: 0.5rem;
+}
+
+.portfolio .project-links > a {
+  line-height: 1.5;
+  text-decoration: none;
 }
 
 .project-media {
@@ -627,7 +644,8 @@ main.portfolio-shell > .portfolio-section:first-child {
 }
 
 .timeline {
-  padding: 0;
+  --timeline-offset: 1rem;
+  padding: 0 0 0 var(--timeline-offset);
   margin: 1.15rem 0 0 0.35rem;
   border-left: 1px solid var(--line);
   list-style: none;
@@ -637,19 +655,22 @@ main.portfolio-shell > .portfolio-section:first-child {
   margin-top: 0;
 }
 
-.timeline li {
+.timeline > li {
   position: relative;
-  padding: 0 0 1.15rem 1.1rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background: var(--paper-gradient);
 }
 
-.timeline li:last-child {
-  padding-bottom: 0;
+.timeline > li + li {
+  margin-top: 0.7rem;
 }
 
-.timeline li::before {
+.timeline > li::before {
   position: absolute;
-  top: 0.35rem;
-  left: -0.29rem;
+  top: 1rem;
+  left: calc(-0.35rem - var(--timeline-offset));
   width: 0.52rem;
   height: 0.52rem;
   border-radius: 50%;
@@ -907,7 +928,7 @@ main.portfolio-shell > .portfolio-section:first-child {
     gap: 0.25rem;
   }
 
-  .portfolio .btn-header {
+  .portfolio :is(.btn-header, .project-links > a) {
     padding-inline: clamp(6px, 2vw, 12px);
   }
 
