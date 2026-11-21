@@ -1,11 +1,14 @@
 :root {
   --canvas: #fff;
   --surface: #fff;
-  --ink: #000;
-  --muted: #454545;
-  --line: #d6d6d6;
-  --accent: #000;
-  --dark: #000;
+  --ink: #2d1c15;
+  --muted: #604b3f;
+  --line: #e3d4c8;
+  --accent: #6c3d28;
+  --dark: #39231a;
+  --wash: #f8ede4;
+  --brown-gradient: linear-gradient(125deg, #3c2319 0%, #633c29 57%, #865134 100%);
+  --paper-gradient: linear-gradient(135deg, #fbf3eb 0%, #fff 74%);
   --header-height: 4.25rem;
   --sidebar-width: 13.5rem;
   scroll-padding-top: calc(var(--header-height) + 1rem);
@@ -55,7 +58,7 @@
   height: var(--header-height);
   padding: 0 clamp(1rem, 2.7vw, 2.5rem) 0 1.25rem;
   border-bottom: 1px solid var(--line);
-  background: var(--surface);
+  background: var(--paper-gradient);
 }
 
 .portfolio .sb-topnav .brand {
@@ -122,8 +125,8 @@
 }
 
 .portfolio .btn-header:is(:hover, [aria-expanded="true"]) {
-  border-color: var(--ink);
-  background: var(--dark);
+  border-color: var(--accent);
+  background: var(--brown-gradient);
   color: #fff;
 }
 
@@ -148,7 +151,7 @@
 
 .portfolio #layoutSidenav #layoutSidenav_nav .sb-sidenav {
   padding: 1.65rem 0.85rem 0;
-  background: var(--surface);
+  background: linear-gradient(180deg, #fff 27%, #fbf3eb 100%);
   overscroll-behavior: contain;
 }
 
@@ -167,7 +170,7 @@
 
 .portfolio #layoutSidenav #layoutSidenav_nav .nav-link:is(:hover, .active) {
   color: #fff;
-  background: var(--dark);
+  background: var(--brown-gradient);
 }
 
 .portfolio .sb-sidenav-footer {
@@ -210,13 +213,10 @@ main.portfolio-shell {
 
 .hero-image {
   display: block;
-  width: 100%;
+  width: min(100%, 22rem);
   height: auto;
-  aspect-ratio: 1.6;
-  object-fit: cover;
-  object-position: 80% 55%;
-  border-radius: 1rem;
-  filter: grayscale(1);
+  justify-self: center;
+  object-fit: contain;
 }
 
 .hero-copy {
@@ -225,7 +225,7 @@ main.portfolio-shell {
 
 .hero-name {
   margin: 0 0 0.55rem;
-  color: var(--muted);
+  color: var(--accent);
   font-size: 0.9rem;
   font-weight: 680;
   letter-spacing: 0.17em;
@@ -268,13 +268,13 @@ main.portfolio-shell {
 }
 
 .portfolio .btn-inverse:hover {
-  background: #ddd;
+  background: var(--wash);
   color: var(--ink);
 }
 
 .portfolio .btn-on-dark {
-  border-color: #aaa;
-  background: #000c;
+  border-color: #e8cbb5;
+  background: #3c23196b;
   color: #fff;
 }
 
@@ -282,6 +282,17 @@ main.portfolio-shell {
   border-color: #fff;
   background: #fff;
   color: var(--ink);
+}
+
+.portfolio .btn-outline-dark {
+  --bs-btn-color: var(--accent);
+  --bs-btn-border-color: #c9a68e;
+  --bs-btn-hover-color: var(--ink);
+  --bs-btn-hover-bg: var(--wash);
+  --bs-btn-hover-border-color: var(--accent);
+  --bs-btn-active-color: var(--ink);
+  --bs-btn-active-bg: var(--wash);
+  --bs-btn-active-border-color: var(--accent);
 }
 
 .portfolio .contact-panel a:focus-visible {
@@ -307,7 +318,7 @@ main.portfolio-shell {
   border: 1px solid var(--line);
   border-radius: 1rem;
   background: var(--surface);
-  box-shadow: 0 3px 12px #00000008;
+  box-shadow: 0 3px 12px #452c1f0b;
 }
 
 .portfolio .card-body {
@@ -324,7 +335,7 @@ main.portfolio-shell {
 
 .portfolio .project-card {
   --project-padding: clamp(1.05rem, 2.65vw, 2rem);
-  border-top: 3px solid var(--ink);
+  border-top: 3px solid var(--accent);
 }
 
 .project-list {
@@ -336,6 +347,11 @@ main.portfolio-shell {
 .project-body {
   min-width: 0;
   padding: var(--project-padding);
+}
+
+.project-header {
+  border-radius: 0.85rem 0.85rem 0 0;
+  background: var(--paper-gradient);
 }
 
 .project-body,
@@ -367,7 +383,7 @@ main.portfolio-shell {
 
 .project-context {
   margin: 0 0 0.45rem;
-  color: var(--muted);
+  color: var(--accent);
   font-size: 0.875rem;
   font-weight: 650;
 }
@@ -436,9 +452,13 @@ main.portfolio-shell {
 
 .project-flow {
   gap: 0.75rem;
-  border-color: var(--ink);
-  background: var(--dark);
+  border-color: var(--accent);
+  background: var(--brown-gradient);
   color: #fff;
+}
+
+.project-metrics {
+  background: var(--paper-gradient);
 }
 
 .metric-context {
@@ -467,7 +487,7 @@ main.portfolio-shell {
   order: 1;
   overflow: hidden;
   border-radius: 999px;
-  background: #e6e6e6;
+  background: #eadcd0;
 }
 
 .bar-track span {
@@ -475,7 +495,7 @@ main.portfolio-shell {
   width: var(--bar-fill);
   height: 100%;
   border-radius: inherit;
-  background: var(--dark);
+  background: var(--brown-gradient);
 }
 
 .flow-steps {
@@ -494,7 +514,7 @@ main.portfolio-shell {
   place-items: center;
   min-height: 3.05rem;
   padding: 0.4rem 0.25rem;
-  border: 1px solid #999;
+  border: 1px solid #e0c4ad;
   border-radius: 0.45rem;
   font-size: 0.875rem;
   font-weight: 630;
@@ -535,6 +555,7 @@ main.portfolio-shell {
   padding: 0.15rem 0.5rem;
   border: 1px solid var(--line);
   border-radius: 0.4rem;
+  background: #fff;
   color: var(--muted);
   font-size: 0.875rem;
   font-weight: 550;
@@ -573,7 +594,7 @@ main.portfolio-shell {
   aspect-ratio: 1;
   place-items: center;
   border-radius: 0.35rem;
-  background: var(--dark);
+  background: var(--brown-gradient);
   color: #fff;
   font-size: 0.875rem;
   font-weight: 760;
@@ -625,7 +646,7 @@ main.portfolio-shell {
   width: 0.52rem;
   height: 0.52rem;
   border-radius: 50%;
-  background: var(--dark);
+  background: var(--accent);
   content: "";
 }
 
@@ -650,7 +671,7 @@ main.portfolio-shell {
 }
 
 .timeline h4 a {
-  text-decoration-color: #999;
+  text-decoration-color: #ad8469;
 }
 
 .timeline h4 a:hover {
@@ -709,7 +730,7 @@ main.portfolio-shell {
   gap: 1.15rem 2rem;
   padding: clamp(1.3rem, 3.85vw, 2.75rem);
   border-radius: 1.1rem;
-  background: var(--dark);
+  background: var(--brown-gradient);
   color: #fff;
 }
 
@@ -721,13 +742,13 @@ main.portfolio-shell {
 
 .contact-panel p {
   margin: 0;
-  color: #ddd;
+  color: #faefe6;
 }
 
 .site-footer {
   padding-block: 1.15rem;
   border-top: 1px solid var(--line);
-  background: var(--surface);
+  background: var(--paper-gradient);
   color: var(--muted);
   font-size: 0.875rem;
 }
@@ -755,15 +776,15 @@ main.portfolio-shell {
 }
 
 .portfolio .btn-accent {
-  border-color: var(--ink);
-  background: var(--accent);
+  border-color: var(--accent);
+  background: var(--brown-gradient);
   color: #fff;
 }
 
 .portfolio .btn-accent:hover {
-  border-color: var(--ink);
-  background: #fff;
-  color: var(--ink);
+  border-color: var(--dark);
+  background: var(--dark);
+  color: #fff;
 }
 
 @media (min-width: 992px) {
@@ -831,7 +852,7 @@ main.portfolio-shell {
     position: fixed;
     z-index: 1037;
     inset: var(--header-height) 0 0;
-    background: #000b;
+    background: #2c1b12bb;
   }
 }
 
@@ -839,6 +860,10 @@ main.portfolio-shell {
   .hero {
     grid-template-columns: minmax(0, 1fr);
     padding-block: 0.4rem 0;
+  }
+
+  .hero-image {
+    width: min(100%, 16rem);
   }
 }
 
@@ -887,10 +912,6 @@ main.portfolio-shell {
 
   .hero h1 {
     font-size: clamp(2.9rem, 13vw, 4.25rem);
-  }
-
-  .hero-image {
-    aspect-ratio: 1.85;
   }
 
   .activities {
