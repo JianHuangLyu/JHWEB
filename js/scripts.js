@@ -13,6 +13,43 @@ if (sidebarToggle && sidebar && pageContent && scrim && sidebarLinks.length) {
     setupNavigation();
 }
 
+setupViewTheme();
+
+function setupViewTheme() {
+    const picker = document.querySelector('#portfolio-view-theme');
+    if (!picker) return;
+
+    const preferenceKey = 'jianhuanglyu-portfolio-view-theme';
+    const choices = new Set(Array.from(picker.options, option => option.value));
+
+    function applyTheme(value) {
+        picker.value = choices.has(value) ? value : '';
+        if (picker.value) document.documentElement.dataset.viewTheme = picker.value;
+        else delete document.documentElement.dataset.viewTheme;
+    }
+
+    let saved = '';
+    try { saved = localStorage.getItem(preferenceKey) || ''; }
+    catch { /* Theme selection still works when storage is unavailable. */ }
+    applyTheme(saved);
+
+    const panel = picker.closest('.sb-sidenav-footer');
+    if (panel && document.body.classList.contains('sidebar-ready')) {
+        panel.hidden = false;
+    } else {
+        const control = picker.closest('.view-theme-control');
+        if (panel && control) document.querySelector('.site-footer .portfolio-shell')?.append(control);
+    }
+
+    picker.addEventListener('change', () => {
+        applyTheme(picker.value);
+        try {
+            if (picker.value) localStorage.setItem(preferenceKey, picker.value);
+            else localStorage.removeItem(preferenceKey);
+        } catch { /* Keep the chosen theme for the current page. */ }
+    });
+}
+
 function sectionFor(link) {
     const href = link.getAttribute('href');
     return href.startsWith('#') ? document.getElementById(href.slice(1)) : null;

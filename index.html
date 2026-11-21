@@ -10,8 +10,8 @@
     <meta property="og:description" content="電腦視覺、多模態 AI、醫學影像與邊緣部署作品集。">
     <title>呂建篁 Jian-Huang Lyu｜個人作品集</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/portfolio.css?v=25d2dcafcbc7">
-    <script src="js/scripts.js?v=bd8598fb38fa" defer></script>
+    <link rel="stylesheet" href="css/portfolio.css?v=8aacb95be76e">
+    <script src="js/scripts.js?v=40a42518bd7c" defer></script>
 </head>
 <body class="portfolio sb-nav-fixed">
     <a class="skip-link visually-hidden-focusable" href="#main-content">跳到主要內容</a>
@@ -47,7 +47,21 @@
                         <a class="nav-link" href="#activities" lang="en">Activities</a>
                     </div>
                 </div>
-                <div class="sb-sidenav-footer" hidden></div>
+                <div class="sb-sidenav-footer" hidden>
+                    <label class="view-theme-control" for="portfolio-view-theme">
+                        網站配色
+                        <select id="portfolio-view-theme">
+                            <option value="">網站原色</option>
+                            <option value="warm">暖棕</option>
+                            <option value="sage">鼠尾草綠</option>
+                            <option value="mist">霧藍</option>
+                            <option value="rose">藕粉</option>
+                            <option value="lavender">灰紫</option>
+                            <option value="jade">青瓷</option>
+                            <option value="amber">琥珀</option>
+                        </select>
+                    </label>
+                </div>
             </nav>
         </div>
         <div class="nav-scrim" aria-hidden="true" hidden></div>
@@ -76,79 +90,87 @@
                 </section>
 
                 <section id="skills" class="portfolio-section" aria-labelledby="skills-title" tabindex="-1">
-                    <h2 class="section-title" id="skills-title" lang="en">Skills</h2>
-                    <dl class="skills" lang="en">
-                        <div class="card skill-card">
-                            <dt>Programming &amp; Tools</dt>
-                            <dd>
-                                <ul class="tag-list" role="list">
-                                    <li>Python</li>
-                                    <li>Git</li>
-                                    <li>Linux</li>
-                                    <li>Slurm (HPC)</li>
-                                </ul>
-                            </dd>
+                    <div class="card resume-card">
+                        <header class="project-header">
+                            <h2 class="section-title" id="skills-title" lang="en">Skills</h2>
+                        </header>
+                        <div class="card-body">
+                            <table class="skills-table" aria-labelledby="skills-title" lang="en">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Programming &amp; Tools</th>
+                                        <td>
+                                            <ul class="tag-list" role="list">
+                                                <li>Python</li>
+                                                <li>Git</li>
+                                                <li>Linux</li>
+                                                <li>Slurm (HPC)</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">AI / Computer Vision</th>
+                                        <td>
+                                            <ul class="tag-list" role="list">
+                                                <li>PyTorch</li>
+                                                <li>Object Detection</li>
+                                                <li>Image Classification</li>
+                                                <li>Optical Flow</li>
+                                                <li>Self-Attention</li>
+                                                <li>Multimodal Feature Fusion</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">LLM / VLM Application</th>
+                                        <td>
+                                            <ul class="tag-list" role="list">
+                                                <li>VLM Inference</li>
+                                                <li>vLLM</li>
+                                                <li>Prompt Engineering</li>
+                                                <li>Structured JSON Output</li>
+                                                <li>Skill Optimization (Microsoft SkillOpt)</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Edge AI &amp; Optimization</th>
+                                        <td>
+                                            <ul class="tag-list" role="list">
+                                                <li>NVIDIA Jetson Xavier NX</li>
+                                                <li>TensorRT</li>
+                                                <li>ONNX</li>
+                                                <li>INT8 Post-Training Quantization (PTQ)</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Backend &amp; Deployment</th>
+                                        <td>
+                                            <ul class="tag-list" role="list">
+                                                <li>FastAPI</li>
+                                                <li>Gradio</li>
+                                                <li>RESTful APIs</li>
+                                                <li>Docker</li>
+                                                <li>Workflow Modularization</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Evaluation &amp; Testing</th>
+                                        <td>
+                                            <ul class="tag-list" role="list">
+                                                <li>Cross-Validation</li>
+                                                <li>Ablation Study</li>
+                                                <li>Model Benchmarking</li>
+                                                <li>Functional and Integration Testing</li>
+                                            </ul>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
-                        <div class="card skill-card">
-                            <dt>AI / Computer Vision</dt>
-                            <dd>
-                                <ul class="tag-list" role="list">
-                                    <li>PyTorch</li>
-                                    <li>Object Detection</li>
-                                    <li>Image Classification</li>
-                                    <li>Optical Flow</li>
-                                    <li>Self-Attention</li>
-                                    <li>Multimodal Feature Fusion</li>
-                                </ul>
-                            </dd>
-                        </div>
-                        <div class="card skill-card">
-                            <dt>LLM / VLM Application</dt>
-                            <dd>
-                                <ul class="tag-list" role="list">
-                                    <li>VLM Inference</li>
-                                    <li>vLLM</li>
-                                    <li>Prompt Engineering</li>
-                                    <li>Structured JSON Output</li>
-                                    <li>Skill Optimization (Microsoft SkillOpt)</li>
-                                </ul>
-                            </dd>
-                        </div>
-                        <div class="card skill-card">
-                            <dt>Edge AI &amp; Optimization</dt>
-                            <dd>
-                                <ul class="tag-list" role="list">
-                                    <li>NVIDIA Jetson Xavier NX</li>
-                                    <li>TensorRT</li>
-                                    <li>ONNX</li>
-                                    <li>INT8 Post-Training Quantization (PTQ)</li>
-                                </ul>
-                            </dd>
-                        </div>
-                        <div class="card skill-card">
-                            <dt>Backend &amp; Deployment</dt>
-                            <dd>
-                                <ul class="tag-list" role="list">
-                                    <li>FastAPI</li>
-                                    <li>Gradio</li>
-                                    <li>RESTful APIs</li>
-                                    <li>Docker</li>
-                                    <li>Workflow Modularization</li>
-                                </ul>
-                            </dd>
-                        </div>
-                        <div class="card skill-card">
-                            <dt>Evaluation &amp; Testing</dt>
-                            <dd>
-                                <ul class="tag-list" role="list">
-                                    <li>Cross-Validation</li>
-                                    <li>Ablation Study</li>
-                                    <li>Model Benchmarking</li>
-                                    <li>Functional and Integration Testing</li>
-                                </ul>
-                            </dd>
-                        </div>
-                    </dl>
+                    </div>
                 </section>
 
                 <section id="projects" class="portfolio-section" aria-labelledby="projects-title" tabindex="-1">
@@ -219,7 +241,7 @@
                                 <div class="project-figures">
                                     <figure class="project-media">
                                         <img src="assets/img/projects/pathology-architecture.webp" width="1440" height="876" loading="lazy" decoding="async" alt="定位模型在病理影像框出候選區域，並比對教師與學生的輸出以迭代提示詞或技能。">
-                                        <figcaption style="background-color: #ffffff">
+                                        <figcaption style="background-color: var(--surface)">
                                             <span class="project-media-caption">Method Overview</span>
                                             <a class="project-media-source" href="https://github.com/JianHuangLyu/Structured-Pathology-Image-Analysis-via-YOLO-Based-Abnormality-Detection-and-skill-optimization/blob/main/server_endpoint/docs/assets/Model.png" aria-label="在 GitHub 查看病理影像架構原圖" target="_blank" rel="noopener">查看原圖</a>
                                         </figcaption>
@@ -402,165 +424,27 @@
                                                 <p>以 MediaPipe套件對人臉影像預處理，從 Onset 和 Apex Frame經CNN Block捕捉靜態特徵，以及以TV-L1 光流及 Inception分枝捕捉臉部的動態特徵，再透過Self-Attention 使模型學習具特定類別的特徵</p>
                                             </div>
                                         </li>
+                                        <li class="star-result" id="expression-results" tabindex="-1">
+                                            <span class="star-letter" aria-hidden="true">4</span>
+                                            <div>
+                                                <h5 id="expression-results-title">成果</h5>
+                                                <p>完成四個獨立資料集與綜合資料集的驗證，並以攝影機即時展示。專題榮獲系上多媒體與雲端網路應用組第三名。</p>
+                                                <p>CASME 的準確率為 80.05%，綜合資料集為 72.33%。在有 FeatRef 對照的三組資料集上，本研究的準確率均較高，其中 SMIC-HS 高出 5.13 個百分點。</p>
+                                                <p>消融實驗中，移除光流與 Inception block 後，準確率由 72.74% 降至 48.62%，為降幅最大的配置。</p>
+                                            </div>
+                                        </li>
                                     </ul>
                                 </div>
-                                <section class="project-results star-result" id="expression-results" aria-labelledby="expression-results-title" tabindex="-1">
-                                    <h4 id="expression-results-title">成果</h4>
-                                    <p>完成四個獨立資料集與綜合資料集的實驗驗證，並以攝影機 GUI 進行即時展示。 專題榮獲系上多媒體與雲端網路應用組第三名。</p>
-                                    <p>在有 FeatRef 對照值的三組資料集上，本研究的 ACC 都較高，SMIC-HS 的差距最大，為 5.13 個百分點。消融實驗中，移除光流與 Inception block 後的降幅最大，為 24.12 個百分點。</p>
-                                    <p class="results-scroll-hint">窄螢幕可左右滑動查看完整表格。</p>
-                                    <div class="results-tables">
-                                        <details class="results-disclosure project-metrics" open>
-                                            <summary id="expression-performance-label">五組資料集的分類表現</summary>
-                                            <div class="results-scroll" role="region" tabindex="0" aria-labelledby="expression-performance-label">
-                                                <table class="results-table" aria-labelledby="expression-performance-label">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">資料集</th>
-                                                            <th scope="col">ACC</th>
-                                                            <th scope="col">UF1</th>
-                                                            <th scope="col">UAR</th>
-                                                            <th scope="col">WF1</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th scope="row">CASME</th>
-                                                            <td><div class="comparison-row results-score"><span class="bar-track" aria-hidden="true"><span style="--bar-fill: 80.05%"></span></span><strong>80.05%</strong></div></td>
-                                                            <td>66.88%</td>
-                                                            <td>70.62%</td>
-                                                            <td>79.52%</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">CASME2</th>
-                                                            <td><div class="comparison-row results-score"><span class="bar-track" aria-hidden="true"><span style="--bar-fill: 72.74%"></span></span><strong>72.74%</strong></div></td>
-                                                            <td>72.75%</td>
-                                                            <td>73.64%</td>
-                                                            <td>72.71%</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">SAMM</th>
-                                                            <td><div class="comparison-row results-score"><span class="bar-track" aria-hidden="true"><span style="--bar-fill: 62.01%"></span></span><strong>62.01%</strong></div></td>
-                                                            <td>45.06%</td>
-                                                            <td>45.94%</td>
-                                                            <td>60.28%</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">SMIC-HS</th>
-                                                            <td><div class="comparison-row results-score"><span class="bar-track" aria-hidden="true"><span style="--bar-fill: 62.73%"></span></span><strong>62.73%</strong></div></td>
-                                                            <td>46.66%</td>
-                                                            <td>62.71%</td>
-                                                            <td>62.72%</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Composite</th>
-                                                            <td><div class="comparison-row results-score"><span class="bar-track" aria-hidden="true"><span style="--bar-fill: 72.33%"></span></span><strong>72.33%</strong></div></td>
-                                                            <td>71.09%</td>
-                                                            <td>70.71%</td>
-                                                            <td>72.29%</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </details>
-                                        <details class="results-disclosure">
-                                            <summary id="expression-comparison-label">與 FeatRef 的 ACC 比較</summary>
-                                            <div class="results-scroll" role="region" tabindex="0" aria-labelledby="expression-comparison-label">
-                                                <table class="results-table" aria-labelledby="expression-comparison-label">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">資料集</th>
-                                                            <th scope="col">FeatRef</th>
-                                                            <th scope="col">本研究</th>
-                                                            <th scope="col">差距（百分點）</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th scope="row">CASME</th>
-                                                            <td><span aria-hidden="true">—</span><span class="visually-hidden">未提供</span></td>
-                                                            <td>80.05%</td>
-                                                            <td><span aria-hidden="true">—</span><span class="visually-hidden">未提供</span></td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">CASME2</th>
-                                                            <td>68.38%</td>
-                                                            <td>72.74%</td>
-                                                            <td>+4.36</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">SAMM</th>
-                                                            <td>60.13%</td>
-                                                            <td>62.01%</td>
-                                                            <td>+1.88</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">SMIC-HS</th>
-                                                            <td>57.60%</td>
-                                                            <td>62.73%</td>
-                                                            <td>+5.13</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Composite</th>
-                                                            <td><span aria-hidden="true">—</span><span class="visually-hidden">未提供</span></td>
-                                                            <td>72.33%</td>
-                                                            <td><span aria-hidden="true">—</span><span class="visually-hidden">未提供</span></td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </details>
-                                        <details class="results-disclosure">
-                                            <summary id="expression-ablation-label">消融實驗</summary>
-                                            <div class="results-scroll" role="region" tabindex="0" aria-labelledby="expression-ablation-label">
-                                                <table class="results-table" aria-labelledby="expression-ablation-label">
-                                                    <thead>
-                                                        <tr>
-                                                            <th scope="col">模型配置</th>
-                                                            <th scope="col">移除的元件</th>
-                                                            <th scope="col">ACC</th>
-                                                            <th scope="col">較完整模型（百分點）</th>
-                                                        </tr>
-                                                    </thead>
-                                                    <tbody>
-                                                        <tr>
-                                                            <th scope="row">Ours net</th>
-                                                    <td><span aria-hidden="true">—</span><span class="visually-hidden">完整模型</span></td>
-                                                            <td>72.74%</td>
-                                                            <td>基準</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Ours net-1</th>
-                                                            <td>注意力機制</td>
-                                                            <td>67.64%</td>
-                                                            <td>−5.10</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Ours net-2</th>
-                                                            <td>光流與 Inception block</td>
-                                                            <td>48.62%</td>
-                                                            <td>−24.12</td>
-                                                        </tr>
-                                                        <tr>
-                                                            <th scope="row">Ours net-3</th>
-                                                            <td>Onset、Apex 影格與 CNN block</td>
-                                                            <td>68.91%</td>
-                                                            <td>−3.83</td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </details>
-                                    </div>
-                                </section>
                             </div>
                         </article>
                     </div>
                 </section>
 
                 <section id="resume" class="portfolio-section" aria-labelledby="resume-title" tabindex="-1">
-                    <h2 class="section-title" id="resume-title" lang="en">Education</h2>
                     <div class="card resume-card" id="resume-education">
+                        <header class="project-header">
+                            <h2 class="section-title" id="resume-title" lang="en">Education</h2>
+                        </header>
                         <div class="card-body">
                             <ol class="timeline" role="list">
                                 <li>
@@ -579,8 +463,10 @@
                 </section>
 
                 <section id="activities" class="portfolio-section" aria-labelledby="activities-title" tabindex="-1">
-                    <h2 class="section-title" id="activities-title" lang="en">Activities</h2>
                     <div class="card resume-card">
+                        <header class="project-header">
+                            <h2 class="section-title" id="activities-title" lang="en">Activities</h2>
+                        </header>
                         <div class="card-body">
                             <ol class="timeline" role="list">
                                 <li>
