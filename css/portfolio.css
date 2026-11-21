@@ -63,6 +63,7 @@
   align-items: center;
   gap: 0.7rem;
   width: auto;
+  min-width: 0;
   padding: 0;
   color: var(--ink);
   white-space: nowrap;
@@ -72,6 +73,7 @@
   display: grid;
   min-width: 2.1rem;
   min-height: 2rem;
+  flex: none;
   padding-right: 0.65rem;
   place-items: center;
   border-right: 1px solid var(--line);
@@ -83,8 +85,15 @@
 
 .brand-text {
   display: grid;
+  min-width: 0;
   gap: 0.12rem;
   line-height: 1.2;
+}
+
+.brand-name,
+.brand-caption {
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 .brand-name {
@@ -99,12 +108,12 @@
 
 .header-actions {
   display: flex;
+  flex: none;
   align-items: center;
   gap: 0.55rem;
 }
 
 .portfolio .btn-header {
-  min-height: 2.5rem;
   padding-inline: 0.85rem;
   border: 1px solid var(--line);
   background: var(--surface);
@@ -337,6 +346,7 @@ main.portfolio-shell {
 }
 
 .project-body {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 22rem), 1fr));
   gap: clamp(1.55rem, 3vw, 2.5rem);
   border-top: 1px solid var(--line);
 }
@@ -437,21 +447,24 @@ main.portfolio-shell {
 }
 
 .comparison-row {
-  display: grid;
-  grid-template-columns: 4.6rem minmax(0, 1fr) 4.85rem;
-  align-items: center;
-  gap: 0.45rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.2rem 0.65rem;
+  min-width: 0;
+  overflow-wrap: anywhere;
 }
 
 .comparison-row strong {
-  justify-self: end;
   font-variant-numeric: tabular-nums;
-  white-space: nowrap;
 }
 
 .bar-track {
   display: block;
   height: 0.52rem;
+  flex: 0 0 100%;
+  order: 1;
   overflow: hidden;
   border-radius: 999px;
   background: #e6e6e6;
@@ -753,12 +766,6 @@ main.portfolio-shell {
   color: var(--ink);
 }
 
-@media (min-width: 1200px) {
-  .project-body {
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1.12fr);
-  }
-}
-
 @media (min-width: 992px) {
   .portfolio #layoutSidenav #layoutSidenav_content {
     margin-left: var(--sidebar-width);
@@ -836,6 +843,48 @@ main.portfolio-shell {
 }
 
 @media (max-width: 575.98px) {
+  .portfolio .sb-topnav {
+    gap: 8px;
+    padding-inline: clamp(10px, 3vw, 16px);
+  }
+
+  .portfolio .sb-topnav .brand {
+    display: grid;
+    gap: 0.15rem;
+  }
+
+  .brand-text {
+    display: contents;
+  }
+
+  .brand-name {
+    grid-row: 1;
+  }
+
+  .brand-mark {
+    grid-row: 2;
+    min-width: 0;
+    min-height: 0;
+    padding: 0;
+    border: 0;
+    font-size: 0.8rem;
+    line-height: 1.2;
+    white-space: normal;
+    overflow-wrap: anywhere;
+  }
+
+  .brand-caption {
+    display: none;
+  }
+
+  .header-actions {
+    gap: 0.35rem;
+  }
+
+  .portfolio .btn-header {
+    padding-inline: clamp(6px, 2vw, 12px);
+  }
+
   .hero h1 {
     font-size: clamp(2.9rem, 13vw, 4.25rem);
   }
