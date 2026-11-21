@@ -1,44 +1,89 @@
-const viewerStage = document.querySelector('.image-viewer-stage');
-const viewerContent = document.querySelector('.image-viewer-content');
-const viewerImage = document.querySelector('#viewer-image');
-const viewerMessage = document.querySelector('#viewer-message');
-const zoomIn = document.querySelector('#viewer-zoom-in');
-const zoomOut = document.querySelector('#viewer-zoom-out');
-const zoomLevel = document.querySelector('#viewer-zoom-level');
-const fitButton = document.querySelector('#viewer-fit');
-const params = new URLSearchParams(location.search);
-const imagePath = params.get('image') || '';
-const localImagePath = /^assets\/img\/(?:[a-z0-9_-]+\/)*[a-z0-9_-]+\.(?:png|jpe?g|webp|gif|avif)$/i;
+const imageViewerDialog = document.querySelector('#project-image-viewer');
+const imageViewerRoot = imageViewerDialog || document.querySelector('.image-viewer-page');
+const loadViewerImage = imageViewerRoot && setupImageViewer(imageViewerRoot);
 
-if (localImagePath.test(imagePath)) {
+if (loadViewerImage && imageViewerDialog) {
+    setupImageDialog(imageViewerDialog, loadViewerImage);
+} else if (loadViewerImage) {
+    const params = new URLSearchParams(location.search);
+    const path = params.get('image') || '';
+    const localImagePath = /^assets\/img\/(?:[a-z0-9_-]+\/)*[a-z0-9_-]+\.(?:png|jpe?g|webp|gif|avif)$/i;
     const title = params.get('title')?.trim().slice(0, 100) || '專案原圖';
-    document.querySelector('#viewer-title').textContent = title;
+    loadViewerImage(localImagePath.test(path) ? path : '', title);
     document.title = `${title}｜圖片檢視`;
-    viewerImage.alt = title;
-    showViewerMessage('正在載入圖片…');
-    viewerImage.addEventListener('load', enableViewer, { once: true });
-    viewerImage.addEventListener('error', () => {
-        showViewerMessage('無法載入圖片，請回到專案頁重新開啟。');
-    }, { once: true });
-    viewerImage.src = imagePath;
-} else {
-    showViewerMessage('找不到圖片，請從專案頁開啟原圖。');
 }
 
-function showViewerMessage(text) {
-    viewerMessage.hidden = false;
-    viewerMessage.textContent = text;
+function setupImageDialog(dialog, loadImage) {
+    let opener = null;
+    let scrollAtOpen;
+    let pressedBackdrop = false;
+
+    document.addEventListener('click', event => {
+        const trigger = event.target.closest('button[data-viewer-src]');
+        if (!trigger || dialog.open) return;
+        opener = trigger;
+        scrollAtOpen = { left: window.scrollX, top: window.scrollY, behavior: 'instant' };
+        pressedBackdrop = false;
+        dialog.classList.toggle('has-scrollbar', window.innerWidth > document.documentElement.clientWidth);
+        dialog.showModal();
+        window.scrollTo(scrollAtOpen);
+        loadImage(trigger.dataset.viewerSrc, trigger.dataset.viewerTitle);
+    });
+
+    function isBackdrop(event) {
+        if (event.target !== dialog) return false;
+        const { left, right, top, bottom } = dialog.getBoundingClientRect();
+        return event.clientX < left || event.clientX >= right || event.clientY < top || event.clientY >= bottom;
+    }
+
+    dialog.addEventListener('pointerdown', event => {
+        pressedBackdrop = event.isPrimary && event.button === 0 && isBackdrop(event);
+    });
+    dialog.addEventListener('pointercancel', () => { pressedBackdrop = false; });
+    dialog.addEventListener('click', event => {
+        if (pressedBackdrop && isBackdrop(event)) dialog.close();
+        pressedBackdrop = false;
+    });
+    dialog.querySelector('#viewer-close')?.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('close', () => {
+        if (!opener || dialog.open) return;
+        opener.focus({ preventScroll: true });
+        window.scrollTo(scrollAtOpen);
+        opener = null;
+    });
 }
 
-function enableViewer() {
+function setupImageViewer(viewer) {
+    const viewerStage = viewer.querySelector('.image-viewer-stage');
+    const viewerContent = viewer.querySelector('.image-viewer-content');
+    const viewerImage = viewer.querySelector('#viewer-image');
+    if (!viewerStage || !viewerContent || !viewerImage) return null;
+
+    const viewerTitle = viewer.querySelector('#viewer-title');
+    const viewerMessage = viewer.querySelector('#viewer-message');
+    const zoomIn = viewer.querySelector('#viewer-zoom-in');
+    const zoomOut = viewer.querySelector('#viewer-zoom-out');
+    const zoomLevel = viewer.querySelector('#viewer-zoom-level');
+    const fitButton = viewer.querySelector('#viewer-fit');
     const maxScale = 6;
     const zoomStep = 1.35;
     const pointers = new Map();
     let fitScale = 0;
     let scale = 0;
 
-    viewerImage.hidden = false;
-    viewerMessage.hidden = true;
+    function showMessage(text) {
+        if (!viewerMessage) return;
+        viewerMessage.hidden = !text;
+        viewerMessage.textContent = text;
+    }
+
+    function syncControls() {
+        if (zoomLevel) zoomLevel.value = scale ? `${Math.max(1, Math.round(scale * 100))}%` : '—';
+        if (zoomIn) zoomIn.disabled = !scale || scale === maxScale;
+        if (zoomOut) zoomOut.disabled = scale === fitScale;
+        if (fitButton) fitButton.disabled = scale === fitScale;
+        viewerStage.classList.toggle('can-pan', scale > fitScale);
+    }
 
     function setScale(requested, point) {
         const stageBox = viewerStage.getBoundingClientRect();
@@ -56,14 +101,11 @@ function enableViewer() {
             const after = viewerImage.getBoundingClientRect();
             viewerStage.scrollBy(after.left + xFraction * after.width - focus.x, after.top + yFraction * after.height - focus.y);
         }
-        zoomLevel.value = `${Math.max(1, Math.round(scale * 100))}%`;
-        zoomIn.disabled = scale === maxScale;
-        zoomOut.disabled = scale === fitScale;
-        fitButton.disabled = scale === fitScale;
-        viewerStage.classList.toggle('can-pan', scale > fitScale);
+        syncControls();
     }
 
     function updateFit() {
+        if (viewerImage.hidden || !viewerStage.clientWidth || !viewerStage.clientHeight) return;
         const atFit = scale === fitScale;
         const padding = getComputedStyle(viewerContent);
         const width = viewerStage.clientWidth - parseFloat(padding.paddingLeft) - parseFloat(padding.paddingRight);
@@ -72,14 +114,28 @@ function enableViewer() {
         if (atFit || scale < fitScale) setScale(fitScale);
     }
 
-    updateFit();
+    function showLoadedImage() {
+        if (!viewerImage.hidden || !viewerImage.complete || !viewerImage.naturalWidth || viewerImage.currentSrc !== viewerImage.src) return;
+        viewerImage.hidden = false;
+        showMessage('');
+        updateFit();
+    }
+
+    function showImageError() {
+        if (viewerImage.complete && !viewerImage.naturalWidth && viewerImage.hasAttribute('src')) {
+            showMessage('無法載入圖片，請重新開啟原圖。');
+        }
+    }
+
+    viewerImage.addEventListener('load', showLoadedImage);
+    viewerImage.addEventListener('error', showImageError);
     new ResizeObserver(updateFit).observe(viewerStage);
-    zoomIn.addEventListener('click', () => setScale(scale * zoomStep));
-    zoomOut.addEventListener('click', () => setScale(scale / zoomStep));
-    fitButton.addEventListener('click', () => setScale(fitScale));
+    zoomIn?.addEventListener('click', () => setScale(scale * zoomStep));
+    zoomOut?.addEventListener('click', () => setScale(scale / zoomStep));
+    fitButton?.addEventListener('click', () => setScale(fitScale));
 
     viewerStage.addEventListener('wheel', event => {
-        if (!event.deltaY) return;
+        if (!scale || !event.deltaY) return;
         event.preventDefault();
         const delta = event.deltaMode ? event.deltaY * 16 : event.deltaY;
         const factor = Math.exp(-0.002 * Math.max(-300, Math.min(300, delta)));
@@ -88,13 +144,13 @@ function enableViewer() {
 
     viewerStage.addEventListener('keydown', event => {
         const keyScales = { '+': scale * zoomStep, '=': scale * zoomStep, '-': scale / zoomStep, '0': fitScale };
-        if (event.ctrlKey || event.metaKey || !Object.hasOwn(keyScales, event.key)) return;
+        if (!scale || event.ctrlKey || event.metaKey || !Object.hasOwn(keyScales, event.key)) return;
         event.preventDefault();
         setScale(keyScales[event.key]);
     });
 
     viewerStage.addEventListener('pointerdown', event => {
-        if (event.button !== 0 || pointers.size >= 2) return;
+        if (!scale || event.button !== 0 || pointers.size >= 2) return;
         pointers.set(event.pointerId, { x: event.clientX, y: event.clientY });
         viewerStage.setPointerCapture(event.pointerId);
         if (scale > fitScale) viewerStage.classList.add('is-panning');
@@ -125,4 +181,31 @@ function enableViewer() {
         pointers.delete(event.pointerId);
         if (!pointers.size) viewerStage.classList.remove('is-panning');
     });
+
+    return (src, title = '專案原圖') => {
+        const label = title.trim() || '專案原圖';
+        if (viewerTitle) viewerTitle.textContent = label;
+        viewerImage.alt = label;
+        viewerImage.hidden = true;
+        scale = 0;
+        fitScale = 0;
+        pointers.clear();
+        viewerStage.classList.remove('is-panning');
+        viewerStage.scrollTo(0, 0);
+        syncControls();
+
+        if (!src) {
+            viewerImage.removeAttribute('src');
+            showMessage('找不到圖片，請從專案頁開啟原圖。');
+            return;
+        }
+
+        showMessage('正在載入圖片…');
+        if (viewerImage.getAttribute('src') === src) {
+            showLoadedImage();
+            showImageError();
+        } else {
+            viewerImage.src = src;
+        }
+    };
 }

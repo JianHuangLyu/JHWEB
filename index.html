@@ -10,8 +10,9 @@
     <meta property="og:description" content="電腦視覺、多模態 AI、醫學影像與邊緣部署作品集。">
     <title>呂建篁 Jian-Huang Lyu｜個人作品集</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/portfolio.css?v=61a0dc4e2467">
+    <link rel="stylesheet" href="css/portfolio.css?v=165b26a2b3b2">
     <script src="js/scripts.js?v=884a286c5172" defer></script>
+    <script src="js/image-viewer.js?v=36877f5b53ad" defer></script>
 </head>
 <body class="portfolio sb-nav-fixed">
     <a class="skip-link visually-hidden-focusable" href="#main-content">跳到主要內容</a>
@@ -244,7 +245,7 @@
                                         <img src="assets/img/projects/pathology-architecture.webp" width="1440" height="876" loading="lazy" decoding="async" alt="定位模型在病理影像框出候選區域，並比對教師與學生的輸出以迭代提示詞或技能。">
                                         <figcaption style="background-color: var(--surface)">
                                             <span class="project-media-caption">Method Overview</span>
-                                            <a class="project-media-source" href="image-viewer.html?image=assets/img/projects/pathology-architecture-original.png&amp;title=病理影像分析系統架構" aria-label="在新分頁查看病理影像分析系統架構原圖" target="_blank" rel="noopener">查看原圖</a>
+                                            <button type="button" class="project-media-source" aria-haspopup="dialog" aria-controls="project-image-viewer" data-viewer-src="assets/img/projects/pathology-architecture-original.png" data-viewer-title="病理影像分析系統架構">查看原圖</button>
                                         </figcaption>
                                     </figure>
                                     <figure class="project-visual project-flow" hidden>
@@ -317,7 +318,7 @@
                                         <img src="assets/img/projects/jetson-style-transfer.webp" width="1226" height="954" loading="lazy" decoding="async" alt="原始草地照片與風格參考圖在左側，右側顯示套用幾何畫風的轉換結果。">
                                         <figcaption>
                                             <span class="project-media-caption">Demo</span>
-                                            <a class="project-media-source" href="image-viewer.html?image=assets/img/projects/jetson-style-transfer-original.jpg&amp;title=即時影像風格轉換示範" aria-label="在新分頁查看即時影像風格轉換示範原圖" target="_blank" rel="noopener">查看原圖</a>
+                                            <button type="button" class="project-media-source" aria-haspopup="dialog" aria-controls="project-image-viewer" data-viewer-src="assets/img/projects/jetson-style-transfer-original.jpg" data-viewer-title="即時影像風格轉換示範">查看原圖</button>
                                         </figcaption>
                                     </figure>
                                     <figure class="project-visual project-flow" hidden>
@@ -391,7 +392,7 @@
                                         <img src="assets/img/projects/ProjectArchitecture.png" width="1377" height="506" loading="lazy" decoding="async" alt="微表情辨識模型融合影格的靜態特徵與光流的動態特徵，再以注意力機制進行分類。">
                                         <figcaption>
                                             <span class="project-media-caption">Model Overview</span>
-                                            <a class="project-media-source" href="image-viewer.html?image=assets/img/projects/ProjectArchitecture.png&amp;title=多模態微表情辨識模型架構" aria-label="在新分頁查看多模態微表情辨識模型架構原圖" target="_blank" rel="noopener">查看原圖</a>
+                                            <button type="button" class="project-media-source" aria-haspopup="dialog" aria-controls="project-image-viewer" data-viewer-src="assets/img/projects/ProjectArchitecture.png" data-viewer-title="多模態微表情辨識模型架構">查看原圖</button>
                                         </figcaption>
                                     </figure>
                                     <figure class="project-visual project-flow" hidden>
@@ -504,5 +505,24 @@
             </footer>
         </div>
     </div>
+
+    <dialog class="image-viewer-dialog" id="project-image-viewer" aria-labelledby="viewer-title">
+        <header class="image-viewer-toolbar">
+            <h2 id="viewer-title">圖片檢視</h2>
+            <button type="button" class="btn btn-header image-viewer-close" id="viewer-close" autofocus>關閉</button>
+            <div class="image-viewer-controls" role="group" aria-label="圖片縮放">
+                <button type="button" class="btn btn-header" id="viewer-zoom-out" aria-label="縮小" title="縮小（−）" disabled>−</button>
+                <output id="viewer-zoom-level" aria-label="縮放比例" aria-live="off">—</output>
+                <button type="button" class="btn btn-header" id="viewer-zoom-in" aria-label="放大" title="放大（+）" disabled>+</button>
+                <button type="button" class="btn btn-header" id="viewer-fit" title="符合視窗（0）" disabled>符合視窗</button>
+            </div>
+        </header>
+        <div class="image-viewer-stage" role="region" aria-label="圖片顯示區" tabindex="0">
+            <div class="image-viewer-content">
+                <img id="viewer-image" alt="" draggable="false" hidden>
+                <p id="viewer-message" role="status" hidden></p>
+            </div>
+        </div>
+    </dialog>
 </body>
 </html>
