@@ -84,6 +84,33 @@
   --tint: #edd196;
 }
 
+:root[data-view-theme="monochrome"] {
+  --canvas: #f7f7f7;
+  --surface: #fff;
+  --line: #d2d2d2;
+  --accent: #000;
+  --wash: #efefef;
+  --tint: #d8d8d8;
+}
+
+:root[data-view-theme="indigo"] {
+  --canvas: #f1f2fc;
+  --surface: #fbfbff;
+  --line: #ccd0eb;
+  --accent: #383675;
+  --wash: #e7e9fb;
+  --tint: #b7bfed;
+}
+
+:root[data-view-theme="apricot"] {
+  --canvas: #fff4e9;
+  --surface: #fffaf5;
+  --line: #eacdb4;
+  --accent: #8e4d22;
+  --wash: #ffebd7;
+  --tint: #f5bd8c;
+}
+
 .portfolio {
   --bs-body-color: var(--ink);
   --bs-link-color: var(--ink);
@@ -1103,7 +1130,7 @@ main.portfolio-shell > .portfolio-section:first-child {
   background: var(--wash);
 }
 
-@media (min-width: 992px) {
+@media (min-width: 1200px) {
   .portfolio #layoutSidenav #layoutSidenav_content {
     margin-left: var(--sidebar-width);
     transition: none;
@@ -1114,7 +1141,11 @@ main.portfolio-shell > .portfolio-section:first-child {
   }
 }
 
-@media (max-width: 991.98px) {
+@media (max-width: 1199.98px), (max-width: 1536px) and (any-pointer: coarse) {
+  .portfolio #layoutSidenav #layoutSidenav_content {
+    margin-left: 0;
+  }
+
   .portfolio #layoutSidenav #layoutSidenav_nav {
     position: relative;
     top: auto;
@@ -1139,52 +1170,6 @@ main.portfolio-shell > .portfolio-section:first-child {
     display: none;
   }
 
-  .portfolio.sidebar-ready .menu-toggle {
-    display: inline-flex;
-  }
-
-  .portfolio.sidebar-ready #layoutSidenav #layoutSidenav_nav {
-    position: fixed;
-    top: var(--header-height);
-    bottom: 0;
-    width: min(17rem, calc(100% - 2.75rem));
-    height: auto;
-    visibility: hidden;
-    transform: translateX(-100%);
-    border-right: 1px solid var(--line);
-    border-bottom: 0;
-  }
-
-  .portfolio.sidebar-ready #layoutSidenav #layoutSidenav_nav .sb-sidenav {
-    padding: 1rem 0.75rem 0;
-  }
-
-  .portfolio.sidebar-ready.sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
-    visibility: visible;
-    transform: translateX(0);
-  }
-
-  .portfolio.sb-sidenav-toggled {
-    overflow: hidden;
-  }
-
-  .nav-scrim {
-    position: fixed;
-    z-index: 1037;
-    inset: var(--header-height) 0 0;
-    background: var(--nav-scrim);
-  }
-}
-
-@media (max-width: 767.98px) {
-  .hero {
-    grid-template-columns: minmax(0, 1fr);
-  }
-
-  .hero-portrait {
-    width: min(100%, 19rem);
-  }
-
   .portfolio.sidebar-ready {
     --quick-menu-bottom: calc(0.875rem + env(safe-area-inset-bottom, 0px));
     --quick-menu-right: calc(0.875rem + env(safe-area-inset-right, 0px));
@@ -1192,6 +1177,7 @@ main.portfolio-shell > .portfolio-section:first-child {
   }
 
   .portfolio.sidebar-ready .menu-toggle {
+    display: inline-flex;
     position: fixed;
     right: var(--quick-menu-right);
     bottom: var(--quick-menu-bottom);
@@ -1209,12 +1195,15 @@ main.portfolio-shell > .portfolio-section:first-child {
 
   .portfolio.sidebar-ready #layoutSidenav #layoutSidenav_nav {
     --quick-menu-top: calc(var(--quick-menu-bottom) + var(--quick-menu-height) + 0.5rem);
+    position: fixed;
     inset: auto var(--quick-menu-right) var(--quick-menu-top) auto;
     width: min(16rem, calc(100% - var(--quick-menu-right) - 0.875rem));
+    height: auto;
     max-height: calc(100vh - var(--header-height) - var(--quick-menu-top) - 0.5rem);
     max-height: calc(100dvh - var(--header-height) - var(--quick-menu-top) - 0.5rem);
     overflow: auto;
     overscroll-behavior: contain;
+    visibility: hidden;
     border: 1px solid var(--line);
     border-radius: 0.9rem;
     box-shadow: 0 0.7rem 1.8rem color-mix(in srgb, var(--shadow-ink) 20%, transparent);
@@ -1226,8 +1215,34 @@ main.portfolio-shell > .portfolio-section:first-child {
     padding: 0.5rem;
   }
 
+  .portfolio.sidebar-ready.sb-sidenav-toggled #layoutSidenav #layoutSidenav_nav {
+    visibility: visible;
+    transform: none;
+  }
+
+  .portfolio.sb-sidenav-toggled {
+    overflow: hidden;
+  }
+
+  .nav-scrim {
+    position: fixed;
+    z-index: 1037;
+    inset: var(--header-height) 0 0;
+    background: var(--nav-scrim);
+  }
+
   .portfolio.sidebar-ready .site-footer {
     padding-bottom: calc(var(--quick-menu-bottom) + var(--quick-menu-height) + 0.5rem);
+  }
+}
+
+@media (max-width: 767.98px) {
+  .hero {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .hero-portrait {
+    width: min(100%, 19rem);
   }
 }
 

@@ -20,7 +20,7 @@ function setupViewTheme() {
     const preferenceKey = 'jianhuanglyu-portfolio-view-theme';
     const choices = new Set(picker
         ? Array.from(picker.options, option => option.value)
-        : ['warm', 'sage', 'mist', 'rose', 'lavender', 'jade', 'amber']);
+        : ['warm', 'sage', 'mist', 'rose', 'lavender', 'jade', 'amber', 'monochrome', 'indigo', 'apricot']);
     const root = document.documentElement;
     const browserColor = document.querySelector('meta[name="theme-color"]');
 
@@ -61,7 +61,7 @@ function sectionFor(link) {
 }
 
 function setupNavigation() {
-    const desktop = window.matchMedia('(min-width: 992px)');
+    const floatingMenu = window.matchMedia('(max-width: 1199.98px), (max-width: 1536px) and (any-pointer: coarse)');
     const navigation = sidebarLinks
         .map(link => ({ link, section: sectionFor(link) }))
         .filter(({ section }) => section && !section.hidden)
@@ -82,10 +82,10 @@ function setupNavigation() {
     }
 
     function setDrawer(open) {
-        const expanded = open && !desktop.matches;
+        const expanded = open && floatingMenu.matches;
         document.body.classList.toggle('sb-sidenav-toggled', expanded);
         sidebarToggle.setAttribute('aria-expanded', String(expanded));
-        sidebar.inert = !desktop.matches && !expanded;
+        sidebar.inert = floatingMenu.matches && !expanded;
         pageContent.inert = expanded;
         scrim.hidden = !expanded;
 
@@ -101,10 +101,10 @@ function setupNavigation() {
 
     sidebarToggle.addEventListener('click', () => setDrawer(!drawerIsOpen()));
     scrim.addEventListener('click', dismissDrawer);
-    desktop.addEventListener('change', () => {
+    floatingMenu.addEventListener('change', () => {
         const focusWasInSidebar = sidebar.contains(document.activeElement);
         setDrawer(false);
-        if (!desktop.matches && focusWasInSidebar) {
+        if (floatingMenu.matches && focusWasInSidebar) {
             sidebarToggle.focus();
         }
     });
