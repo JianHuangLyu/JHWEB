@@ -133,6 +133,10 @@
   font-size: 0.875rem;
 }
 
+.portfolio .btn-header:any-link {
+  background-color: var(--wash);
+}
+
 .portfolio .btn-header:is(:hover, [aria-expanded="true"]) {
   border-color: var(--accent);
   background: var(--brown-gradient);
@@ -140,6 +144,15 @@
 
 .portfolio .menu-toggle {
   display: none;
+  gap: 0.5rem;
+}
+
+.menu-icon {
+  width: 1rem;
+  height: 0.75rem;
+  flex: none;
+  border-block: 2px solid currentColor;
+  background: linear-gradient(currentColor, currentColor) center / 100% 2px no-repeat;
 }
 
 .portfolio #layoutSidenav {
@@ -220,7 +233,7 @@ main.portfolio-shell {
 .hero-portrait {
   --portrait-rim: clamp(0.37rem, 1vw, 0.55rem);
   position: relative;
-  width: min(100%, 22rem);
+  width: min(100%, 26rem);
   aspect-ratio: 1;
   justify-self: center;
   margin: 0;
@@ -859,7 +872,52 @@ main.portfolio-shell {
   }
 
   .hero-portrait {
-    width: min(100%, 16rem);
+    width: min(100%, 19rem);
+  }
+
+  .portfolio.sidebar-ready {
+    --quick-menu-bottom: calc(0.875rem + env(safe-area-inset-bottom, 0px));
+    --quick-menu-right: calc(0.875rem + env(safe-area-inset-right, 0px));
+    --quick-menu-height: 2.875rem;
+  }
+
+  .portfolio.sidebar-ready .menu-toggle {
+    position: fixed;
+    right: var(--quick-menu-right);
+    bottom: var(--quick-menu-bottom);
+    min-height: var(--quick-menu-height);
+    padding-inline: 0.95rem;
+    border-color: var(--accent);
+    border-radius: 2rem;
+    background: var(--brown-gradient);
+    box-shadow: 0 0.25rem 0.85rem #452c1f40;
+  }
+
+  .portfolio.sidebar-ready .menu-toggle[aria-expanded="true"] {
+    background: var(--surface);
+  }
+
+  .portfolio.sidebar-ready #layoutSidenav #layoutSidenav_nav {
+    --quick-menu-top: calc(var(--quick-menu-bottom) + var(--quick-menu-height) + 0.5rem);
+    inset: auto var(--quick-menu-right) var(--quick-menu-top) auto;
+    width: min(16rem, calc(100% - var(--quick-menu-right) - 0.875rem));
+    max-height: calc(100vh - var(--header-height) - var(--quick-menu-top) - 0.5rem);
+    max-height: calc(100dvh - var(--header-height) - var(--quick-menu-top) - 0.5rem);
+    overflow: auto;
+    overscroll-behavior: contain;
+    border: 1px solid var(--line);
+    border-radius: 0.9rem;
+    box-shadow: 0 0.7rem 1.8rem #452c1f33;
+    transform: translateY(0.35rem);
+  }
+
+  .portfolio.sidebar-ready #layoutSidenav #layoutSidenav_nav .sb-sidenav {
+    height: auto;
+    padding: 0.5rem;
+  }
+
+  .portfolio.sidebar-ready .site-footer {
+    padding-bottom: calc(var(--quick-menu-bottom) + var(--quick-menu-height) + 0.5rem);
   }
 }
 
