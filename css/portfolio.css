@@ -5,6 +5,7 @@
   --line: #e3d4c8;
   --accent: #6c3d28;
   --wash: #f8ede4;
+  --warm-paper: color-mix(in srgb, var(--wash) 52%, var(--canvas));
   --brown-gradient: linear-gradient(125deg, #f8e5d5 0%, #edc9ab 57%, #ce9d77 100%);
   --bar-gradient: linear-gradient(125deg, #6c3d28 0%, #865134 100%);
   --paper-gradient: linear-gradient(135deg, #fbf3eb 0%, #fff 74%);
@@ -172,7 +173,7 @@
 
 .portfolio #layoutSidenav #layoutSidenav_nav .sb-sidenav {
   padding: 1.65rem 0.85rem 0;
-  background: linear-gradient(180deg, #fff 27%, #fbf3eb 100%);
+  background: linear-gradient(180deg, var(--surface) 20%, var(--wash) 100%);
   overscroll-behavior: contain;
 }
 
@@ -205,6 +206,8 @@
   min-height: calc(100vh - var(--header-height));
   padding: 0;
   margin: 0;
+  background-color: var(--wash);
+  background-image: linear-gradient(180deg, var(--wash), var(--warm-paper) 48%, var(--wash));
 }
 
 .portfolio.sb-sidenav-toggled #layoutSidenav #layoutSidenav_content::before {
@@ -222,12 +225,34 @@ main.portfolio-shell {
   padding-block: clamp(1.25rem, 2.6vw, 2.4rem) 3.5rem;
 }
 
+.site-banner,
+.hero {
+  border: 1px solid var(--line);
+  border-radius: clamp(0.8rem, 1.5vw, 1.15rem);
+  box-shadow: 0 0.35rem 1.25rem #452c1f13;
+}
+
+.site-banner {
+  margin: 0;
+  overflow: hidden;
+  background: var(--wash);
+}
+
+.site-banner > img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
 .hero {
   display: grid;
   grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr);
   align-items: center;
   gap: clamp(1.4rem, 3.5vw, 3.4rem);
-  padding-block: 0.5rem;
+  padding: clamp(1.1rem, 2.85vw, 2rem);
+  border-top-width: 3px;
+  border-top-color: color-mix(in srgb, var(--accent) 32%, var(--line));
+  background: var(--surface);
 }
 
 .hero-portrait {
@@ -325,6 +350,10 @@ main.portfolio-shell > .portfolio-section:first-child {
   margin-top: 0;
 }
 
+.portfolio-shell > .site-banner + :is(.hero, .portfolio-section) {
+  margin-top: 0.85rem;
+}
+
 .section-title {
   margin: 0 0 1.3rem;
   font-size: clamp(1.9rem, 1.45rem + 1.25vw, 2.55rem);
@@ -402,8 +431,10 @@ main.portfolio-shell > .portfolio-section:first-child {
   min-width: 0;
   padding: 0.8rem 0.9rem;
   border: 1px solid var(--line);
-  border-radius: 0.75rem;
-  background: var(--surface);
+  border-color: color-mix(in srgb, var(--line) 62%, var(--surface));
+  border-radius: 0.9rem;
+  background: linear-gradient(147deg, var(--surface) 15%, var(--wash) 100%);
+  box-shadow: 0 0.25rem 0.8rem #452c1f0b;
 }
 
 .project-meta-panel h4 {
@@ -643,9 +674,12 @@ main.portfolio-shell > .portfolio-section:first-child {
   display: none !important;
 }
 
+.portfolio .resume-card {
+  background: var(--paper-gradient);
+}
+
 .timeline {
-  --timeline-offset: 1rem;
-  padding: 0 0 0 var(--timeline-offset);
+  padding: 0;
   margin: 1.15rem 0 0 0.35rem;
   border-left: 1px solid var(--line);
   list-style: none;
@@ -657,20 +691,17 @@ main.portfolio-shell > .portfolio-section:first-child {
 
 .timeline > li {
   position: relative;
-  padding: 0.8rem 1rem;
-  border: 1px solid var(--line);
-  border-radius: 0.75rem;
-  background: var(--paper-gradient);
+  padding: 0 0 1.15rem 1.1rem;
 }
 
-.timeline > li + li {
-  margin-top: 0.7rem;
+.timeline > li:last-child {
+  padding-bottom: 0;
 }
 
 .timeline > li::before {
   position: absolute;
-  top: 1rem;
-  left: calc(-0.35rem - var(--timeline-offset));
+  top: 0.35rem;
+  left: -0.29rem;
   width: 0.52rem;
   height: 0.52rem;
   border-radius: 50%;
@@ -726,7 +757,8 @@ main.portfolio-shell > .portfolio-section:first-child {
 .site-footer {
   padding-block: 1.15rem;
   border-top: 1px solid var(--line);
-  background: var(--paper-gradient);
+  background-color: var(--wash);
+  background-image: linear-gradient(110deg, var(--warm-paper), var(--wash));
   font-size: 0.875rem;
 }
 
@@ -836,7 +868,6 @@ main.portfolio-shell > .portfolio-section:first-child {
 @media (max-width: 767.98px) {
   .hero {
     grid-template-columns: minmax(0, 1fr);
-    padding-block: 0.4rem 0;
   }
 
   .hero-portrait {
