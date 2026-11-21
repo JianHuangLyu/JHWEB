@@ -10,7 +10,7 @@
     <meta property="og:description" content="電腦視覺、多模態 AI、醫學影像與邊緣部署作品集。">
     <title>呂建篁 Jian-Huang Lyu｜個人作品集</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/portfolio.css?v=cee72f006b86">
+    <link rel="stylesheet" href="css/portfolio.css?v=25d2dcafcbc7">
     <script src="js/scripts.js?v=bd8598fb38fa" defer></script>
 </head>
 <body class="portfolio sb-nav-fixed">
@@ -165,7 +165,6 @@
                                         <div class="project-stack-grid">
                                             <section class="project-stack-group">
                                                 <h5>前端</h5>
-                                                <p>提供影像上傳、推論操作及結果展示，並統一介面的視覺樣式。</p>
                                                 <ul class="tag-list project-skills" role="list">
                                                     <li>Gradio</li>
                                                     <li>CSS</li>
@@ -173,7 +172,6 @@
                                             </section>
                                             <section class="project-stack-group">
                                                 <h5>後端</h5>
-                                                <p>串接模型、推論服務與 Web API，處理病灶定位、區域影像分析及結構化報告。</p>
                                                 <ul class="tag-list project-skills" role="list">
                                                     <li>Python</li>
                                                     <li>PyTorch</li>
@@ -189,14 +187,12 @@
                                             </section>
                                             <section class="project-stack-group">
                                                 <h5>Prompt 工程</h5>
-                                                <p>透過 Teacher–Student 評估迭代 Skill 與 Prompt，讓學生模型的結構化輸出逐步接近教師模型。</p>
                                                 <ul class="tag-list project-skills" role="list">
                                                     <li>Microsoft SkillOpt</li>
                                                 </ul>
                                             </section>
                                             <section class="project-stack-group">
                                                 <h5>基礎架構與部署</h5>
-                                                <p>整合 HPC 運算與儲存、資源調度、遠端連線、Python 環境和系統部署。</p>
                                                 <ul class="tag-list project-skills" role="list">
                                                     <li>NCHC NANO4（NVIDIA H200）</li>
                                                     <li>HFS</li>
@@ -233,20 +229,6 @@
                                         <ol class="flow-steps">
                                             <li>YOLO 定位</li><li>人工選取 ROI</li><li>VLM 報告</li>
                                         </ol>
-                                    </figure>
-                                    <figure class="project-visual project-metrics">
-                                        <figcaption>Prompt 最佳化前後的 Schema 合法率</figcaption>
-                                        <p class="metric-context">Mistral Small 3.1 · RefPath 衍生測試集</p>
-                                        <div class="comparison-row">
-                                            <span>調整前</span>
-                                            <span class="bar-track" aria-hidden="true"><span style="--bar-fill: 10.83%"></span></span>
-                                            <strong>10.83%</strong>
-                                        </div>
-                                        <div class="comparison-row">
-                                            <span>調整後</span>
-                                            <span class="bar-track" aria-hidden="true"><span style="--bar-fill: 99.29%"></span></span>
-                                            <strong>99.29%</strong>
-                                        </div>
                                     </figure>
                                 </div>
                                 <div class="project-notes">
@@ -321,20 +303,6 @@
                                             <li>AdaIN 轉 ONNX</li><li>TensorRT INT8</li><li>Jetson 即時推論</li>
                                         </ol>
                                     </figure>
-                                    <figure class="project-visual project-metrics">
-                                        <figcaption>TensorRT Engine 的模型體積</figcaption>
-                                        <p class="metric-context">Jetson Xavier NX · 量化前後比較</p>
-                                        <div class="comparison-row">
-                                            <span>FP32</span>
-                                            <span class="bar-track" aria-hidden="true"><span style="--bar-fill: 95.66%"></span></span>
-                                            <strong>47.83 MB</strong>
-                                        </div>
-                                        <div class="comparison-row">
-                                            <span>INT8</span>
-                                            <span class="bar-track" aria-hidden="true"><span style="--bar-fill: 19.44%"></span></span>
-                                            <strong>9.72 MB</strong>
-                                        </div>
-                                    </figure>
                                 </div>
                                 <div class="project-notes">
                                     <h4>專案重點</h4>
@@ -365,6 +333,7 @@
                                             <div>
                                                 <h5>成果</h5>
                                                 <p>在 Xavier GPU 上處理 512 × 512 影像，推論時間由 0.3307 秒降至 0.1295 秒，速度達 2.55 倍，攝影機展示達 7.72 FPS。</p>
+                                                <p>TensorRT Engine 從 FP32 的 47.83 MB 縮小至 INT8 的 9.72 MB。</p>
                                             </div>
                                         </li>
                                     </ul>
@@ -408,20 +377,6 @@
                                             <li>影像＋光流</li><li>自注意力融合</li><li>四類表情分類</li>
                                         </ol>
                                     </figure>
-                                    <figure class="project-visual project-metrics">
-                                        <figcaption>微表情分類準確率</figcaption>
-                                        <p class="metric-context"></p>
-                                        <div class="comparison-row">
-                                            <span>CASME表情資料集</span>
-                                            <span class="bar-track" aria-hidden="true"><span style="--bar-fill: 80.05%"></span></span>
-                                            <strong>80.05%</strong>
-                                        </div>
-                                        <div class="comparison-row">
-                                            <span>綜合資料集</span>
-                                            <span class="bar-track" aria-hidden="true"><span style="--bar-fill: 72.33%"></span></span>
-                                            <strong>72.33%</strong>
-                                        </div>
-                                    </figure>
                                 </div>
                                 <div class="project-notes">
                                     <h4>專案重點</h4>
@@ -447,16 +402,157 @@
                                                 <p>以 MediaPipe套件對人臉影像預處理，從 Onset 和 Apex Frame經CNN Block捕捉靜態特徵，以及以TV-L1 光流及 Inception分枝捕捉臉部的動態特徵，再透過Self-Attention 使模型學習具特定類別的特徵</p>
                                             </div>
                                         </li>
-                                        <li class="star-result">
-                                            <span class="star-letter" aria-hidden="true">4</span>
-                                            <div>
-                                                <h5>成果</h5>
-                                                <p>完成四個獨立資料集與綜合資料集的實驗驗證，並以攝影機 GUI 進行即時展示。
-專題榮獲系上多媒體與雲端網路應用組第三名。</p>
-                                            </div>
-                                        </li>
                                     </ul>
                                 </div>
+                                <section class="project-results star-result" id="expression-results" aria-labelledby="expression-results-title" tabindex="-1">
+                                    <h4 id="expression-results-title">成果</h4>
+                                    <p>完成四個獨立資料集與綜合資料集的實驗驗證，並以攝影機 GUI 進行即時展示。 專題榮獲系上多媒體與雲端網路應用組第三名。</p>
+                                    <p>在有 FeatRef 對照值的三組資料集上，本研究的 ACC 都較高，SMIC-HS 的差距最大，為 5.13 個百分點。消融實驗中，移除光流與 Inception block 後的降幅最大，為 24.12 個百分點。</p>
+                                    <p class="results-scroll-hint">窄螢幕可左右滑動查看完整表格。</p>
+                                    <div class="results-tables">
+                                        <details class="results-disclosure project-metrics" open>
+                                            <summary id="expression-performance-label">五組資料集的分類表現</summary>
+                                            <div class="results-scroll" role="region" tabindex="0" aria-labelledby="expression-performance-label">
+                                                <table class="results-table" aria-labelledby="expression-performance-label">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">資料集</th>
+                                                            <th scope="col">ACC</th>
+                                                            <th scope="col">UF1</th>
+                                                            <th scope="col">UAR</th>
+                                                            <th scope="col">WF1</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">CASME</th>
+                                                            <td><div class="comparison-row results-score"><span class="bar-track" aria-hidden="true"><span style="--bar-fill: 80.05%"></span></span><strong>80.05%</strong></div></td>
+                                                            <td>66.88%</td>
+                                                            <td>70.62%</td>
+                                                            <td>79.52%</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">CASME2</th>
+                                                            <td><div class="comparison-row results-score"><span class="bar-track" aria-hidden="true"><span style="--bar-fill: 72.74%"></span></span><strong>72.74%</strong></div></td>
+                                                            <td>72.75%</td>
+                                                            <td>73.64%</td>
+                                                            <td>72.71%</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">SAMM</th>
+                                                            <td><div class="comparison-row results-score"><span class="bar-track" aria-hidden="true"><span style="--bar-fill: 62.01%"></span></span><strong>62.01%</strong></div></td>
+                                                            <td>45.06%</td>
+                                                            <td>45.94%</td>
+                                                            <td>60.28%</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">SMIC-HS</th>
+                                                            <td><div class="comparison-row results-score"><span class="bar-track" aria-hidden="true"><span style="--bar-fill: 62.73%"></span></span><strong>62.73%</strong></div></td>
+                                                            <td>46.66%</td>
+                                                            <td>62.71%</td>
+                                                            <td>62.72%</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Composite</th>
+                                                            <td><div class="comparison-row results-score"><span class="bar-track" aria-hidden="true"><span style="--bar-fill: 72.33%"></span></span><strong>72.33%</strong></div></td>
+                                                            <td>71.09%</td>
+                                                            <td>70.71%</td>
+                                                            <td>72.29%</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </details>
+                                        <details class="results-disclosure">
+                                            <summary id="expression-comparison-label">與 FeatRef 的 ACC 比較</summary>
+                                            <div class="results-scroll" role="region" tabindex="0" aria-labelledby="expression-comparison-label">
+                                                <table class="results-table" aria-labelledby="expression-comparison-label">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">資料集</th>
+                                                            <th scope="col">FeatRef</th>
+                                                            <th scope="col">本研究</th>
+                                                            <th scope="col">差距（百分點）</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">CASME</th>
+                                                            <td><span aria-hidden="true">—</span><span class="visually-hidden">未提供</span></td>
+                                                            <td>80.05%</td>
+                                                            <td><span aria-hidden="true">—</span><span class="visually-hidden">未提供</span></td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">CASME2</th>
+                                                            <td>68.38%</td>
+                                                            <td>72.74%</td>
+                                                            <td>+4.36</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">SAMM</th>
+                                                            <td>60.13%</td>
+                                                            <td>62.01%</td>
+                                                            <td>+1.88</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">SMIC-HS</th>
+                                                            <td>57.60%</td>
+                                                            <td>62.73%</td>
+                                                            <td>+5.13</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Composite</th>
+                                                            <td><span aria-hidden="true">—</span><span class="visually-hidden">未提供</span></td>
+                                                            <td>72.33%</td>
+                                                            <td><span aria-hidden="true">—</span><span class="visually-hidden">未提供</span></td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </details>
+                                        <details class="results-disclosure">
+                                            <summary id="expression-ablation-label">消融實驗</summary>
+                                            <div class="results-scroll" role="region" tabindex="0" aria-labelledby="expression-ablation-label">
+                                                <table class="results-table" aria-labelledby="expression-ablation-label">
+                                                    <thead>
+                                                        <tr>
+                                                            <th scope="col">模型配置</th>
+                                                            <th scope="col">移除的元件</th>
+                                                            <th scope="col">ACC</th>
+                                                            <th scope="col">較完整模型（百分點）</th>
+                                                        </tr>
+                                                    </thead>
+                                                    <tbody>
+                                                        <tr>
+                                                            <th scope="row">Ours net</th>
+                                                    <td><span aria-hidden="true">—</span><span class="visually-hidden">完整模型</span></td>
+                                                            <td>72.74%</td>
+                                                            <td>基準</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Ours net-1</th>
+                                                            <td>注意力機制</td>
+                                                            <td>67.64%</td>
+                                                            <td>−5.10</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Ours net-2</th>
+                                                            <td>光流與 Inception block</td>
+                                                            <td>48.62%</td>
+                                                            <td>−24.12</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Ours net-3</th>
+                                                            <td>Onset、Apex 影格與 CNN block</td>
+                                                            <td>68.91%</td>
+                                                            <td>−3.83</td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
+                                            </div>
+                                        </details>
+                                    </div>
+                                </section>
                             </div>
                         </article>
                     </div>

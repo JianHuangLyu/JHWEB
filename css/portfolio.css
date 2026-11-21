@@ -451,11 +451,6 @@ main.portfolio-shell > .portfolio-section:first-child {
   font-weight: 720;
 }
 
-.project-stack-group p {
-  margin: 0 0 0.6rem;
-  font-size: 0.9rem;
-}
-
 .project-meta-panel {
   min-width: 0;
   padding: 0.8rem 0.9rem;
@@ -556,10 +551,6 @@ main.portfolio-shell > .portfolio-section:first-child {
   background: var(--paper-gradient);
 }
 
-.metric-context {
-  margin: 0 0 0.3rem;
-}
-
 .comparison-row {
   display: flex;
   flex-wrap: wrap;
@@ -590,6 +581,82 @@ main.portfolio-shell > .portfolio-section:first-child {
   height: 100%;
   border-radius: inherit;
   background: var(--bar-gradient);
+}
+
+.project-results {
+  grid-column: 1 / -1;
+  min-width: 0;
+  padding-top: 1rem;
+  border-top: 1px solid var(--line);
+}
+
+.project-results h4 {
+  margin: 0 0 0.55rem;
+  font-size: 1.2rem;
+  font-weight: 750;
+}
+
+.project-results > p {
+  margin-bottom: 0.75rem;
+}
+
+.results-tables {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.results-disclosure {
+  min-width: 0;
+  padding: 0 0.8rem;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
+  background-color: var(--surface);
+}
+
+.results-disclosure > summary {
+  padding: 0.65rem 0;
+  font-weight: 680;
+  cursor: pointer;
+}
+
+.results-disclosure > summary:focus-visible,
+.results-scroll:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.results-scroll {
+  max-width: 100%;
+  overflow-x: auto;
+  margin-bottom: 0.8rem;
+}
+
+.results-table {
+  width: 100%;
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+.results-table :is(th, td) {
+  padding: 0.48rem 0.55rem;
+  border-top: 1px solid var(--line);
+  vertical-align: middle;
+  white-space: nowrap;
+}
+
+.results-score {
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.results-score .bar-track {
+  flex: 1 0 2.3rem;
+  order: 0;
+}
+
+.results-scroll-hint {
+  display: none;
+  font-size: 0.875rem;
 }
 
 .flow-steps {
@@ -708,11 +775,6 @@ main.portfolio-shell > .portfolio-section:first-child {
 
 .portfolio [hidden] {
   display: none !important;
-}
-
-.portfolio .resume-card {
-  background-color: var(--surface);
-  background-image: var(--paper-gradient);
 }
 
 .timeline {
@@ -958,6 +1020,25 @@ main.portfolio-shell > .portfolio-section:first-child {
 }
 
 @media (max-width: 575.98px) {
+  .results-scroll-hint {
+    display: block;
+  }
+
+  .results-table :is(th, td) {
+    padding-inline: 0.16rem;
+  }
+
+  .results-score {
+    display: grid;
+    justify-content: stretch;
+    gap: 0.25rem;
+  }
+
+  .results-score .bar-track {
+    height: 0.35rem;
+    order: 1;
+  }
+
   .portfolio .sb-topnav {
     gap: 8px;
     padding-inline: clamp(10px, 3vw, 16px);
