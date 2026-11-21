@@ -333,10 +333,6 @@ main.portfolio-shell > .portfolio-section:first-child {
   line-height: 1.22;
 }
 
-.text-link {
-  font-weight: 650;
-}
-
 .portfolio .card {
   border: 1px solid var(--line);
   border-radius: 1rem;
@@ -410,10 +406,10 @@ main.portfolio-shell > .portfolio-section:first-child {
   font-weight: 650;
 }
 
-.project-source {
-  display: inline-flex;
-  min-height: 2.75rem;
-  align-items: center;
+.project-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
 }
 
 .project-media {
