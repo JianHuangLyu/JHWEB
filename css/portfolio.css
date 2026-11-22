@@ -711,36 +711,28 @@ main.portfolio-shell > .portfolio-section:first-child {
 .project-meta {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
-  gap: 0.75rem;
+  gap: 2rem 2.5rem;
+  margin-top: 1.5rem;
 }
 
 .project-pathology .project-meta {
   grid-template-columns: minmax(0, 1fr);
 }
 
-/* 技術分類採「左分類、右標籤」的列式排版，分類欄寬由最長的分類名稱決定 */
+/* 分類過的技術以表格呈現：左欄分類（帶底色）、右欄標籤，分類欄寬由最長的分類名稱決定 */
 .project-stack-grid {
   display: grid;
   grid-template-columns: max-content minmax(0, 1fr);
-  column-gap: 1.25rem;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: 0.75rem;
 }
 
 .project-stack-group {
   display: grid;
   grid-column: 1 / -1;
   grid-template-columns: subgrid;
-  row-gap: 0.4rem;
-  align-items: start;
   min-width: 0;
-  padding-block: 0.6rem;
-}
-
-.project-stack-group:first-child {
-  padding-top: 0;
-}
-
-.project-stack-group:last-child {
-  padding-bottom: 0;
 }
 
 .project-stack-group + .project-stack-group {
@@ -748,30 +740,32 @@ main.portfolio-shell > .portfolio-section:first-child {
 }
 
 .project-stack-group h5 {
+  display: flex;
+  align-items: center;
   margin: 0;
-  padding-top: 0.2rem;
-  font-size: 1rem;
+  padding: 0.6rem 1rem;
+  border-right: 1px solid var(--line);
+  background: color-mix(in srgb, var(--wash) 72%, transparent);
+  font-size: 0.95rem;
   font-weight: 720;
 }
 
-.project-meta-panel {
-  min-width: 0;
-  padding: 0.8rem 0.9rem;
-  border: 1px solid var(--line);
-  border-color: color-mix(in srgb, var(--line) 62%, var(--surface));
-  border-radius: 0.9rem;
-  background: linear-gradient(147deg, var(--surface) 15%, var(--wash) 100%);
-  box-shadow: 0 0.25rem 0.8rem color-mix(in srgb, var(--shadow-ink) 4.3%, transparent);
+.project-stack-group .tag-list {
+  align-content: center;
+  padding: 0.6rem 0.85rem;
 }
 
-.portfolio:has(> .site-background) .project-meta-panel {
-  background: linear-gradient(147deg, var(--inset-surface) 15%, var(--inset-wash));
+/* Tech Stack 與 External Links 不另加外框，以留白和小型大寫標題分組 */
+.project-meta-panel {
+  min-width: 0;
 }
 
 .project-meta-panel h4 {
-  margin: 0 0 0.6rem;
-  font-size: 0.95rem;
-  font-weight: 720;
+  margin: 0 0 0.75rem;
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
 }
 
 .project-context {
@@ -1559,6 +1553,13 @@ main.portfolio-shell > .portfolio-section:first-child {
 
   .project-stack-grid {
     grid-template-columns: minmax(0, 1fr);
+  }
+
+  /* 手機表格改為單欄：分類成為標籤上方的色帶 */
+  .project-stack-group h5 {
+    padding-block: 0.45rem;
+    border-right: 0;
+    border-bottom: 1px solid var(--line);
   }
 
   .portfolio .sb-topnav {
