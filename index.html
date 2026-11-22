@@ -53,7 +53,7 @@
                     <div class="nav" id="section-menu">
                         <a class="nav-link active" aria-current="location" href="#home" lang="en">Home</a>
                         <a class="nav-link" href="#skills" lang="en">Skills</a>
-                        <a class="nav-link" href="#projects" lang="en">Project</a>
+                        <a class="nav-link" href="#projects" lang="en">Projects</a>
                         <a class="nav-link" href="#resume" lang="en">Education</a>
                         <a class="nav-link" href="#activities" lang="en">Activities</a>
                     </div>
@@ -96,8 +96,8 @@
                     <div class="hero-copy">
                         <p class="hero-name" lang="en">Jian-Huang Lyu</p>
                         <h1 id="hero-title">呂建篁</h1>
-                        <p class="hero-focus">國立成功大學電機工程學系　碩士</p>
-                        <p class="hero-intro">我專注於電腦視覺、多模態 AI 應用及醫學影像分割，具資料集建置、模型訓練、LLM/VLM 應用與邊緣裝置部署之開發經驗。期望投入 AI/ML、電腦視覺或 LLM/VLM 應用相關研發工程職務</p>
+                        <p class="hero-focus">國立成功大學電機工程學系　碩士（預計 2027 年畢業）</p>
+                        <p class="hero-intro">我專注於電腦視覺、多模態 AI 應用及醫學影像分割，具資料集建置、模型訓練、LLM/VLM 應用與邊緣裝置部署之開發經驗。期望投入 AI/ML、電腦視覺或 LLM/VLM 應用相關研發工程職務。</p>
                         <div class="hero-actions">
                             <a class="btn btn-accent" href="#projects">瀏覽精選專案</a>
                             <a class="btn btn-accent" href="https://drive.google.com/file/d/1vBFfm8cvseu5qnkpBR-wVfnuOK81z-iy/view?usp=sharing" target="_blank" rel="noopener">查看個人履歷</a>
@@ -197,14 +197,14 @@
 
                 <section id="projects" class="portfolio-section card projects-section" aria-labelledby="projects-title" tabindex="-1">
                     <header class="project-header">
-                        <h2 class="section-title" id="projects-title" lang="en">Project</h2>
+                        <h2 class="section-title" id="projects-title" lang="en">Projects</h2>
                     </header>
                     <div class="project-list">
                         <article class="card project-card project-pathology" id="project-pathology" aria-labelledby="pathology-title" tabindex="-1">
                             <header class="project-header">
                                 <p class="project-context">實習專案</p>
                                 <h3 id="pathology-title">病理醫學影像病灶定位與結構化分析系統</h3>
-                                <p class="project-summary">實習期間自主提案，以公開資料集訓練及實驗評估。在推論模式，影像進行病灶定位，並根據預測定位區域進行模型推論產生結構化分析報告</p>
+                                <p class="project-summary">實習期間自主提案，以公開資料集進行訓練與實驗評估。推論時先定位影像中的病灶，再針對預測區域由模型產生結構化分析報告。</p>
                                 <div class="project-meta">
                                     <section class="project-meta-panel project-tech">
                                         <h4 lang="en">Tech Stack</h4>
@@ -291,28 +291,28 @@
                                             <span class="star-letter" aria-hidden="true">1</span>
                                             <div>
                                                 <h5>挑戰</h5>
-                                                <p>傳統方法是由醫師逐張閱片並標註影像中病灶區域並整理報告，此舉不僅需要大量時間，同時也容易出錯</p>
+                                                <p>傳統上由醫師逐張閱片、標註病灶區域並整理報告，不僅耗時，也容易出錯。</p>
                                             </div>
                                         </li>
                                         <li class="star-task">
                                             <span class="star-letter" aria-hidden="true">2</span>
                                             <div>
                                                 <h5>任務</h5>
-                                                <p>實習期間自主提案，獨立開發研製異常區域定位與結構化分析輔助系統</p>
+                                                <p>實習期間自主提案，獨立開發異常區域定位與結構化分析輔助系統。</p>
                                             </div>
                                         </li>
                                         <li class="star-action">
                                             <span class="star-letter" aria-hidden="true">3</span>
                                             <div>
                                                 <h5>方法</h5>
-                                                <p>基於Teacher-Student框架下，採用雲端MedGemma 1.5 醫療特化模型作為教師參考，固定地端Mistral Small 3.1學生模型權重，並以SkillOpt 分別最佳化學生Prompt 與 Skills去近似老師輸出。</p>
+                                                <p>在 Teacher-Student 框架下，採用雲端 MedGemma 1.5 醫療特化模型作為教師參考，固定地端 Mistral Small 3.1 學生模型權重，並以 SkillOpt 分別最佳化學生 Prompt 與 Skills 去近似教師輸出。</p>
                                             </div>
                                         </li>
                                         <li class="star-result">
                                             <span class="star-letter" aria-hidden="true">4</span>
                                             <div>
                                                 <h5>成果</h5>
-                                                <p>YOLO11m於定位評估指標取得Recall 81.7%、mAP50 86.6%、mAP50–95 72.6%、F1-Score 0.792。地端Mistral Small 3.1 的 Prompt 實驗，JSON Schema 違規由 12,006 件降至 95 件且Schema Validity 由 10.83% 提升至 99.29%。系統能於5分鐘內完成單張影像推論</p>
+                                                <p>YOLO11m 於定位評估指標取得 Recall 81.7%、mAP50 86.6%、mAP50–95 72.6%、F1-Score 0.792。地端 Mistral Small 3.1 的 Prompt 實驗，JSON Schema 違規由 12,006 件降至 95 件，且 Schema Validity 由 10.83% 提升至 99.29%。系統能於 5 分鐘內完成單張 RoI 影像推論。</p>
                                             </div>
                                         </li>
                                     </ul>
@@ -323,13 +323,13 @@
                         <article class="card project-card project-edge" id="project-edge" aria-labelledby="edge-title" tabindex="-1">
                             <header class="project-header">
                                 <p class="project-context">課程專案</p>
-                                <h3 id="edge-title">邊緣AI即時影像風格轉換系統</h3>
-                                <p class="project-summary">在Xavier部署並執行模型量化後的模型，支援單張影像與即時攝影機畫面模式進行推論</p>
+                                <h3 id="edge-title">邊緣 AI 即時影像風格轉換系統</h3>
+                                <p class="project-summary">在 Xavier 部署並執行模型量化後的模型，支援單張影像與即時攝影機畫面模式進行推論。</p>
                                 <div class="project-meta">
                                     <section class="project-meta-panel project-tech">
                                         <h4 lang="en">Tech Stack</h4>
                                         <ul class="tag-list project-skills" aria-label="使用技術" role="list">
-                                            <li hidden>AdaIN</li><li>ONNX</li><li>TensorRT</li><li>INT8 PTQ(模型量化)</li><li>Docker</li><li>Gradio</li><li>PyTorch</li>
+                                            <li hidden>AdaIN</li><li>ONNX</li><li>TensorRT</li><li>INT8 PTQ（模型量化）</li><li>Docker</li><li>Gradio</li><li>PyTorch</li>
                                         </ul>
                                     </section>
                                     <section class="project-meta-panel project-resources">
@@ -337,7 +337,7 @@
                                         <div class="project-links" role="group" aria-label="邊緣 AI 專案連結">
                                             <a class="btn btn-header project-source" href="https://github.com/JianHuangLyu/Master/tree/main/114-2/ARTIFICAL%20INTELLIGENCE%20IN%20DIGITAL%20SIGNAL%20ANALYSIS%20AND%20ITS%20APPLICATIONS/Image-Style-Transfer" aria-describedby="edge-title" target="_blank" rel="noopener">專案說明</a>
                                             <a class="btn btn-header" href="https://docs.google.com/presentation/d/1BzTQxur_tb-BX7tnjprv2iyfuoyTL0Am/edit?usp=sharing&amp;ouid=105064244977899019676&amp;rtpof=true&amp;sd=true" aria-describedby="edge-title" target="_blank" rel="noopener">專案簡報</a>
-                                            <a class="btn btn-header" href="https://hackmd.io/@abcd09500/r1MNSk1czg" aria-describedby="edge-title" target="_blank" rel="noopener">Docker文件</a>
+                                            <a class="btn btn-header" href="https://hackmd.io/@abcd09500/r1MNSk1czg" aria-describedby="edge-title" target="_blank" rel="noopener">Docker 文件</a>
                                         </div>
                                     </section>
                                 </div>
@@ -379,14 +379,14 @@
                                             <span class="star-letter" aria-hidden="true">2</span>
                                             <div>
                                                 <h5>任務</h5>
-                                                <p>帶領 7 人團隊規劃架構與部署流程，負責 AdaIN 模型量化、推論測試與Docker部署流程文件整理。</p>
+                                                <p>帶領 7 人團隊規劃架構與部署流程，負責 AdaIN 模型量化、推論測試與 Docker 部署流程文件整理。</p>
                                             </div>
                                         </li>
                                         <li class="star-action">
                                             <span class="star-letter" aria-hidden="true">3</span>
                                             <div>
                                                 <h5>方法</h5>
-                                                <p>將Pretrained Model AdaIN 轉為 ONNX，在 Xavier上使用 TensorRT 進行 INT8 訓練後量化，並比較 CPU、ONNX Runtime GPU 與 TensorRT 的推論表現。</p>
+                                                <p>將 Pretrained Model AdaIN 轉為 ONNX，在 Xavier 上使用 TensorRT 進行 INT8 訓練後量化，並比較 CPU、ONNX Runtime GPU 與 TensorRT 的推論表現。</p>
                                             </div>
                                         </li>
                                         <li class="star-result">
@@ -405,7 +405,7 @@
                             <header class="project-header">
                                 <p class="project-context">大學部畢業專題</p>
                                 <h3 id="expression-title">即時人臉微表情辨識偵測系統</h3>
-                                <p class="project-summary">本系統整合攝影機，會自動偵測人臉影像並辨識正向、負向、驚訝與其他四類微表情</p>
+                                <p class="project-summary">本系統整合攝影機，會自動偵測人臉影像並辨識正向、負向、驚訝與其他四類微表情。</p>
                                 <div class="project-meta">
                                     <section class="project-meta-panel project-tech">
                                         <h4 lang="en">Tech Stack</h4>
@@ -422,7 +422,7 @@
                                         <h4 lang="en">External Links</h4>
                                         <div class="project-links" role="group" aria-label="微表情辨識專案連結">
                                             <a class="btn btn-header project-source" href="https://github.com/JianHuangLyu/Bachelor/blob/main/Senior%20Project/README.md" aria-describedby="expression-title" target="_blank" rel="noopener">專案說明</a>
-                                            <a class="btn btn-header" href="https://www.youtube.com/watch?v=WqFC5YTgZJo" aria-describedby="expression-title" target="_blank" rel="noopener">專案Demo</a>
+                                            <a class="btn btn-header" href="https://www.youtube.com/watch?v=WqFC5YTgZJo" aria-describedby="expression-title" target="_blank" rel="noopener">專案 Demo</a>
                                         </div>
                                     </section>
                                 </div>
@@ -464,14 +464,14 @@
                                             <span class="star-letter" aria-hidden="true">2</span>
                                             <div>
                                                 <h5>任務</h5>
-                                                <p>在專題中負責資料前處理、模型實驗與系統測試，建立四類微表情辨識流程</p>
+                                                <p>在專題中負責資料前處理、模型實驗與系統測試，建立四類微表情辨識流程。</p>
                                             </div>
                                         </li>
                                         <li class="star-action">
                                             <span class="star-letter" aria-hidden="true">3</span>
                                             <div>
                                                 <h5>方法</h5>
-                                                <p>以 MediaPipe套件對人臉影像預處理，從 Onset 和 Apex Frame經CNN Block捕捉靜態特徵，以及以TV-L1 光流及 Inception分枝捕捉臉部的動態特徵，再透過Self-Attention 使模型學習具特定類別的特徵</p>
+                                                <p>以 MediaPipe 套件對人臉影像預處理，從 Onset 和 Apex Frame 經 CNN Block 捕捉靜態特徵，以及以 TV-L1 光流及 Inception 分支捕捉臉部的動態特徵，再透過 Self-Attention 使模型學習具特定類別的特徵。</p>
                                             </div>
                                         </li>
                                         <li class="star-result" id="expression-results" tabindex="-1">
@@ -479,8 +479,8 @@
                                             <div>
                                                 <h5 id="expression-results-title">成果</h5>
                                                 <p>完成四個獨立資料集與綜合資料集的驗證，並以攝影機即時展示。專題榮獲系上多媒體與雲端網路應用組第三名。</p>
-                                                <p>模型在CASME評測準確率為 80.05%，綜合資料集為 72.33%，與 FeatRef 方法對照的三組資料集上，本研究均高出約1-5%準確率。</p>
-                                                <p>消融實驗中，移除光流與 Inception block 後，準確率由 72.74% 降至 48.62%，顯示出動態特徵網路分支之影響力</p>
+                                                <p>模型在 CASME 評測準確率為 80.05%，綜合資料集為 72.33%，與 FeatRef 方法對照的三組資料集上，本研究準確率均高出約 1–5 個百分點。</p>
+                                                <p>消融實驗中，移除光流與 Inception block 後，準確率由 72.74% 降至 48.62%，顯示出動態特徵網路分支之影響力。</p>
                                             </div>
                                         </li>
                                     </ul>
@@ -500,7 +500,7 @@
                                 <li>
                                     <p class="timeline-date"><time datetime="2025-09">2025/09</time> – 至今</p>
                                     <h4>國立成功大學　電機工程學系</h4>
-                                    <p>組別: 資訊工程組　碩士&#10;</p>
+                                    <p>組別：資訊工程組　碩士&#10;</p>
                                 </li>
                                 <li>
                                     <p class="timeline-date"><time datetime="2020-09">2020/09</time> – <time datetime="2024-01">2024/01</time></p>
@@ -522,22 +522,22 @@
                                 <li>
                                     <p class="timeline-date"><time datetime="2026-08-28">2026/08/28</time></p>
                                     <h3>國家高速網路與計算中心</h3>
-                                    <p>參與暑期實習成果發表會，以簡報與成果展示分享兩個月的實習專案成果</p>
+                                    <p>參與暑期實習成果發表會，以簡報與成果展示分享兩個月的實習專案成果。</p>
                                 </li>
                                 <li>
                                     <p class="timeline-date"><time datetime="2026-03-01">2026/03/01</time></p>
                                     <h3>古都馬拉松</h3>
-                                    <p>參加 10 公里路跑組，總排名 121／10,285</p>
+                                    <p>參加 10 公里路跑組，總排名 121／10,285。</p>
                                 </li>
                                 <li>
                                     <p class="timeline-date"><time datetime="2025-08-20">2025/08/20</time> – <time datetime="2025-08-22">2025/08/22</time></p>
                                     <h3>IEEE CIBCB 研討會</h3>
-                                    <p>擔任研討會工作人員，負責貴賓引導及活動攝影</p>
+                                    <p>擔任研討會工作人員，負責貴賓引導及活動攝影。</p>
                                 </li>
                                 <li>
                                     <p class="timeline-date"><time datetime="2025-08-08">2025/08/08</time> – <time datetime="2025-08-10">2025/08/10</time></p>
                                     <h3>AI 人才培育成果展</h3>
-                                    <p>擔任《智慧遊樂園：AI 奇幻之旅》展覽工作人員，負責活動攝影並協助各大學攤位展示</p>
+                                    <p>擔任《智慧遊樂園：AI 奇幻之旅》展覽工作人員，負責活動攝影並協助各大學攤位展示。</p>
                                 </li>
                             </ol>
                         </div>
