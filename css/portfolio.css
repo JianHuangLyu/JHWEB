@@ -127,9 +127,15 @@
   --inset-surface: color-mix(in srgb, var(--surface) 34%, transparent);
   --inset-wash: color-mix(in srgb, var(--wash) 38%, transparent);
   --chrome-gradient: linear-gradient(135deg, var(--panel-surface), var(--panel-wash));
+  --chrome-backdrop: blur(10px);
   --portrait-gradient: linear-gradient(145deg, var(--panel-surface) 15%, var(--panel-wash) 100%);
   --nav-scrim: color-mix(in srgb, var(--shadow-ink) 48%, transparent);
   isolation: isolate;
+}
+
+/* The fixed navigation can use its tinted gradient over video without filtering every frame. */
+.portfolio:has(> .site-background video.has-frame) {
+  --chrome-backdrop: none;
 }
 
 .site-background {
@@ -232,8 +238,8 @@
 .portfolio:has(> .site-background) .sb-topnav::before,
 .portfolio:has(> .site-background) #layoutSidenav #layoutSidenav_nav {
   background: var(--chrome-gradient);
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: var(--chrome-backdrop);
+  backdrop-filter: var(--chrome-backdrop);
 }
 
 .portfolio .sb-topnav .brand {
@@ -1407,8 +1413,8 @@ main.portfolio-shell > .portfolio-section:first-child {
 
   .portfolio:has(> .site-background).sidebar-ready .menu-toggle {
     background: var(--chrome-gradient);
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: var(--chrome-backdrop);
+    backdrop-filter: var(--chrome-backdrop);
   }
 
   .portfolio:has(> .site-background).sidebar-ready .menu-toggle[aria-expanded="true"] {
