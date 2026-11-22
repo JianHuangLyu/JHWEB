@@ -1393,11 +1393,11 @@ main.portfolio-shell > .portfolio-section:first-child {
     grid-column: 1 / -1;
   }
 
-  main.portfolio-shell > :is(#resume, #activities) {
+  main.portfolio-shell > :is(#education, #activities) {
     grid-column: auto;
   }
 
-  :is(#resume, #activities) > .resume-card {
+  :is(#education, #activities) > .resume-card {
     height: 100%;
   }
 }
