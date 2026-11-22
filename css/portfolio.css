@@ -1292,6 +1292,16 @@ main.portfolio-shell > .portfolio-section:first-child {
   font-variant-numeric: tabular-nums;
 }
 
+/* 學歷補充說明：簡單的項目符號清單 */
+.timeline-points {
+  display: grid;
+  gap: 0.55rem;
+  margin: 0.5rem 0 0;
+  padding-left: 1.15rem;
+  font-size: 0.95rem;
+  list-style: disc;
+}
+
 .skills-table {
   width: 100%;
   table-layout: fixed;
