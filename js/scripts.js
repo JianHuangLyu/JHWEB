@@ -17,51 +17,72 @@ setupViewTheme();
 setupBackgroundVideo();
 
 function setupBackgroundVideo() {
-    const videos = new Map();
-    for (const clip of document.querySelectorAll('.background-scene > video[data-background-src]')) {
-        videos.set(clip.parentElement.dataset.background, clip);
-        clip.muted = true;
+    const backdrop = document.querySelector('.site-background');
+    const scenes = new Map();
+    for (const scene of document.querySelectorAll('.background-scene[data-background]')) {
+        scenes.set(scene.dataset.background, scene);
     }
-    const defaultVideo = [...videos.values()].find(clip => !clip.parentElement.hidden) ?? videos.values().next().value;
-    if (!defaultVideo) return;
+    const defaultScene = [...scenes.values()].find(scene => !scene.hidden) ?? scenes.values().next().value;
+    if (!defaultScene) return;
 
     const picker = document.querySelector('#portfolio-background');
     const toggle = document.querySelector('#background-toggle');
     const controls = document.querySelector('.background-controls');
     const preferenceKey = 'jianhuanglyu-portfolio-background';
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let video = defaultVideo;
+    // 場景可以是靜態圖（森林）或影片（海灘）；選「無」時沒有作用中的場景
+    let active = defaultScene;
     let enabled = !motion.matches;
 
+    const clipOf = scene => scene?.querySelector('video[data-background-src]') ?? null;
+    const isLocked = value => Boolean(picker && [...picker.options].find(option => option.value === value)?.disabled);
+
     function updateToggle() {
-        if (toggle) toggle.textContent = video.paused || video.error ? '播放背景' : '暫停背景';
+        const clip = clipOf(active);
+        if (toggle) toggle.textContent = !clip || clip.paused || clip.error ? '播放背景' : '暫停背景';
+    }
+
+    function unload(clip) {
+        clip.pause();
+        clip.classList.remove('has-frame');
+        if (clip.hasAttribute('src')) {
+            clip.removeAttribute('src');
+            clip.load();
+        }
     }
 
     function selectBackground(value) {
-        const next = videos.get(value) ?? defaultVideo;
-        if (next !== video) {
-            video.pause();
-            video.classList.remove('has-frame');
-            if (video.hasAttribute('src')) {
-                video.removeAttribute('src');
-                video.load();
-            }
-            video.parentElement.hidden = true;
-            video = next;
+        // 「無」：隱藏整個背景，頁面改回不透明的卡片樣式；鎖住或不存在的選項改用預設場景
+        const next = value === 'none' ? null : (!isLocked(value) && scenes.get(value)) || defaultScene;
+        for (const scene of scenes.values()) {
+            if (scene === next) continue;
+            scene.hidden = true;
+            const clip = clipOf(scene);
+            if (clip) unload(clip);
         }
-        video.parentElement.hidden = false;
-        if (picker) picker.value = video.parentElement.dataset.background;
-        toggle?.setAttribute('aria-controls', video.id);
+        active = next;
+        if (next) next.hidden = false;
+        if (backdrop) backdrop.hidden = !next;
+
+        // 只有影片場景需要「播放／暫停背景」按鈕
+        const clip = clipOf(next);
+        if (toggle) {
+            toggle.hidden = !clip;
+            if (clip) toggle.setAttribute('aria-controls', clip.id);
+        }
+        if (picker) picker.value = next ? next.dataset.background : 'none';
         updateToggle();
     }
 
     function syncPlayback() {
+        const clip = clipOf(active);
+        if (!clip) return;
         if (!enabled || document.hidden) {
-            video.pause();
+            clip.pause();
             return;
         }
-        if (!video.hasAttribute('src')) video.src = video.dataset.backgroundSrc;
-        video.play().catch(updateToggle);
+        if (!clip.hasAttribute('src')) clip.src = clip.dataset.backgroundSrc;
+        clip.play().catch(updateToggle);
     }
 
     let saved = '';
@@ -76,15 +97,18 @@ function setupBackgroundVideo() {
         catch { /* The chosen background applies for the current page. */ }
     });
     toggle?.addEventListener('click', () => {
-        enabled = video.paused || Boolean(video.error);
-        if (video.error) video.load();
+        const clip = clipOf(active);
+        if (!clip) return;
+        enabled = clip.paused || Boolean(clip.error);
+        if (clip.error) clip.load();
         syncPlayback();
     });
-    for (const clip of videos.values()) {
+    for (const clip of [...scenes.values()].map(clipOf).filter(Boolean)) {
+        clip.muted = true;
         clip.addEventListener('play', updateToggle);
         clip.addEventListener('pause', updateToggle);
         clip.addEventListener('playing', () => {
-            if (clip === video && !clip.paused) clip.classList.add('has-frame');
+            if (clip === clipOf(active) && !clip.paused) clip.classList.add('has-frame');
         });
         clip.addEventListener('error', () => {
             clip.classList.remove('has-frame');

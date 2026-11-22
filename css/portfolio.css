@@ -121,7 +121,7 @@
   line-height: 1.65;
 }
 
-.portfolio:has(> .site-background) {
+.portfolio:has(> .site-background:not([hidden])) {
   --panel-surface: color-mix(in srgb, var(--surface) 66%, transparent);
   --panel-wash: color-mix(in srgb, var(--wash) 63%, transparent);
   --inset-surface: color-mix(in srgb, var(--surface) 34%, transparent);
@@ -224,26 +224,26 @@
   background: var(--paper-gradient);
 }
 
-.portfolio:has(> .site-background) .sb-topnav {
+.portfolio:has(> .site-background:not([hidden])) .sb-topnav {
   background: transparent;
 }
 
-.portfolio:has(> .site-background) .sb-topnav::before {
+.portfolio:has(> .site-background:not([hidden])) .sb-topnav::before {
   position: absolute;
   z-index: -1;
   inset: 0;
   content: "";
 }
 
-.portfolio:has(> .site-background) .sb-topnav::before,
-.portfolio:has(> .site-background) #layoutSidenav #layoutSidenav_nav {
+.portfolio:has(> .site-background:not([hidden])) .sb-topnav::before,
+.portfolio:has(> .site-background:not([hidden])) #layoutSidenav #layoutSidenav_nav {
   background: var(--chrome-gradient);
   -webkit-backdrop-filter: var(--chrome-backdrop);
   backdrop-filter: var(--chrome-backdrop);
 }
 
 /* 頂端導覽列會蓋在捲動的內文上，改用不透明背景避免透字；側邊欄後面只有影片，維持半透明 */
-.portfolio:has(> .site-background) .sb-topnav::before {
+.portfolio:has(> .site-background:not([hidden])) .sb-topnav::before {
   background: linear-gradient(135deg, var(--surface), var(--wash));
 }
 
@@ -309,7 +309,7 @@
   font-size: 0.875rem;
 }
 
-.portfolio:has(> .site-background) :is(.sb-topnav, .sb-sidenav-footer, .project-links) {
+.portfolio:has(> .site-background:not([hidden])) :is(.sb-topnav, .sb-sidenav-footer, .project-links) {
   --button-wash: var(--inset-wash);
 }
 
@@ -356,7 +356,7 @@
   overscroll-behavior: contain;
 }
 
-.portfolio:has(> .site-background) #layoutSidenav #layoutSidenav_nav .sb-sidenav {
+.portfolio:has(> .site-background:not([hidden])) #layoutSidenav #layoutSidenav_nav .sb-sidenav {
   background: transparent;
 }
 
@@ -384,7 +384,7 @@
   font-size: 0.875rem;
 }
 
-.portfolio:has(> .site-background) .sb-sidenav-footer {
+.portfolio:has(> .site-background:not([hidden])) .sb-sidenav-footer {
   background: var(--inset-surface);
 }
 
@@ -412,7 +412,7 @@
   cursor: pointer;
 }
 
-.portfolio:has(> .site-background) .view-theme-control select {
+.portfolio:has(> .site-background:not([hidden])) .view-theme-control select {
   background-color: var(--panel-surface);
 }
 
@@ -442,7 +442,7 @@
   background-image: linear-gradient(180deg, var(--wash), var(--warm-paper) 48%, var(--wash));
 }
 
-.portfolio:has(> .site-background) #layoutSidenav #layoutSidenav_content {
+.portfolio:has(> .site-background:not([hidden])) #layoutSidenav #layoutSidenav_content {
   background: transparent;
 }
 
@@ -608,11 +608,11 @@ main.portfolio-shell > .portfolio-section:first-child {
   box-shadow: 0 3px 12px color-mix(in srgb, var(--shadow-ink) 4.3%, transparent);
 }
 
-.portfolio:has(> .site-background) :is(.hero, .card) {
+.portfolio:has(> .site-background:not([hidden])) :is(.hero, .card) {
   background-color: var(--panel-surface);
 }
 
-.portfolio:has(> .site-background) .projects-section {
+.portfolio:has(> .site-background:not([hidden])) .projects-section {
   background-color: color-mix(in srgb, var(--wash) 12%, transparent);
 }
 
@@ -633,7 +633,7 @@ main.portfolio-shell > .portfolio-section:first-child {
   border-top: 3px solid var(--accent);
 }
 
-.portfolio:has(> .site-background) :is(.project-card, .resume-card, .projects-section) {
+.portfolio:has(> .site-background:not([hidden])) :is(.project-card, .resume-card, .projects-section) {
   border-top-color: color-mix(in srgb, var(--accent) 62%, var(--line));
 }
 
@@ -660,13 +660,13 @@ main.portfolio-shell > .portfolio-section:first-child {
   background: var(--paper-gradient);
 }
 
-.portfolio:has(> .site-background) .project-header {
+.portfolio:has(> .site-background:not([hidden])) .project-header {
   position: relative;
   isolation: isolate;
   background: transparent;
 }
 
-.portfolio:has(> .site-background) .project-header::before {
+.portfolio:has(> .site-background:not([hidden])) .project-header::before {
   position: absolute;
   z-index: -1;
   inset: 0;
@@ -677,7 +677,7 @@ main.portfolio-shell > .portfolio-section:first-child {
   content: "";
 }
 
-.portfolio:has(> .site-background) .projects-section > .project-header::before {
+.portfolio:has(> .site-background:not([hidden])) .projects-section > .project-header::before {
   opacity: 0.62;
 }
 
@@ -1181,7 +1181,7 @@ main.portfolio-shell > .portfolio-section:first-child {
   overflow-wrap: anywhere;
 }
 
-.portfolio:has(> .site-background) :is(.project-media, .tag-list li) {
+.portfolio:has(> .site-background:not([hidden])) :is(.project-media, .tag-list li) {
   background-color: var(--inset-surface);
 }
 
@@ -1332,7 +1332,7 @@ main.portfolio-shell > .portfolio-section:first-child {
   font-size: 0.875rem;
 }
 
-.portfolio:has(> .site-background) .site-footer {
+.portfolio:has(> .site-background:not([hidden])) .site-footer {
   background: var(--chrome-gradient);
 }
 
@@ -1454,13 +1454,13 @@ main.portfolio-shell > .portfolio-section:first-child {
     background: var(--surface);
   }
 
-  .portfolio:has(> .site-background).sidebar-ready .menu-toggle {
+  .portfolio:has(> .site-background:not([hidden])).sidebar-ready .menu-toggle {
     background: var(--chrome-gradient);
     -webkit-backdrop-filter: var(--chrome-backdrop);
     backdrop-filter: var(--chrome-backdrop);
   }
 
-  .portfolio:has(> .site-background).sidebar-ready .menu-toggle[aria-expanded="true"] {
+  .portfolio:has(> .site-background:not([hidden])).sidebar-ready .menu-toggle[aria-expanded="true"] {
     background: var(--panel-surface);
   }
 
