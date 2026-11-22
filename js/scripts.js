@@ -132,16 +132,17 @@ function setupBackgroundVideo() {
 function setupViewTheme() {
     const picker = document.querySelector('#portfolio-view-theme');
     const preferenceKey = 'jianhuanglyu-portfolio-view-theme';
+    // 只提供玄素與霧藍，預設玄素；舊偏好若是已移除的配色，改回預設
+    const defaultTheme = 'monochrome';
     const choices = new Set(picker
         ? Array.from(picker.options, option => option.value)
-        : ['warm', 'sage', 'mist', 'rose', 'lavender', 'jade', 'amber', 'monochrome', 'indigo', 'apricot']);
+        : [defaultTheme, 'mist']);
     const root = document.documentElement;
     const browserColor = document.querySelector('meta[name="theme-color"]');
 
     function applyTheme(value) {
-        const theme = choices.has(value) ? value : '';
-        if (theme) root.dataset.viewTheme = theme;
-        else delete root.dataset.viewTheme;
+        const theme = choices.has(value) ? value : defaultTheme;
+        root.dataset.viewTheme = theme;
         if (picker) picker.value = theme;
         if (browserColor) browserColor.content = getComputedStyle(root).getPropertyValue('--canvas').trim();
     }
@@ -157,10 +158,8 @@ function setupViewTheme() {
 
     picker.addEventListener('change', () => {
         applyTheme(picker.value);
-        try {
-            if (picker.value) localStorage.setItem(preferenceKey, picker.value);
-            else localStorage.removeItem(preferenceKey);
-        } catch { /* Keep the chosen theme for the current page. */ }
+        try { localStorage.setItem(preferenceKey, picker.value); }
+        catch { /* Keep the chosen theme for the current page. */ }
     });
 }
 
