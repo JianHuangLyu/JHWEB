@@ -372,7 +372,7 @@
                                             <span class="star-letter" aria-hidden="true">1</span>
                                             <div>
                                                 <h5>挑戰</h5>
-                                                <p>Jetson Xavier NX 提供環境運算資源有限下，以FP32 推論速度限制了攝影機畫面的即時處理，造成推論出現瓶頸</p>
+                                                <p>Jetson Xavier NX 運算資源有限，FP32 推論速度不足以支撐攝影機畫面的即時處理。</p>
                                             </div>
                                         </li>
                                         <li class="star-task">
@@ -393,7 +393,7 @@
                                             <span class="star-letter" aria-hidden="true">4</span>
                                             <div>
                                                 <h5>成果</h5>
-                                                <p>在 Xavier GPU 上處理 512 × 512 影像，推論時間由 0.3307 秒降至 0.1295 秒，速度達 2.55 倍，攝影機展示達 7.72 FPS。TensorRT Engine 從 FP32 的 47.83 MB 縮小至 INT8 的 9.72 MB。</p>
+                                                <p>在 Xavier GPU 上處理 512 × 512 影像，推論時間由 0.3307 秒降至 0.1295 秒，加速 2.55 倍，攝影機展示達 7.72 FPS。TensorRT Engine 從 FP32 的 47.83 MB 縮小至 INT8 的 9.72 MB。</p>
                                             </div>
                                         </li>
                                     </ul>
@@ -457,7 +457,7 @@
                                             <span class="star-letter" aria-hidden="true">1</span>
                                             <div>
                                                 <h5>挑戰</h5>
-                                                <p>微表情出現短暫、變化細微，人眼不易辨識且原始 FeatRef 架構主要使用光流擷取動態線索卻忽略原始面部靜態資訊，使效能上仍有改善空間</p>
+                                                <p>微表情持續時間短、變化細微，人眼難以辨識。原始 FeatRef 架構主要用光流擷取動態線索，未另設臉部靜態特徵分支，效能仍有提升空間。</p>
                                             </div>
                                         </li>
                                         <li class="star-task">
