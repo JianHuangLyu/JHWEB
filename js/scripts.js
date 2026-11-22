@@ -14,6 +14,52 @@ if (sidebarToggle && sidebar && pageContent && scrim && sidebarLinks.length) {
 }
 
 setupViewTheme();
+setupBackgroundVideo();
+
+function setupBackgroundVideo() {
+    const video = document.querySelector('#site-background-video');
+    const toggle = document.querySelector('#background-toggle');
+    if (!video || !toggle) return;
+
+    const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let enabled = !motion.matches;
+    video.muted = true;
+
+    function updateToggle() {
+        toggle.textContent = video.paused || video.error ? '播放背景' : '暫停背景';
+    }
+
+    function syncPlayback() {
+        if (!enabled || document.hidden) {
+            video.pause();
+            return;
+        }
+        if (!video.hasAttribute('src')) video.src = video.dataset.backgroundSrc;
+        video.play().catch(updateToggle);
+    }
+
+    toggle.addEventListener('click', () => {
+        enabled = video.paused || Boolean(video.error);
+        if (video.error) video.load();
+        syncPlayback();
+    });
+    video.addEventListener('play', updateToggle);
+    video.addEventListener('pause', updateToggle);
+    video.addEventListener('playing', () => video.classList.add('has-frame'));
+    video.addEventListener('error', () => {
+        video.classList.remove('has-frame');
+        updateToggle();
+    });
+    document.addEventListener('visibilitychange', syncPlayback);
+    motion.addEventListener('change', () => {
+        enabled = !motion.matches;
+        syncPlayback();
+    });
+
+    toggle.hidden = false;
+    if (document.readyState === 'complete') syncPlayback();
+    else window.addEventListener('load', syncPlayback, { once: true });
+}
 
 function setupViewTheme() {
     const picker = document.querySelector('#portfolio-view-theme');
