@@ -225,10 +225,15 @@ function setupNavigation() {
         scrollFrame = 0;
         const readingLine = Math.min(200, window.innerHeight * 0.35);
         let active = navigation[0]?.link;
+        let activeTop = -Infinity;
 
         for (const { link, section } of navigation) {
-            if (section.getBoundingClientRect().top > readingLine) break;
-            active = link;
+            const top = section.getBoundingClientRect().top;
+            if (top > readingLine) break;
+            // 並排的區塊頂端同高：保留左側的區塊，除非網址的 # 指向右側區塊
+            const besidePrevious = Math.abs(top - activeTop) < 1;
+            if (!besidePrevious || link.hash === window.location.hash) active = link;
+            activeTop = top;
         }
 
         if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 2) {
