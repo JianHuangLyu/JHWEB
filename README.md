@@ -5,14 +5,14 @@
 ## 精選專案
 
 - **醫學病理影像病灶定位與結構化分析系統** 使用 YOLO 定位病灶，透過視覺語言模型產生結構化分析報告，並用 Microsoft SkillOpt 最佳化提示詞與技能。主要技術包括 PyTorch、vLLM、FastAPI 和 Gradio。[查看實習專案](https://jianhuanglyu.github.io/#project-pathology)
-- **邊緣 AI 即時影像風格轉換系統** 在 Jetson Xavier NX 部署 INT8 量化模型，支援單張影像與即時攝影機推論。主要技術包括 ONNX、TensorRT 和 Docker。[查看邊緣 AI 專案](https://jianhuanglyu.github.io/#project-edge)
-- **多模態微表情辨識系統** 融合影格靜態特徵與光流動態特徵，辨識四類微表情。主要技術包括 MediaPipe、CNN、TV-L1 光流和 Self-Attention。[查看畢業專題](https://jianhuanglyu.github.io/#project-expression)
+- **邊緣 AI 即時影像風格轉換系統** 在 Jetson Xavier NX 部署 INT8 量化模型，支援單張影像與即時攝影機推論。主要技術包括 ONNX、TensorRT、Docker、Gradio 和 PyTorch。[查看邊緣 AI 專案](https://jianhuanglyu.github.io/#project-edge)
+- **即時人臉微表情辨識偵測系統** 融合影格靜態特徵與光流動態特徵，辨識四類微表情。主要技術包括 MediaPipe、CNN、TV-L1 光流和 Self-Attention。[查看畢業專題](https://jianhuanglyu.github.io/#project-expression)
 
 ## 網站功能
 
 - 支援手機、平板與桌面版面，手機和平板可使用右下角的浮動章節選單。
 - 「網站配色」提供十套主題，預設為霧藍，瀏覽器會記住選取的配色。
-- 專案架構圖、示範圖與實驗圖可在站內視窗查看。圖片支援縮放、拖曳和手機雙指縮放。
+- 專案架構圖、示範圖與實驗圖可在站內視窗查看。大型圖片先顯示預覽，放大時載入原圖。圖片支援縮放、拖曳和手機雙指縮放。
 
 ## 本機預覽
 

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="css/styles.css">
     <link rel="stylesheet" href="css/portfolio.css?v=44298fa10250">
     <script src="js/scripts.js?v=638cd138647b" defer></script>
-    <script src="js/image-viewer.js?v=2c662dcc5995" defer></script>
+    <script src="js/image-viewer.js?v=9336eaff604a" defer></script>
 </head>
 <body class="portfolio sb-nav-fixed">
     <a class="skip-link visually-hidden-focusable" href="#main-content">跳到主要內容</a>
@@ -27,7 +27,7 @@
         </a>
         <div class="header-actions">
             <a class="btn btn-header" href="https://github.com/JianHuangLyu" target="_blank" rel="noopener">GitHub</a>
-            <a class="btn btn-header" href="https://www.linkedin.com/in/jianhuanglyu" target="_blank" rel="noopener">LINKEDIN</a>
+            <a class="btn btn-header" href="https://www.linkedin.com/in/jianhuanglyu" target="_blank" rel="noopener">LinkedIn</a>
             <a class="btn btn-header" href="https://hackmd.io/@abcd09500" target="_blank" rel="noopener">HackMD</a>
             <button class="btn btn-header menu-toggle" type="button" id="sidebarToggle" aria-expanded="false" aria-controls="layoutSidenav_nav" hidden>
                 <span class="menu-icon" aria-hidden="true"></span>
@@ -248,11 +248,11 @@
                                         <img src="assets/img/projects/pathology-architecture.webp" width="1440" height="876" loading="lazy" decoding="async" alt="定位模型在病理影像框出候選區域，並比對教師與學生的輸出以迭代提示詞或技能。">
                                         <figcaption style="background-color: var(--surface)">
                                             <span class="project-media-caption">Method Overview</span>
-                                            <button type="button" class="project-media-source" aria-haspopup="dialog" aria-controls="project-image-viewer" data-viewer-src="assets/img/projects/pathology-architecture-original.png" data-viewer-title="病理影像分析系統架構">查看原圖</button>
+                                            <button type="button" class="project-media-source" aria-haspopup="dialog" aria-controls="project-image-viewer" data-viewer-src="assets/img/projects/pathology-architecture-original.png" data-viewer-preview="assets/img/projects/pathology-architecture.webp" data-viewer-width="2837" data-viewer-height="1726" data-viewer-title="病理影像分析系統架構">查看原圖</button>
                                         </figcaption>
                                     </figure>
                                     <figure class="project-media" id="pathology-experiments">
-                                        <img src="assets/img/projects/pathology-experiments/yolo-comparison.png" width="3315" height="1442" loading="lazy" decoding="async" alt="YOLO 各版本的參數量、Precision、Recall、mAP 與 F1 分數比較。">
+                                        <img src="assets/img/projects/pathology-experiments/yolo-comparison-preview.webp" width="1120" height="487" loading="lazy" decoding="async" alt="YOLO 各版本的參數量、Precision、Recall、mAP 與 F1 分數比較。">
                                         <figcaption>
                                             <span class="project-media-caption" lang="en">Experiments</span>
                                             <button type="button" class="project-media-source" aria-haspopup="dialog" aria-controls="project-image-viewer" data-viewer-gallery="pathology-experiment-gallery">查看實驗圖</button>
@@ -310,7 +310,7 @@
                                     <section class="project-meta-panel project-tech">
                                         <h4 lang="en">Tech Stack</h4>
                                         <ul class="tag-list project-skills" aria-label="使用技術" role="list">
-                                            <li hidden>AdaIN</li><li>ONNX</li><li>TensorRT</li><li>INT8 PTQ(模型量化)</li><li>Docker</li>
+                                            <li hidden>AdaIN</li><li>ONNX</li><li>TensorRT</li><li>INT8 PTQ(模型量化)</li><li>Docker</li><li>Gradio</li><li>PyTorch</li>
                                         </ul>
                                     </section>
                                     <section class="project-meta-panel project-resources">
@@ -329,7 +329,7 @@
                                         <img src="assets/img/projects/jetson-style-transfer.webp" width="1226" height="954" loading="lazy" decoding="async" alt="原始草地照片與風格參考圖在左側，右側顯示套用幾何畫風的轉換結果。">
                                         <figcaption>
                                             <span class="project-media-caption">Demo</span>
-                                            <button type="button" class="project-media-source" aria-haspopup="dialog" aria-controls="project-image-viewer" data-viewer-src="assets/img/projects/jetson-style-transfer-original.jpg" data-viewer-title="即時影像風格轉換示範">查看原圖</button>
+                                            <button type="button" class="project-media-source" aria-haspopup="dialog" aria-controls="project-image-viewer" data-viewer-src="assets/img/projects/jetson-style-transfer-original.jpg" data-viewer-preview="assets/img/projects/jetson-style-transfer.webp" data-viewer-width="1226" data-viewer-height="954" data-viewer-title="即時影像風格轉換示範">查看原圖</button>
                                         </figcaption>
                                     </figure>
                                     <figure class="project-media" id="edge-experiments">
@@ -385,7 +385,7 @@
                         <article class="card project-card project-expression" id="project-expression" aria-labelledby="expression-title" tabindex="-1">
                             <header class="project-header">
                                 <p class="project-context">大學部畢業專題</p>
-                                <h3 id="expression-title">多模態微表情辨識系統</h3>
+                                <h3 id="expression-title">即時人臉微表情辨識偵測系統</h3>
                                 <p class="project-summary">本系統整合攝影機，會自動偵測人臉影像並辨識正向、負向、驚訝與其他四類微表情</p>
                                 <div class="project-meta">
                                     <section class="project-meta-panel project-tech">
@@ -548,28 +548,28 @@
             </div>
         </div>
         <div class="image-viewer-gallery image-viewer-gallery--scrollable" id="pathology-experiment-gallery" role="group" aria-label="切換實習專案實驗圖" hidden>
-            <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/pathology-experiments/yolo-comparison.png" data-viewer-title="YOLO Comparison">
-                <img src="assets/img/projects/pathology-experiments/yolo-comparison.png" width="3315" height="1442" loading="lazy" decoding="async" alt="">
+            <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/pathology-experiments/yolo-comparison.png" data-viewer-preview="assets/img/projects/pathology-experiments/yolo-comparison-preview.webp" data-viewer-width="3315" data-viewer-height="1442" data-viewer-title="YOLO Comparison">
+                <img src="assets/img/projects/pathology-experiments/yolo-comparison-preview.webp" width="1120" height="487" loading="lazy" decoding="async" alt="">
                 <span lang="en">YOLO Comparison</span>
             </button>
-            <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/pathology-experiments/localization.png" data-viewer-title="YOLO Localization">
+            <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/pathology-experiments/localization.png" data-viewer-preview="assets/img/projects/pathology-experiments/localization-view.webp" data-viewer-width="4168" data-viewer-height="1464" data-viewer-title="YOLO Localization">
                 <img src="assets/img/projects/pathology-experiments/localization-preview.webp" width="640" height="225" loading="lazy" decoding="async" alt="">
                 <span lang="en">YOLO Localization</span>
             </button>
-            <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/pathology-experiments/soft-score.png" data-viewer-title="Soft Score">
-                <img src="assets/img/projects/pathology-experiments/soft-score.png" width="1967" height="606" loading="lazy" decoding="async" alt="">
+            <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/pathology-experiments/soft-score.png" data-viewer-preview="assets/img/projects/pathology-experiments/soft-score-preview.webp" data-viewer-width="1967" data-viewer-height="606" data-viewer-title="Soft Score">
+                <img src="assets/img/projects/pathology-experiments/soft-score-preview.webp" width="1040" height="320" loading="lazy" decoding="async" alt="">
                 <span lang="en">Soft Score</span>
             </button>
-            <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/pathology-experiments/field-similarity.png" data-viewer-title="Field Similarity">
-                <img src="assets/img/projects/pathology-experiments/field-similarity.png" width="2208" height="633" loading="lazy" decoding="async" alt="">
+            <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/pathology-experiments/field-similarity.png" data-viewer-preview="assets/img/projects/pathology-experiments/field-similarity-preview.webp" data-viewer-width="2208" data-viewer-height="633" data-viewer-title="Field Similarity">
+                <img src="assets/img/projects/pathology-experiments/field-similarity-preview.webp" width="1120" height="321" loading="lazy" decoding="async" alt="">
                 <span lang="en">Field Similarity</span>
             </button>
-            <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/pathology-experiments/schema-validity.png" data-viewer-title="Schema Validity">
-                <img src="assets/img/projects/pathology-experiments/schema-validity.png" width="2055" height="564" loading="lazy" decoding="async" alt="">
+            <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/pathology-experiments/schema-validity.png" data-viewer-preview="assets/img/projects/pathology-experiments/schema-validity-preview.webp" data-viewer-width="2055" data-viewer-height="564" data-viewer-title="Schema Validity">
+                <img src="assets/img/projects/pathology-experiments/schema-validity-preview.webp" width="1080" height="296" loading="lazy" decoding="async" alt="">
                 <span lang="en">Schema Validity</span>
             </button>
-            <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/pathology-experiments/schema-violations.png" data-viewer-title="Schema Violations">
-                <img src="assets/img/projects/pathology-experiments/schema-violations.png" width="2064" height="563" loading="lazy" decoding="async" alt="">
+            <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/pathology-experiments/schema-violations.png" data-viewer-preview="assets/img/projects/pathology-experiments/schema-violations-preview.webp" data-viewer-width="2064" data-viewer-height="563" data-viewer-title="Schema Violations">
+                <img src="assets/img/projects/pathology-experiments/schema-violations-preview.webp" width="1080" height="295" loading="lazy" decoding="async" alt="">
                 <span lang="en">Schema Violations</span>
             </button>
         </div>
