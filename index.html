@@ -10,14 +10,20 @@
     <meta property="og:description" content="電腦視覺、多模態 AI、醫學影像與邊緣部署作品集。">
     <title>呂建篁 Jian-Huang Lyu｜個人作品集</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/portfolio.css?v=29eebc6474cb">
-    <script src="js/scripts.js?v=60006adfe887" defer></script>
+    <link rel="stylesheet" href="css/portfolio.css?v=d797cc40b33c">
+    <script src="js/scripts.js?v=b0271519f007" defer></script>
     <script src="js/image-viewer.js?v=9336eaff604a" defer></script>
 </head>
 <body class="portfolio sb-nav-fixed">
     <div class="site-background" aria-hidden="true">
-        <img src="assets/img/beach-poster.webp" width="960" height="540" alt="" decoding="async" fetchpriority="low">
-        <video id="site-background-video" data-background-src="assets/video/beach.mp4" autoplay muted loop playsinline preload="none"></video>
+        <div class="background-scene" data-background="forest">
+            <img src="assets/img/forest-poster.webp" width="960" height="540" alt="" decoding="async" fetchpriority="low">
+            <video id="site-background-video" data-background-src="assets/video/forest.mp4" autoplay muted loop playsinline preload="none"></video>
+        </div>
+        <div class="background-scene" data-background="beach" hidden>
+            <img src="assets/img/beach-poster.webp" width="960" height="540" alt="" loading="lazy" decoding="async" fetchpriority="low">
+            <video id="beach-background-video" data-background-src="assets/video/beach.mp4" autoplay muted loop playsinline preload="none"></video>
+        </div>
     </div>
     <a class="skip-link visually-hidden-focusable" href="#main-content">跳到主要內容</a>
 
@@ -69,7 +75,16 @@
                             <option value="apricot">杏橙</option>
                         </select>
                     </label>
-                    <button type="button" class="btn btn-header background-toggle" id="background-toggle" aria-controls="site-background-video" hidden>播放背景</button>
+                    <div class="background-controls" hidden>
+                        <label class="view-theme-control" for="portfolio-background">
+                            背景影片
+                            <select id="portfolio-background">
+                                <option value="forest">森林</option>
+                                <option value="beach">海灘</option>
+                            </select>
+                        </label>
+                        <button type="button" class="btn btn-header background-toggle" id="background-toggle" aria-controls="site-background-video">播放背景</button>
+                    </div>
                 </div>
             </nav>
         </div>

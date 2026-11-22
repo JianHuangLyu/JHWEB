@@ -17,16 +17,42 @@ setupViewTheme();
 setupBackgroundVideo();
 
 function setupBackgroundVideo() {
-    const video = document.querySelector('#site-background-video');
-    const toggle = document.querySelector('#background-toggle');
-    if (!video || !toggle) return;
+    const videos = new Map();
+    for (const clip of document.querySelectorAll('.background-scene > video[data-background-src]')) {
+        videos.set(clip.parentElement.dataset.background, clip);
+        clip.muted = true;
+    }
+    const defaultVideo = [...videos.values()].find(clip => !clip.parentElement.hidden) ?? videos.values().next().value;
+    if (!defaultVideo) return;
 
+    const picker = document.querySelector('#portfolio-background');
+    const toggle = document.querySelector('#background-toggle');
+    const controls = document.querySelector('.background-controls');
+    const preferenceKey = 'jianhuanglyu-portfolio-background';
     const motion = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let video = defaultVideo;
     let enabled = !motion.matches;
-    video.muted = true;
 
     function updateToggle() {
-        toggle.textContent = video.paused || video.error ? '播放背景' : '暫停背景';
+        if (toggle) toggle.textContent = video.paused || video.error ? '播放背景' : '暫停背景';
+    }
+
+    function selectBackground(value) {
+        const next = videos.get(value) ?? defaultVideo;
+        if (next !== video) {
+            video.pause();
+            video.classList.remove('has-frame');
+            if (video.hasAttribute('src')) {
+                video.removeAttribute('src');
+                video.load();
+            }
+            video.parentElement.hidden = true;
+            video = next;
+        }
+        video.parentElement.hidden = false;
+        if (picker) picker.value = video.parentElement.dataset.background;
+        toggle?.setAttribute('aria-controls', video.id);
+        updateToggle();
     }
 
     function syncPlayback() {
@@ -38,25 +64,43 @@ function setupBackgroundVideo() {
         video.play().catch(updateToggle);
     }
 
-    toggle.addEventListener('click', () => {
+    let saved = '';
+    try { saved = localStorage.getItem(preferenceKey) || ''; }
+    catch { /* The default background is available without storage. */ }
+    selectBackground(saved);
+
+    picker?.addEventListener('change', () => {
+        selectBackground(picker.value);
+        syncPlayback();
+        try { localStorage.setItem(preferenceKey, picker.value); }
+        catch { /* The chosen background applies for the current page. */ }
+    });
+    toggle?.addEventListener('click', () => {
         enabled = video.paused || Boolean(video.error);
         if (video.error) video.load();
         syncPlayback();
     });
-    video.addEventListener('play', updateToggle);
-    video.addEventListener('pause', updateToggle);
-    video.addEventListener('playing', () => video.classList.add('has-frame'));
-    video.addEventListener('error', () => {
-        video.classList.remove('has-frame');
-        updateToggle();
-    });
+    for (const clip of videos.values()) {
+        clip.addEventListener('play', updateToggle);
+        clip.addEventListener('pause', updateToggle);
+        clip.addEventListener('playing', () => {
+            if (clip === video && !clip.paused) clip.classList.add('has-frame');
+        });
+        clip.addEventListener('error', () => {
+            clip.classList.remove('has-frame');
+            updateToggle();
+        });
+    }
     document.addEventListener('visibilitychange', syncPlayback);
     motion.addEventListener('change', () => {
         enabled = !motion.matches;
         syncPlayback();
     });
 
-    toggle.hidden = false;
+    if (controls) {
+        placeViewControl(controls);
+        controls.hidden = false;
+    }
     if (document.readyState === 'complete') syncPlayback();
     else window.addEventListener('load', syncPlayback, { once: true });
 }
@@ -84,13 +128,8 @@ function setupViewTheme() {
     applyTheme(saved);
     if (!picker) return;
 
-    const panel = picker.closest('.sb-sidenav-footer');
-    if (panel && document.body.classList.contains('sidebar-ready')) {
-        panel.hidden = false;
-    } else {
-        const control = picker.closest('.view-theme-control');
-        if (panel && control) document.querySelector('.site-footer .portfolio-shell')?.append(control);
-    }
+    const control = picker.closest('.view-theme-control');
+    if (control) placeViewControl(control);
 
     picker.addEventListener('change', () => {
         applyTheme(picker.value);
@@ -99,6 +138,16 @@ function setupViewTheme() {
             else localStorage.removeItem(preferenceKey);
         } catch { /* Keep the chosen theme for the current page. */ }
     });
+}
+
+function placeViewControl(control) {
+    const panel = control.closest('.sb-sidenav-footer');
+    if (!panel) return;
+    if (document.body.classList.contains('sidebar-ready')) {
+        panel.hidden = false;
+    } else {
+        document.querySelector('.site-footer .portfolio-shell')?.append(control);
+    }
 }
 
 function sectionFor(link) {
