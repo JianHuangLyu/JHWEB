@@ -324,6 +324,13 @@
                                             <button type="button" class="project-media-source" aria-haspopup="dialog" aria-controls="project-image-viewer" data-viewer-src="assets/img/projects/jetson-style-transfer-original.jpg" data-viewer-title="即時影像風格轉換示範">查看原圖</button>
                                         </figcaption>
                                     </figure>
+                                    <figure class="project-media" id="edge-experiments">
+                                        <img src="assets/img/projects/edge-experiments/Result1.png" width="2513" height="691" loading="lazy" decoding="async" alt="原始 ONNX 模型、FP32 與 INT8 TensorRT 的模型體積與每秒影格數比較。">
+                                        <figcaption>
+                                            <span class="project-media-caption" lang="en">Experiments</span>
+                                            <button type="button" class="project-media-source" aria-haspopup="dialog" aria-controls="project-image-viewer" data-viewer-gallery="edge-experiment-gallery">查看實驗圖</button>
+                                        </figcaption>
+                                    </figure>
                                     <figure class="project-visual project-flow" hidden>
                                         <figcaption>邊緣部署流程</figcaption>
                                         <ol class="flow-steps">
@@ -532,6 +539,16 @@
                 <img id="viewer-image" alt="" draggable="false" hidden>
                 <p id="viewer-message" role="status" hidden></p>
             </div>
+        </div>
+        <div class="image-viewer-gallery" id="edge-experiment-gallery" role="group" aria-label="切換實驗圖" hidden>
+            <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/edge-experiments/Result1.png" data-viewer-title="Model Size &amp; FPS">
+                <img src="assets/img/projects/edge-experiments/Result1.png" width="2513" height="691" loading="lazy" decoding="async" alt="">
+                <span lang="en">Model Size &amp; FPS</span>
+            </button>
+            <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/edge-experiments/Result2.png" data-viewer-title="CPU / GPU Inference Time">
+                <img src="assets/img/projects/edge-experiments/Result2.png" width="2692" height="688" loading="lazy" decoding="async" alt="">
+                <span lang="en">CPU / GPU Inference Time</span>
+            </button>
         </div>
         <div class="image-viewer-gallery" id="expression-experiment-gallery" role="group" aria-label="切換實驗圖" hidden>
             <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/experiments/Performance.png" data-viewer-title="Performance">
