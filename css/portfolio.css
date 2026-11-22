@@ -535,7 +535,7 @@ main.portfolio-shell {
 .hero-focus {
   margin-bottom: 0.65rem;
   color: var(--ink);
-  font-size: clamp(1.03rem, 1.7vw, 1.28rem);
+  font-size: clamp(1.03rem, 1.6vw, 1.2rem);
   font-weight: 680;
 }
 
