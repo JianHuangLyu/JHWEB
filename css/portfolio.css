@@ -713,22 +713,38 @@ main.portfolio-shell > .portfolio-section:first-child {
   grid-template-columns: minmax(0, 1fr);
 }
 
+/* 技術分類採「左分類、右標籤」的列式排版，分類欄寬由最長的分類名稱決定 */
 .project-stack-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 0.65rem;
+  grid-template-columns: max-content minmax(0, 1fr);
+  column-gap: 1.25rem;
 }
 
 .project-stack-group {
+  display: grid;
+  grid-column: 1 / -1;
+  grid-template-columns: subgrid;
+  row-gap: 0.4rem;
+  align-items: start;
   min-width: 0;
-  padding: 0.8rem;
-  border: 1px solid var(--line);
-  border-radius: 0.65rem;
-  background-color: color-mix(in srgb, var(--surface) 68%, transparent);
+  padding-block: 0.6rem;
+}
+
+.project-stack-group:first-child {
+  padding-top: 0;
+}
+
+.project-stack-group:last-child {
+  padding-bottom: 0;
+}
+
+.project-stack-group + .project-stack-group {
+  border-top: 1px solid var(--line);
 }
 
 .project-stack-group h5 {
-  margin: 0 0 0.35rem;
+  margin: 0;
+  padding-top: 0.2rem;
   font-size: 1rem;
   font-weight: 720;
 }
@@ -1166,7 +1182,7 @@ main.portfolio-shell > .portfolio-section:first-child {
   overflow-wrap: anywhere;
 }
 
-.portfolio:has(> .site-background) :is(.project-stack-group, .project-media, .tag-list li) {
+.portfolio:has(> .site-background) :is(.project-media, .tag-list li) {
   background-color: var(--inset-surface);
 }
 
