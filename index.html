@@ -10,9 +10,9 @@
     <meta property="og:description" content="電腦視覺、多模態 AI、醫學影像與邊緣部署作品集。">
     <title>呂建篁 Jian-Huang Lyu｜個人作品集</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/portfolio.css?v=37a7146d28b6">
+    <link rel="stylesheet" href="css/portfolio.css?v=44298fa10250">
     <script src="js/scripts.js?v=638cd138647b" defer></script>
-    <script src="js/image-viewer.js?v=9ddde5fabf1c" defer></script>
+    <script src="js/image-viewer.js?v=2c662dcc5995" defer></script>
 </head>
 <body class="portfolio sb-nav-fixed">
     <a class="skip-link visually-hidden-focusable" href="#main-content">跳到主要內容</a>
@@ -249,6 +249,13 @@
                                         <figcaption style="background-color: var(--surface)">
                                             <span class="project-media-caption">Method Overview</span>
                                             <button type="button" class="project-media-source" aria-haspopup="dialog" aria-controls="project-image-viewer" data-viewer-src="assets/img/projects/pathology-architecture-original.png" data-viewer-title="病理影像分析系統架構">查看原圖</button>
+                                        </figcaption>
+                                    </figure>
+                                    <figure class="project-media" id="pathology-experiments">
+                                        <img src="assets/img/projects/pathology-experiments/yolo-comparison.png" width="3315" height="1442" loading="lazy" decoding="async" alt="YOLO 各版本的參數量、Precision、Recall、mAP 與 F1 分數比較。">
+                                        <figcaption>
+                                            <span class="project-media-caption" lang="en">Experiments</span>
+                                            <button type="button" class="project-media-source" aria-haspopup="dialog" aria-controls="project-image-viewer" data-viewer-gallery="pathology-experiment-gallery">查看實驗圖</button>
                                         </figcaption>
                                     </figure>
                                     <figure class="project-visual project-flow" hidden>
@@ -538,6 +545,32 @@
                 <img id="viewer-image" alt="" draggable="false" hidden>
                 <p id="viewer-message" role="status" hidden></p>
             </div>
+        </div>
+        <div class="image-viewer-gallery image-viewer-gallery--scrollable" id="pathology-experiment-gallery" role="group" aria-label="切換實習專案實驗圖" hidden>
+            <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/pathology-experiments/yolo-comparison.png" data-viewer-title="YOLO Comparison">
+                <img src="assets/img/projects/pathology-experiments/yolo-comparison.png" width="3315" height="1442" loading="lazy" decoding="async" alt="">
+                <span lang="en">YOLO Comparison</span>
+            </button>
+            <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/pathology-experiments/localization.png" data-viewer-title="YOLO Localization">
+                <img src="assets/img/projects/pathology-experiments/localization-preview.webp" width="640" height="225" loading="lazy" decoding="async" alt="">
+                <span lang="en">YOLO Localization</span>
+            </button>
+            <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/pathology-experiments/soft-score.png" data-viewer-title="Soft Score">
+                <img src="assets/img/projects/pathology-experiments/soft-score.png" width="1967" height="606" loading="lazy" decoding="async" alt="">
+                <span lang="en">Soft Score</span>
+            </button>
+            <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/pathology-experiments/field-similarity.png" data-viewer-title="Field Similarity">
+                <img src="assets/img/projects/pathology-experiments/field-similarity.png" width="2208" height="633" loading="lazy" decoding="async" alt="">
+                <span lang="en">Field Similarity</span>
+            </button>
+            <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/pathology-experiments/schema-validity.png" data-viewer-title="Schema Validity">
+                <img src="assets/img/projects/pathology-experiments/schema-validity.png" width="2055" height="564" loading="lazy" decoding="async" alt="">
+                <span lang="en">Schema Validity</span>
+            </button>
+            <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/pathology-experiments/schema-violations.png" data-viewer-title="Schema Violations">
+                <img src="assets/img/projects/pathology-experiments/schema-violations.png" width="2064" height="563" loading="lazy" decoding="async" alt="">
+                <span lang="en">Schema Violations</span>
+            </button>
         </div>
         <div class="image-viewer-gallery" id="edge-experiment-gallery" role="group" aria-label="切換實驗圖" hidden>
             <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/edge-experiments/Result1.png" data-viewer-title="Model Size &amp; FPS">

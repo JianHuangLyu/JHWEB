@@ -32,6 +32,7 @@ function setupImageDialog(dialog, loadImage) {
         dialog.classList.toggle('has-scrollbar', window.innerWidth > document.documentElement.clientWidth);
         dialog.showModal();
         window.scrollTo(scrollAtOpen);
+        if (gallery) gallery.scrollLeft = 0;
         const firstImage = gallery?.querySelector('button[data-viewer-src]:not([hidden]):not(:disabled)');
         showImage(firstImage || trigger);
     });

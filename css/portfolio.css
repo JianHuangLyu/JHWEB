@@ -870,6 +870,30 @@ main.portfolio-shell > .portfolio-section:first-child {
   object-fit: contain;
 }
 
+.image-viewer-gallery--scrollable:not([hidden]) {
+  justify-content: flex-start;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+}
+
+.portfolio .image-viewer-gallery--scrollable .image-viewer-thumbnail {
+  flex: 0 0 clamp(6.5rem, 11vw, 9rem);
+}
+
+.image-viewer-gallery--scrollable > :first-child {
+  margin-inline-start: auto;
+}
+
+.image-viewer-gallery--scrollable > :last-child {
+  margin-inline-end: auto;
+}
+
+#pathology-experiments > img,
+.image-viewer-gallery--scrollable .image-viewer-thumbnail img {
+  background-color: #fff;
+}
+
 .project-visual {
   display: grid;
   gap: 0.45rem;
