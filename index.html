@@ -10,8 +10,8 @@
     <meta property="og:description" content="電腦視覺、多模態 AI、醫學影像與邊緣部署作品集。">
     <title>呂建篁 Jian-Huang Lyu｜個人作品集</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/portfolio.css?v=68649d028d74">
-    <script src="js/scripts.js?v=33ed504b6211" defer></script>
+    <link rel="stylesheet" href="css/portfolio.css?v=9a0b4124f40e">
+    <script src="js/scripts.js?v=5c965fefacd4" defer></script>
     <script src="js/image-viewer.js?v=9336eaff604a" defer></script>
     <script src="js/particles.js?v=5f75fa9fdac9" defer></script>
 </head>
@@ -19,13 +19,6 @@
     <div class="site-background" aria-hidden="true">
         <div class="background-scene" data-background="particles">
             <canvas></canvas>
-        </div>
-        <div class="background-scene" data-background="forest" hidden>
-            <img src="assets/img/forest-10s.webp" width="854" height="480" alt="" loading="lazy" decoding="async" fetchpriority="low">
-        </div>
-        <div class="background-scene" data-background="beach" hidden>
-            <img src="assets/img/beach-poster.webp" width="960" height="540" alt="" loading="lazy" decoding="async" fetchpriority="low">
-            <video id="beach-background-video" data-background-src="assets/video/beach.mp4?v=7dfe1536e0ed" autoplay muted loop playsinline preload="none"></video>
         </div>
     </div>
     <a class="skip-link visually-hidden-focusable" href="#main-content">跳到主要內容</a>
@@ -74,12 +67,9 @@
                             背景
                             <select id="portfolio-background">
                                 <option value="particles">粒子</option>
-                                <option value="forest">森林</option>
-                                <option value="beach" disabled>海灘</option>
                                 <option value="none">無</option>
                             </select>
                         </label>
-                        <button type="button" class="btn btn-header background-toggle" id="background-toggle" aria-controls="beach-background-video" hidden>播放背景</button>
                     </div>
                 </div>
             </nav>
