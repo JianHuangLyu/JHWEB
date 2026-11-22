@@ -1345,9 +1345,15 @@ main.portfolio-shell > .portfolio-section:first-child {
 }
 
 .error-page {
-  align-items: flex-start;
+  align-items: center;
   justify-content: center;
   padding-block: 2rem;
+  text-align: center;
+}
+
+.error-page .error-countdown {
+  font-size: 0.95rem;
+  font-variant-numeric: tabular-nums;
 }
 
 .error-page .error-code {

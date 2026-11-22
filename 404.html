@@ -6,14 +6,31 @@
     <meta name="robots" content="noindex">
     <title>找不到頁面｜呂建篁</title>
     <link rel="stylesheet" href="/JHWEB/css/styles.css">
-    <link rel="stylesheet" href="/JHWEB/css/portfolio.css?v=4df6147ab680">
+    <link rel="stylesheet" href="/JHWEB/css/portfolio.css?v=d6f8c2080223">
+    <noscript><meta http-equiv="refresh" content="5; url=/JHWEB/"></noscript>
 </head>
 <body class="portfolio">
     <main id="layoutError" class="error-page portfolio-shell">
         <p class="error-code" aria-hidden="true">404</p>
         <h1>找不到這個頁面</h1>
         <p>你可以從首頁繼續瀏覽作品與履歷。</p>
-        <a class="btn btn-accent" href="/JHWEB/">回到首頁</a>
+        <p class="error-countdown"><span id="redirect-countdown">5</span> 秒後自動回到首頁。</p>
+        <a class="btn btn-accent" id="redirect-home" href="/JHWEB/">回到首頁</a>
     </main>
+    <script>
+        (() => {
+            const home = document.querySelector('#redirect-home').href;
+            const countdown = document.querySelector('#redirect-countdown');
+            let remaining = 5;
+            const timer = setInterval(() => {
+                remaining -= 1;
+                countdown.textContent = remaining;
+                if (remaining <= 0) {
+                    clearInterval(timer);
+                    location.replace(home);
+                }
+            }, 1000);
+        })();
+    </script>
 </body>
 </html>
