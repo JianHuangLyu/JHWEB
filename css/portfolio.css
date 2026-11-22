@@ -242,6 +242,11 @@
   backdrop-filter: var(--chrome-backdrop);
 }
 
+/* 頂端導覽列會蓋在捲動的內文上，改用不透明背景避免透字；側邊欄後面只有影片，維持半透明 */
+.portfolio:has(> .site-background) .sb-topnav::before {
+  background: linear-gradient(135deg, var(--surface), var(--wash));
+}
+
 .portfolio .sb-topnav .brand {
   display: inline-flex;
   align-items: center;
