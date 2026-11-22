@@ -1478,8 +1478,36 @@ main.portfolio-shell > .portfolio-section:first-child {
 }
 
 @media (max-width: 575.98px) {
+  /* 手機改為分類在上、標籤在下，讓標籤用滿整個寬度 */
+  .skills-table,
+  .skills-table :is(tbody, tr, th, td) {
+    display: block;
+  }
+
+  .skills-table tr {
+    padding-block: 0.8rem;
+  }
+
+  .skills-table tr:first-child {
+    padding-top: 0;
+  }
+
+  .skills-table tr:last-child {
+    padding-bottom: 0;
+  }
+
+  .skills-table tr + tr {
+    border-top: 1px solid var(--line);
+  }
+
+  .skills-table tr:nth-child(n) :is(th, td) {
+    padding: 0;
+    border-top: 0;
+  }
+
   .skills-table th {
-    width: 42%;
+    width: auto;
+    margin-bottom: 0.5rem;
     font-size: 0.95rem;
   }
 
