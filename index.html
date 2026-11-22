@@ -298,7 +298,7 @@
                             <header class="project-header">
                                 <p class="project-context">課程專案</p>
                                 <h3 id="edge-title">邊緣AI即時影像風格轉換系統</h3>
-                                <p class="project-summary">在 Jetson Xavier NX 上部署並執行模型量化後的模型，支援單張影像與即時攝影機畫面模式進行推論</p>
+                                <p class="project-summary">在Xavier部署並執行模型量化後的模型，支援單張影像與即時攝影機畫面模式進行推論</p>
                                 <div class="project-meta">
                                     <section class="project-meta-panel project-tech">
                                         <h4 lang="en">Tech Stack</h4>
@@ -359,15 +359,14 @@
                                             <span class="star-letter" aria-hidden="true">3</span>
                                             <div>
                                                 <h5>方法</h5>
-                                                <p>將 AdaIN 轉為 ONNX，在 Xavier上使用 TensorRT 進行 INT8 訓練後量化，並比較 CPU、ONNX Runtime GPU 與 TensorRT 的推論表現。</p>
+                                                <p>將Pretrained Model AdaIN 轉為 ONNX，在 Xavier上使用 TensorRT 進行 INT8 訓練後量化，並比較 CPU、ONNX Runtime GPU 與 TensorRT 的推論表現。</p>
                                             </div>
                                         </li>
                                         <li class="star-result">
                                             <span class="star-letter" aria-hidden="true">4</span>
                                             <div>
                                                 <h5>成果</h5>
-                                                <p>在 Xavier GPU 上處理 512 × 512 影像，推論時間由 0.3307 秒降至 0.1295 秒，速度達 2.55 倍，攝影機展示達 7.72 FPS。</p>
-                                                <p>TensorRT Engine 從 FP32 的 47.83 MB 縮小至 INT8 的 9.72 MB。</p>
+                                                <p>在 Xavier GPU 上處理 512 × 512 影像，推論時間由 0.3307 秒降至 0.1295 秒，速度達 2.55 倍，攝影機展示達 7.72 FPS。TensorRT Engine 從 FP32 的 47.83 MB 縮小至 INT8 的 9.72 MB。</p>
                                             </div>
                                         </li>
                                     </ul>
@@ -448,8 +447,8 @@
                                             <div>
                                                 <h5 id="expression-results-title">成果</h5>
                                                 <p>完成四個獨立資料集與綜合資料集的驗證，並以攝影機即時展示。專題榮獲系上多媒體與雲端網路應用組第三名。</p>
-                                                <p>CASME 的準確率為 80.05%，綜合資料集為 72.33%。在有 FeatRef 對照的三組資料集上，本研究的準確率均較高，其中 SMIC-HS 高出 5.13 個百分點。</p>
-                                                <p>消融實驗中，移除光流與 Inception block 後，準確率由 72.74% 降至 48.62%，為降幅最大的配置。</p>
+                                                <p>模型在CASME評測準確率為 80.05%，綜合資料集為 72.33%，與 FeatRef 方法對照的三組資料集上，本研究均高出3-5%準確率。</p>
+                                                <p>消融實驗中，移除光流與 Inception block 後，準確率由 72.74% 降至 48.62%，顯示出動態特徵網路分支之影響力</p>
                                             </div>
                                         </li>
                                     </ul>
@@ -469,12 +468,12 @@
                                 <li>
                                     <p class="timeline-date"><time datetime="2025-09">2025/09</time> – 至今</p>
                                     <h4>國立成功大學　電機工程學系</h4>
-                                    <p>組別: 資訊工程組　碩士</p>
+                                    <p>組別: 資訊工程組　碩士&#10;</p>
                                 </li>
                                 <li>
                                     <p class="timeline-date"><time datetime="2020-09">2020/09</time> – <time datetime="2024-01">2024/01</time></p>
                                     <h4>國立臺南大學　資訊工程學系</h4>
-                                    <p>學士</p>
+                                    <p>工學學士</p>
                                 </li>
                             </ol>
                         </div>
