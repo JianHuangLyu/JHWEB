@@ -1376,6 +1376,25 @@ main.portfolio-shell > .portfolio-section:first-child {
   .portfolio #layoutSidenav:not(:has(#layoutSidenav_nav .nav-link[href]:not([hidden]))) #layoutSidenav_content {
     margin-left: 0;
   }
+
+  /* 寬螢幕讓 Education 與 Activities 並排，其餘區塊仍佔滿整列 */
+  main.portfolio-shell {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    column-gap: 1.45rem;
+  }
+
+  main.portfolio-shell > * {
+    grid-column: 1 / -1;
+  }
+
+  main.portfolio-shell > :is(#resume, #activities) {
+    grid-column: auto;
+  }
+
+  :is(#resume, #activities) > .resume-card {
+    height: 100%;
+  }
 }
 
 @media (max-width: 1199.98px), (max-width: 1536px) and (any-pointer: coarse) {
