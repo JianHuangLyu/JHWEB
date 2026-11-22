@@ -10,9 +10,9 @@
     <meta property="og:description" content="電腦視覺、多模態 AI、醫學影像與邊緣部署作品集。">
     <title>呂建篁 Jian-Huang Lyu｜個人作品集</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/portfolio.css?v=0f6a2cab1119">
+    <link rel="stylesheet" href="css/portfolio.css?v=37a7146d28b6">
     <script src="js/scripts.js?v=638cd138647b" defer></script>
-    <script src="js/image-viewer.js?v=36877f5b53ad" defer></script>
+    <script src="js/image-viewer.js?v=9ddde5fabf1c" defer></script>
 </head>
 <body class="portfolio sb-nav-fixed">
     <a class="skip-link visually-hidden-focusable" href="#main-content">跳到主要內容</a>
@@ -398,6 +398,13 @@
                                             <button type="button" class="project-media-source" aria-haspopup="dialog" aria-controls="project-image-viewer" data-viewer-src="assets/img/projects/ProjectArchitecture.png" data-viewer-title="多模態微表情辨識模型架構">查看原圖</button>
                                         </figcaption>
                                     </figure>
+                                    <figure class="project-media" id="expression-experiments">
+                                        <img src="assets/img/projects/experiments/Performance.png" width="886" height="323" loading="lazy" decoding="async" alt="微表情模型在各資料集上的 ACC、UF1、UAR 與 WF1 評估結果。">
+                                        <figcaption>
+                                            <span class="project-media-caption" lang="en">Experiments</span>
+                                            <button type="button" class="project-media-source" aria-haspopup="dialog" aria-controls="project-image-viewer" data-viewer-gallery="expression-experiment-gallery">查看實驗圖</button>
+                                        </figcaption>
+                                    </figure>
                                     <figure class="project-visual project-flow" hidden>
                                         <figcaption>微表情辨識流程</figcaption>
                                         <ol class="flow-steps">
@@ -525,6 +532,20 @@
                 <img id="viewer-image" alt="" draggable="false" hidden>
                 <p id="viewer-message" role="status" hidden></p>
             </div>
+        </div>
+        <div class="image-viewer-gallery" id="expression-experiment-gallery" role="group" aria-label="切換實驗圖" hidden>
+            <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/experiments/Performance.png" data-viewer-title="Performance">
+                <img src="assets/img/projects/experiments/Performance.png" width="886" height="323" loading="lazy" decoding="async" alt="">
+                <span lang="en">Performance</span>
+            </button>
+            <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/experiments/ExperimentCompare.png" data-viewer-title="Experiment Compare">
+                <img src="assets/img/projects/experiments/ExperimentCompare.png" width="999" height="164" loading="lazy" decoding="async" alt="">
+                <span lang="en">Experiment Compare</span>
+            </button>
+            <button type="button" class="btn btn-header image-viewer-thumbnail" aria-pressed="false" data-viewer-src="assets/img/projects/experiments/AblationStudy.png" data-viewer-title="Ablation Study">
+                <img src="assets/img/projects/experiments/AblationStudy.png" width="964" height="246" loading="lazy" decoding="async" alt="">
+                <span lang="en">Ablation Study</span>
+            </button>
         </div>
     </dialog>
 </body>

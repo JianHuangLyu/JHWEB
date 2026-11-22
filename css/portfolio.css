@@ -708,6 +708,10 @@ main.portfolio-shell > .portfolio-section:first-child {
   grid-template-rows: auto minmax(0, 1fr);
 }
 
+.image-viewer-dialog[open]:has(> .image-viewer-gallery:not([hidden])) {
+  grid-template-rows: auto minmax(0, 1fr) auto;
+}
+
 .image-viewer-page {
   height: 100vh;
   height: 100dvh;
@@ -829,6 +833,41 @@ main.portfolio-shell > .portfolio-section:first-child {
   max-width: 65vw;
   margin: 0;
   text-align: center;
+}
+
+.image-viewer-gallery:not([hidden]) {
+  display: flex;
+  justify-content: center;
+  gap: clamp(0.3rem, 1.5vw, 0.65rem);
+  padding: 0.45rem clamp(0.45rem, 2vw, 1rem);
+  border-top: 1px solid var(--line);
+  background: var(--paper-gradient);
+}
+
+.portfolio .image-viewer-gallery .image-viewer-thumbnail {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  flex: 1 1 0;
+  min-width: 0;
+  max-width: 10rem;
+  gap: 0.25rem;
+  padding: 0.35rem;
+  font-size: clamp(0.72rem, 1.6vw, 0.85rem);
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.portfolio .image-viewer-thumbnail[aria-pressed="true"] {
+  border-color: var(--accent);
+  background: var(--brown-gradient);
+}
+
+.image-viewer-thumbnail img {
+  display: block;
+  width: 100%;
+  height: clamp(1.3rem, 5.4vh, 3rem);
+  object-fit: contain;
 }
 
 .project-visual {

@@ -15,20 +15,35 @@ if (loadViewerImage && imageViewerDialog) {
 
 function setupImageDialog(dialog, loadImage) {
     let opener = null;
+    let gallery = null;
     let scrollAtOpen;
     let pressedBackdrop = false;
 
     document.addEventListener('click', event => {
-        const trigger = event.target.closest('button[data-viewer-src]');
-        if (!trigger || dialog.open) return;
+        const trigger = event.target.closest('button[data-viewer-src], button[data-viewer-gallery]');
+        if (!trigger || dialog.open || dialog.contains(trigger)) return;
         opener = trigger;
+        if (gallery) gallery.hidden = true;
+        const requestedGallery = document.getElementById(trigger.dataset.viewerGallery || '');
+        gallery = requestedGallery?.parentElement === dialog ? requestedGallery : null;
+        if (gallery) gallery.hidden = false;
         scrollAtOpen = { left: window.scrollX, top: window.scrollY, behavior: 'instant' };
         pressedBackdrop = false;
         dialog.classList.toggle('has-scrollbar', window.innerWidth > document.documentElement.clientWidth);
         dialog.showModal();
         window.scrollTo(scrollAtOpen);
-        loadImage(trigger.dataset.viewerSrc, trigger.dataset.viewerTitle);
+        const firstImage = gallery?.querySelector('button[data-viewer-src]:not([hidden]):not(:disabled)');
+        showImage(firstImage || trigger);
     });
+
+    function showImage(button) {
+        if (gallery) {
+            for (const thumbnail of gallery.querySelectorAll('button[data-viewer-src]')) {
+                thumbnail.setAttribute('aria-pressed', String(thumbnail === button));
+            }
+        }
+        loadImage(button.dataset.viewerSrc, button.dataset.viewerTitle);
+    }
 
     function isBackdrop(event) {
         if (event.target !== dialog) return false;
@@ -43,10 +58,14 @@ function setupImageDialog(dialog, loadImage) {
     dialog.addEventListener('click', event => {
         if (pressedBackdrop && isBackdrop(event)) dialog.close();
         pressedBackdrop = false;
+        const thumbnail = event.target.closest('button[data-viewer-src]');
+        if (thumbnail && gallery?.contains(thumbnail)) showImage(thumbnail);
     });
     dialog.querySelector('#viewer-close')?.addEventListener('click', () => dialog.close());
     dialog.addEventListener('close', () => {
         if (!opener || dialog.open) return;
+        if (gallery) gallery.hidden = true;
+        gallery = null;
         opener.focus({ preventScroll: true });
         window.scrollTo(scrollAtOpen);
         opener = null;
