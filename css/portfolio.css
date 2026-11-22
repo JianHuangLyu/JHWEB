@@ -1268,7 +1268,7 @@ main.portfolio-shell > .portfolio-section:first-child {
   width: 0.52rem;
   height: 0.52rem;
   border-radius: 50%;
-  background: var(--accent);
+  background: var(--ink);
   content: "";
 }
 
