@@ -122,6 +122,13 @@
 }
 
 .portfolio:has(> .site-background) {
+  --panel-surface: color-mix(in srgb, var(--surface) 66%, transparent);
+  --panel-wash: color-mix(in srgb, var(--wash) 63%, transparent);
+  --inset-surface: color-mix(in srgb, var(--surface) 34%, transparent);
+  --inset-wash: color-mix(in srgb, var(--wash) 38%, transparent);
+  --chrome-gradient: linear-gradient(135deg, var(--panel-surface), var(--panel-wash));
+  --portrait-gradient: linear-gradient(145deg, var(--panel-surface) 15%, var(--panel-wash) 100%);
+  --nav-scrim: color-mix(in srgb, var(--shadow-ink) 48%, transparent);
   isolation: isolate;
 }
 
@@ -210,6 +217,24 @@
   background: var(--paper-gradient);
 }
 
+.portfolio:has(> .site-background) .sb-topnav {
+  background: transparent;
+}
+
+.portfolio:has(> .site-background) .sb-topnav::before {
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  content: "";
+}
+
+.portfolio:has(> .site-background) .sb-topnav::before,
+.portfolio:has(> .site-background) #layoutSidenav #layoutSidenav_nav {
+  background: var(--chrome-gradient);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
 .portfolio .sb-topnav .brand {
   display: inline-flex;
   align-items: center;
@@ -267,9 +292,13 @@
 .portfolio :is(.btn-header, .project-links > a) {
   padding-inline: 0.85rem;
   border: 1px solid var(--line);
-  background: var(--wash);
+  background: var(--button-wash, var(--wash));
   color: var(--ink);
   font-size: 0.875rem;
+}
+
+.portfolio:has(> .site-background) :is(.sb-topnav, .sb-sidenav-footer, .project-links) {
+  --button-wash: var(--inset-wash);
 }
 
 .portfolio :is(.btn-header, .project-links > a):is(:hover, [aria-expanded="true"]) {
@@ -315,6 +344,10 @@
   overscroll-behavior: contain;
 }
 
+.portfolio:has(> .site-background) #layoutSidenav #layoutSidenav_nav .sb-sidenav {
+  background: transparent;
+}
+
 .portfolio .sb-sidenav .nav {
   gap: 0.25rem;
 }
@@ -339,6 +372,10 @@
   font-size: 0.875rem;
 }
 
+.portfolio:has(> .site-background) .sb-sidenav-footer {
+  background: var(--inset-surface);
+}
+
 .view-theme-control {
   display: grid;
   gap: 0.35rem;
@@ -361,6 +398,14 @@
   background-repeat: no-repeat;
   color: var(--ink);
   cursor: pointer;
+}
+
+.portfolio:has(> .site-background) .view-theme-control select {
+  background-color: var(--panel-surface);
+}
+
+.view-theme-control option {
+  background-color: var(--surface);
 }
 
 .background-toggle {
@@ -424,10 +469,6 @@ main.portfolio-shell {
   border-top-width: 3px;
   border-top-color: color-mix(in srgb, var(--accent) 32%, var(--line));
   background: var(--surface);
-}
-
-.portfolio:has(> .site-background) .hero {
-  background: color-mix(in srgb, var(--surface) 78%, transparent);
 }
 
 .hero-portrait {
@@ -544,12 +585,12 @@ main.portfolio-shell > .portfolio-section:first-child {
   box-shadow: 0 3px 12px color-mix(in srgb, var(--shadow-ink) 4.3%, transparent);
 }
 
-.portfolio:has(> .site-background) :is(.resume-card, .project-card) {
-  background-color: color-mix(in srgb, var(--surface) 76%, transparent);
+.portfolio:has(> .site-background) :is(.hero, .card) {
+  background-color: var(--panel-surface);
 }
 
 .portfolio:has(> .site-background) .projects-section {
-  background-color: color-mix(in srgb, var(--surface) 22%, transparent);
+  background-color: color-mix(in srgb, var(--wash) 12%, transparent);
 }
 
 .portfolio .card-body {
@@ -567,6 +608,10 @@ main.portfolio-shell > .portfolio-section:first-child {
 .portfolio :is(.project-card, .resume-card, .projects-section) {
   --project-padding: clamp(1.05rem, 2.65vw, 2rem);
   border-top: 3px solid var(--accent);
+}
+
+.portfolio:has(> .site-background) :is(.project-card, .resume-card, .projects-section) {
+  border-top-color: color-mix(in srgb, var(--accent) 62%, var(--line));
 }
 
 .project-list {
@@ -604,9 +649,13 @@ main.portfolio-shell > .portfolio-section:first-child {
   inset: 0;
   border-radius: inherit;
   background: var(--paper-gradient);
-  opacity: 0.4;
+  opacity: 0.24;
   pointer-events: none;
   content: "";
+}
+
+.portfolio:has(> .site-background) .projects-section > .project-header::before {
+  opacity: 0.62;
 }
 
 .project-header > .section-title {
@@ -677,9 +726,7 @@ main.portfolio-shell > .portfolio-section:first-child {
 }
 
 .portfolio:has(> .site-background) .project-meta-panel {
-  background: linear-gradient(147deg,
-    color-mix(in srgb, var(--surface) 65%, transparent) 15%,
-    color-mix(in srgb, var(--wash) 65%, transparent));
+  background: linear-gradient(147deg, var(--inset-surface) 15%, var(--inset-wash));
 }
 
 .project-meta-panel h4 {
@@ -701,7 +748,7 @@ main.portfolio-shell > .portfolio-section:first-child {
 }
 
 .portfolio .project-links > a {
-  background-color: var(--surface);
+  background-color: var(--button-wash, var(--surface));
   line-height: 1.5;
   text-decoration: none;
 }
@@ -1101,6 +1148,10 @@ main.portfolio-shell > .portfolio-section:first-child {
   overflow-wrap: anywhere;
 }
 
+.portfolio:has(> .site-background) :is(.project-stack-group, .project-media, .tag-list li) {
+  background-color: var(--inset-surface);
+}
+
 .project-notes h4 {
   margin: 0 0 0.9rem;
   font-size: 1.2rem;
@@ -1249,9 +1300,7 @@ main.portfolio-shell > .portfolio-section:first-child {
 }
 
 .portfolio:has(> .site-background) .site-footer {
-  background: linear-gradient(110deg,
-    color-mix(in srgb, var(--warm-paper) 80%, transparent),
-    color-mix(in srgb, var(--wash) 78%, transparent));
+  background: var(--chrome-gradient);
 }
 
 .site-footer .portfolio-shell {
@@ -1345,6 +1394,16 @@ main.portfolio-shell > .portfolio-section:first-child {
 
   .portfolio.sidebar-ready .menu-toggle[aria-expanded="true"] {
     background: var(--surface);
+  }
+
+  .portfolio:has(> .site-background).sidebar-ready .menu-toggle {
+    background: var(--chrome-gradient);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+
+  .portfolio:has(> .site-background).sidebar-ready .menu-toggle[aria-expanded="true"] {
+    background: var(--panel-surface);
   }
 
   .portfolio.sidebar-ready #layoutSidenav #layoutSidenav_nav {
