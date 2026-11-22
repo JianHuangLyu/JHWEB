@@ -539,6 +539,10 @@ main.portfolio-shell {
   font-weight: 680;
 }
 
+.hero-focus-note {
+  white-space: nowrap;
+}
+
 .hero-intro {
   max-width: 27rem;
   margin-bottom: 1.55rem;
