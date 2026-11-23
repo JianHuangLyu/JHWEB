@@ -18,33 +18,30 @@ setupBackground();
 setupVisitorCount();
 
 function setupVisitorCount() {
-    const footer = document.querySelector('.visitor-count');
-    const tracker = document.querySelector('script[data-goatcounter]')?.dataset.goatcounter;
-    if (!footer || !tracker) return;
+    const footer = document.querySelector('.visitor-count[data-counter]');
+    if (!footer) return;
 
-    // GoatCounter 公開計數（站點設定需開啟 Allow adding visitor counts）；每個網址的結果在伺服器端至少快取 4 小時
-    const counter = tracker.replace(/\/count$/, '/counter/TOTAL.json');
-    // start 只接受日期並以 UTC 換日，所以「今日」從台灣時間早上 8 點起算
-    const today = new Date().toISOString().slice(0, 10);
-    const read = url => fetch(url)
+    // 自架計數器（visitor-counter/）：即時更新，台灣時間半夜 12 點換日；同一個瀏覽器一天只算一次
+    const today = new Date(Date.now() + 8 * 60 * 60 * 1000).toISOString().slice(0, 10);
+    const storageKey = 'jianhuanglyu-portfolio-visit-day';
+    let counted = false;
+    try { counted = localStorage.getItem(storageKey) === today; }
+    catch { /* Without storage every page load counts as a visit. */ }
+    const hit = !counted && !navigator.webdriver;
+
+    fetch(footer.dataset.counter + (hit ? '/hit' : '/stats'), { method: hit ? 'POST' : 'GET' })
         .then(response => response.ok ? response.json() : Promise.reject(new Error(response.status)))
-        // count 是依站點設定加了千分位的字串（例如 "1,234" 或 "1 234"）
-        .then(({ count }) => Number(String(count ?? '').replace(/\D/g, '')));
-
-    Promise.allSettled([read(counter), read(counter + '?start=' + today)]).then(results => {
-        const [total, daily] = results.map(result => result.status === 'fulfilled' ? result.value : null);
-        // 被廣告攔截或尚未開放計數時，頁尾只顯示版權；讀得到就顯示，0 也照樣顯示
-        if (total === null) return;
-        // 兩個數字各自快取，累計可能比今日舊；取較大者，避免今日超過累計
-        const sum = Math.max(total, daily ?? 0);
-        const format = value => value.toLocaleString('zh-TW');
-        footer.querySelector('[data-visitor-count="total"]').textContent = format(sum);
-        if (daily !== null) {
+        .then(({ today: daily, total }) => {
+            if (hit) {
+                try { localStorage.setItem(storageKey, today); }
+                catch { /* The count still shows on this page. */ }
+            }
+            const format = value => Number(value).toLocaleString('zh-TW');
             footer.querySelector('[data-visitor-count="today"]').textContent = format(daily);
-            footer.querySelector('[data-visitor-today]').hidden = false;
-        }
-        footer.hidden = false;
-    });
+            footer.querySelector('[data-visitor-count="total"]').textContent = format(total);
+            footer.hidden = false;
+        })
+        .catch(() => { /* 計數器連不上時，頁尾只顯示版權。 */ });
 }
 
 function setupBackground() {

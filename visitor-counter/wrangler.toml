@@ -1,0 +1,10 @@
+# 部署：npx wrangler@4.158.0 deploy（在這個資料夾執行）
+name = "jhweb-visitors"
+main = "src/index.js"
+compatibility_date = "2026-11-01"
+workers_dev = true
+
+[[d1_databases]]
+binding = "DB"
+database_name = "jhweb-visitors"
+database_id = "e1ccd24e-31d0-431c-882c-52d3ffff250d"

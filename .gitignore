@@ -1,2 +1,4 @@
 /portfolio-editor.local.html
 /portfolio-changes.json
+/visitor-counter/.wrangler/
+/visitor-counter/node_modules/
