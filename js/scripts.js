@@ -18,22 +18,33 @@ setupBackground();
 setupVisitorCount();
 
 function setupVisitorCount() {
-    const output = document.querySelector('[data-visitor-count]');
+    const footer = document.querySelector('.visitor-count');
     const tracker = document.querySelector('script[data-goatcounter]')?.dataset.goatcounter;
-    if (!output || !tracker) return;
+    if (!footer || !tracker) return;
 
-    // GoatCounter 全站累計（站點設定需開啟 Allow adding visitor counts）；伺服器端最多快取 4 小時
-    const endpoint = tracker.replace(/\/count$/, '/counter/TOTAL.json');
-    fetch(endpoint)
+    // GoatCounter 公開計數（站點設定需開啟 Allow adding visitor counts）；每個網址的結果在伺服器端至少快取 4 小時
+    const counter = tracker.replace(/\/count$/, '/counter/TOTAL.json');
+    // start 只接受日期並以 UTC 換日，所以「今日」從台灣時間早上 8 點起算
+    const today = new Date().toISOString().slice(0, 10);
+    const read = url => fetch(url)
         .then(response => response.ok ? response.json() : Promise.reject(new Error(response.status)))
-        .then(({ count }) => {
-            // count 是依站點設定加了千分位的字串（例如 "1,234" 或 "1 234"）
-            const total = Number(String(count ?? '').replace(/\D/g, ''));
-            if (!total) return;
-            output.textContent = total.toLocaleString('zh-TW');
-            output.closest('.visitor-count').hidden = false;
-        })
-        .catch(() => { /* 被廣告攔截或尚未開放計數時，頁尾只顯示版權。 */ });
+        // count 是依站點設定加了千分位的字串（例如 "1,234" 或 "1 234"）
+        .then(({ count }) => Number(String(count ?? '').replace(/\D/g, '')));
+
+    Promise.allSettled([read(counter), read(counter + '?start=' + today)]).then(results => {
+        const [total, daily] = results.map(result => result.status === 'fulfilled' ? result.value : null);
+        // 被廣告攔截或尚未開放計數時，頁尾只顯示版權；讀得到就顯示，0 也照樣顯示
+        if (total === null) return;
+        // 兩個數字各自快取，累計可能比今日舊；取較大者，避免今日超過累計
+        const sum = Math.max(total, daily ?? 0);
+        const format = value => value.toLocaleString('zh-TW');
+        footer.querySelector('[data-visitor-count="total"]').textContent = format(sum);
+        if (daily !== null) {
+            footer.querySelector('[data-visitor-count="today"]').textContent = format(daily);
+            footer.querySelector('[data-visitor-today]').hidden = false;
+        }
+        footer.hidden = false;
+    });
 }
 
 function setupBackground() {
