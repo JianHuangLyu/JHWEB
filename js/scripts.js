@@ -15,6 +15,26 @@ if (sidebarToggle && sidebar && pageContent && scrim && sidebarLinks.length) {
 
 setupViewTheme();
 setupBackground();
+setupVisitorCount();
+
+function setupVisitorCount() {
+    const output = document.querySelector('[data-visitor-count]');
+    const tracker = document.querySelector('script[data-goatcounter]')?.dataset.goatcounter;
+    if (!output || !tracker) return;
+
+    // GoatCounter 全站累計（站點設定需開啟 Allow adding visitor counts）；伺服器端最多快取 4 小時
+    const endpoint = tracker.replace(/\/count$/, '/counter/TOTAL.json');
+    fetch(endpoint)
+        .then(response => response.ok ? response.json() : Promise.reject(new Error(response.status)))
+        .then(({ count }) => {
+            // count 是依站點設定加了千分位的字串（例如 "1,234" 或 "1 234"）
+            const total = Number(String(count ?? '').replace(/\D/g, ''));
+            if (!total) return;
+            output.textContent = total.toLocaleString('zh-TW');
+            output.closest('.visitor-count').hidden = false;
+        })
+        .catch(() => { /* 被廣告攔截或尚未開放計數時，頁尾只顯示版權。 */ });
+}
 
 function setupBackground() {
     const backdrop = document.querySelector('.site-background');
